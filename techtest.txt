@@ -1,0 +1,26 @@
+0. 테스트 환경
+
+   <KVM HOST1>
+   centos6.5 x64
+   centos6.5 x64
+   windows 2008R2 x64
+   windows 2008R2 x64
+
+   <KVM HOST2>
+   centos6.5 x64
+   centos6.5 x64
+   windows 2008R2 x64
+   windows 2008R2 x64
+
+1. 사이트 이전(web,db,dns)
+   linux -> linux
+   windows -> windows
+   
+2. backup
+   local backup
+   remote backup
+   
+3. linux 장애 복구
+  
+   
+   
