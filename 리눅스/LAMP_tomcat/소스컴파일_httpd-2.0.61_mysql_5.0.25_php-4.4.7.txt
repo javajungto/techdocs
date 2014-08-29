@@ -184,4 +184,21 @@ DirectoryIndex index.html index.html.var index.htm index.php
 /etc/httpd/conf.d/php.conf
 DirectoryIndex index.php
 
+--------------------
+etc
+--------------------
 
+64Bit OS 상에서 PHP 컴파일시 아래와 같이 메세지가 나오는 경우 조치방법
+ 
+에러메세지)
+configure: error: libjpeg.(a|so) not found
+보통은 아래 처럼 libjpeg 관련 패키지를 설치하면 되지만
+  
+# yum install libjpeg-devel
+  
+해결이 되지 않을 경우 아래와 같이 수정을 해보세요
+  
+# ln -s /usr/lib64/libjpeg.so /usr/lib/
+# ln -s /usr/lib64/libpng.so /usr/lib/
+
+yum install gmp-devel
