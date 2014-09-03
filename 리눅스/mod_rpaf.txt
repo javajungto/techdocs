@@ -1,0 +1,8 @@
+centos 6.5 
+
+mod_rpaf
+
+http://rnd.rajven.net/centos/6.5/os/x86_64/
+
+yum , epel 로 설치가 안됨.. 왜 안되지?
+
