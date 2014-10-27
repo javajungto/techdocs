@@ -2,4 +2,12 @@
  1056  ls -l
  1057  rpm -Uvh mod_rpaf-0.6-3.x86_64.rpm
 
+mod_rpaf
+
+http://old.drupion.com/resources/downloads/mod-rpaf
+
+RPAFenable On
+RPAFsethostname On
+RPAFproxy_ips 1.1.1.1 2.2.2.2
+RPAFheader X-Forwarded-For
 
