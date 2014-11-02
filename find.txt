@@ -1,0 +1,8 @@
+touch -t 201411020000 08
+
+find / -newer 08 -print -o -path '/proc' -prune -o -path '/sys' -prune|grep -v 2c1df895-9d9c|grep -v log|grep -v rrds
+
+exclude /proc directory ==> -o -path '/proc' -prune
+exclude /sys  directory ==> -l -path '/sys' -prune
+
+
