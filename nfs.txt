@@ -1,0 +1,24 @@
+https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-centos-6
+
+- server
+
+yum install nfs-utils nfs-utils-lib
+
+chkconfig nfs on 
+service rpcbind start
+service nfs start
+
+vi /etc/exports
+
+/home           12.33.44.555(rw,sync,no_root_squash,no_subtree_check)
+
+exportfs -a
+
+chkconfig nfs on 
+service rpcbind start
+service nfs start
+
+- client
+mount x.x.x.x:/home /mnt/nfs/home
+
+
