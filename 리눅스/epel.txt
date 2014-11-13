@@ -15,5 +15,13 @@ http://fedoraproject.org/wiki/EPEL
 6.x x64
 http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
+6.x i386
+http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+
 5.x x32
 http://dl.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm
+
+------------
+
+http://dl.fedoraproject.org/pub/epel/
+
