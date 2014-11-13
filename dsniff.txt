@@ -3,4 +3,13 @@ rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.r
 
 yum install dsniff
 
+http://www.cyberciti.biz/tips/linux-iptables-examples.html
+
+#iptables -A OUTPUT -d x.x.x.0/24 -j DROP
+#/etc/init.d/iptables save
+
+확인
+#tcpdump host x.x.x.80 -vv
+
+
 
