@@ -2,3 +2,7 @@
 cluster
 
 https://pve.proxmox.com/wiki/Proxmox_VE_2.0_Cluster
+
+/var/lib/vz/private/100/
+
+
