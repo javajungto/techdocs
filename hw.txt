@@ -5,3 +5,8 @@ http://sangchul.kr/139
 cpu 
 dmidecode -t 4
 
+memory
+dmidecode -t 17
+
+man dmidecode 
+
