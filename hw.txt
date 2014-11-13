@@ -1,0 +1,7 @@
+dmedecode 
+
+http://sangchul.kr/139
+
+cpu 
+dmidecode -t 4
+
