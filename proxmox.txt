@@ -8,3 +8,13 @@ https://pve.proxmox.com/wiki/Proxmox_VE_2.0_Cluster
 /etc/pve/nodes/pm1/openvz/300.conf
 
 
+proxmox attached to ct esc to detach
+
+=> http://forum.proxmox.com/threads/12724-OpenVZ-console-does-not-connect
+
+Example for OpenVZ container 126.
+/usr/bin/dtach -A /var/run/dtach/vzctlconsole126 -r winch -z /usr/sbin/vzctl console 126
+
+Esc . 
+
+
