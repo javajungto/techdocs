@@ -20,4 +20,5 @@ Esc .
 
  /usr/bin/rsync -aHAX --delete --numeric-ids --sparse /var/lib/vz/private/200 root@38.91.105.140:/var/lib/vz/private
 
-
+1) vm에 web console 접속시 다음과 같은 메세지가 뜨면서 연결이 안될때
+Connected(encrypted) to:VNC Command Termin
