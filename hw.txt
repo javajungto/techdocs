@@ -10,3 +10,5 @@ dmidecode -t 17
 
 man dmidecode 
 
+check disk on debian
+http://www.howtogeek.com/howto/37659/the-beginners-guide-to-linux-disk-utilities/
