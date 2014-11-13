@@ -22,3 +22,34 @@ Esc .
 
 1) vm에 web console 접속시 다음과 같은 메세지가 뜨면서 연결이 안될때
 Connected(encrypted) to:VNC Command Termin
+
+root@pm1:~# vzlist
+      CTID      NPROC STATUS    IP_ADDR         HOSTNAME
+       100         19 running   38.91.105.135   test100.8.8.8.8
+       
+
+root@pm1:~# vzctl enter 100
+
+[root@test100 /]# view /etc/init/tty.conf
+
+# This service maintains a getty on tty1 from the point the system is
+# started until it is shut down again.
+
+start on stopped rc RUNLEVEL=[2345]
+
+stop on runlevel [!2345]
+
+respawn
+exec /sbin/agetty -8 tty1 38400
+
+--------------------
+
+#stop tty
+#start tty 
+==> 이렇게 하면 console화면에서 화면이 보인다 
+? 왜 이렇지.
+
+
+
+
+ 
