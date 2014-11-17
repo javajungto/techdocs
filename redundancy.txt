@@ -1,0 +1,8 @@
+이중화(Backup, Redundancy, Failover, Switchover)
+
+http://bubukgi.egloos.com/viewer/3811250
+
+stp
+
+
+
