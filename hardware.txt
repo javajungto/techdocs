@@ -1,0 +1,10 @@
+cpu
+
+multi-core = CMP(칩레벨프로세서)
+
+듀얼코어 dual-core 프로세서 : 2개의 core
+트리플코어 triple-core 프로세서 : 3개의 core
+쿼드코어 quad-core 프로세서 : 4개의 core
+헥사코어 hexa-core 프로세서 : 6개의 core
+옥타코어 octa-core 프로세서 : 8개의 core
+마그니코어 magni-core 프로세서 : 12개의 core
