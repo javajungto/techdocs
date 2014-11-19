@@ -47,7 +47,7 @@ server_port=5666
 nrpe_user=nrpe
 nrpe_group=nrpe
 allowed_hosts=127.0.0.1,x.x.x.x,y.y.y.y
-dont_blame_nrpe=0
+dont_blame_nrpe=1 <==== # Values: 0=do not allow arguments, 1=allow command arguments
 allow_bash_command_substitution=0
 debug=0
 command_timeout=60
@@ -68,6 +68,12 @@ client에 체크 커맨드 스크립트 복사 되어야 함.
 -----------
 
 scp root@n...01........t:/usr/lib64/nagios/plugins/check_disk /usr/lib64/nagios/plugins/
+
+-----------
+test
+-----------
+/usr/lib64/nagios/plugins/check_nrpe  -H i.i.i.i -c check_disk -a 10% 5% /
+
 
 
 
