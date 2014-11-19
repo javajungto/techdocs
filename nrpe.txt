@@ -62,3 +62,13 @@ command[check_load]=/usr/lib64/nagios/plugins/check_load -w $ARG1$ -c $ARG2$
 command[check_disk]=/usr/lib64/nagios/plugins/check_disk -w $ARG1$ -c $ARG2$ -p $ARG3$
 command[check_procs]=/usr/lib64/nagios/plugins/check_procs -w $ARG1$ -c $ARG2$ -s $ARG3$
 include_dir=/etc/nrpe.d/
+
+-----------
+client에 체크 커맨드 스크립트 복사 되어야 함. 
+-----------
+
+scp root@n...01........t:/usr/lib64/nagios/plugins/check_disk /usr/lib64/nagios/plugins/
+
+
+
+
