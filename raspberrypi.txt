@@ -1,0 +1,28 @@
+
+http://www.raspberrypi.org/
+
+http://www.raspberrypi.org/downloads/
+
+download : NOOBS
+
+download : SDFormatter 
+<= SDCard를 포맷하기 위해서 받는다. 
+<= 이 툴을 사용하지 않을때는 기존 라즈베리파이 설치된 sdcard를 윈도우에 꽂으면, 공간이 70M으로 인식되었다. 
+https://www.sdcard.org/downloads/formatter_4/
+
+NOOBS zip파일을 풀어서 sdcard에 복사만 하면 끝...
+
+------------------------------------------------------
+gpio 
+
+http://wiringpi.com/download-and-install/
+
+sudo apt-get update
+sudo apt-get upgrade
+cd /usr/local/src/
+sudo git clone git://git.drogon.net/wiringPi
+cd wiringPi
+sudo git pull origin
+sudo ./build
+
+
