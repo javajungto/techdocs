@@ -25,4 +25,8 @@ cd wiringPi
 sudo git pull origin
 sudo ./build
 
+test
+gpio -v
+gpio readall
+
 
