@@ -7,6 +7,44 @@ https://pve.proxmox.com/wiki/Proxmox_VE_2.0_Cluster
 
 /etc/pve/nodes/pm1/openvz/300.conf
 
+-----------------------------------
+create cluster
+-----------------------------------
+hp1# pvecm create YOUR-CLUSTER-NAME
+hp1# pvecm status
+
+-----------------------------------
+add nodes
+-----------------------------------
+hp2# pvecm add IP-ADDRESS-CLUSTER
+hp2# pvecm status
+hp2# pvecm nodes
+
+-----------------------------------
+Remove a cluster node(permanently)
+-----------------------------------
+1) Move all virtual machines out of the node (just use the Central Web-based Management to migrate or delete all VM´s)
+
+2) Make sure you have no local backups you want to keep, or save them accordingly.
+
+3) Log in to one remaining node via ssh. Issue a pvecm nodes command to identify the nodeID:
+hp1# pvecm nodes
+
+4) ATTENTION: at this point you must power off the node to be removed and make sure that it will not power on again (in the network) as it is.
+
+5) Log in to one remaining node via ssh. Issue the delete command (here deleting node hp2):
+hp1# pvecm delnode hp2
+hp1# pvecm nodes
+
+6) ATTENTION: as said above, it is very important to power off the node before removal, and make sure that it will not power on again (in the network) as it is.
+
+node를 삭제 할려면,
+반드시 node 서버 power off한후, pvecm delnode 노드명 해야 하고, 다시 파워를 연결하면 안된다. 
+
+
+
+
+
 
 proxmox attached to ct esc to detach
 
