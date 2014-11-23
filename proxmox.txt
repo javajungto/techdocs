@@ -40,6 +40,18 @@ hp1# pvecm nodes
 
 node를 삭제 할려면,
 반드시 node 서버 power off한후, pvecm delnode 노드명 해야 하고, 다시 파워를 연결하면 안된다. 
+삭제한 노드는 다시 재설치한후 새로운 노드명으로 추가 해야 한다. 
+
+7)
+If you power on that node as it is, your cluster will be screwed up and it could be difficult to restore a clean cluster state.
+If for whatever reason you would like to make that server to join again the same cluster, you have to
+reinstall pve on it from scratch
+as a new node
+and then regularly join it, as said in the previous section.
+Referring to the above example, you can create a new hp5 node, which will then join the cluster.
+
+
+
 
 
 
