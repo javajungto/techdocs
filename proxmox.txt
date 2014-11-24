@@ -99,6 +99,13 @@ exec /sbin/agetty -8 tty1 38400
 ==> 이렇게 하면 console화면에서 화면이 보인다 
 ? 왜 이렇지.
 
+----------------------
+backup
+----------------------
+
+https://pve.proxmox.com/wiki/Backup_and_Restore
+
+
 
 
 
