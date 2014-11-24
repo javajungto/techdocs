@@ -1,3 +1,22 @@
+parted /dev/sda
+
+mklabel gpt
+print
+mkpart primary 0 40G
+mkpart primary 40G 80G
+mkpart primary 80G 112G
+mkpart primary 112G 2999G
+
+help unit
+unit s
+unit GB
+
+quit
+
+
+
+-------------------------------
+
 example>
 #parted /dev/sdb
 
