@@ -1,4 +1,37 @@
 
+Slow Query Log
+
+참조
+http://www.mysqlkorea.com/sub.html?cat1=752&cat2=799&cat3=928&lang=k&m_no=22369&scode=01_1
+http://jmnote.com/wiki/MySQL_%EC%8A%AC%EB%A1%9C%EC%9A%B0_%EC%BF%BC%EB%A6%AC_%EB%A1%9C%EA%B7%B8_%EC%84%A4%EC%A0%95
+
+myriadb options
+https://mariadb.com/kb/en/mariadb/documentation/optimization-and-tuning/system-variables/server-system-variables/#long_query_time
+
+---------------------------------------------------------------------------------------------
+설정예)
+
+[mysqld]
+
+long_query_time = 3
+log-slow-queries=/usr/local/mysql/data/hungryapp-slow.log
+
+---------------------------------------------------------------------------------------------
+
+[mysqld]
+log-slow-queries = 로그파일명
+long_query_time = 시간(초)
+
+---------------------------------------------------------------------------------------------
+
+--log-queries-not-using-indexes 옵션
+인덱스를 사용하지 않는 쿼리가 slow query log에 기록된다. 
+
+
+slow query log 검사할때 query 요약 : mysqldumpslow 
+
+---------------------------------------------------------------------------------------------
+
 
 mysql 옵션 중에 쿼리 시간이 늦는 것을 별도의 파일로 로그를 남길 수 있습니다.
 
