@@ -21,5 +21,105 @@ service mysql start
 
 view /etc/my.cnf.d/server.cnf
 
+grant all privileges on *.* to root@'%' identified by 'XXXXX' with grant option;
+update user set password=password('XXXXX') where user='root';
+
+----------------------------------------------------------------------------------------------
+jwp_db_cluster1
+----------------------------------------------------------------------------------------------
+
+[root@jwp_db_cluster1 ~]# cat /etc/hosts
+192.168.0.161   jwp_db_cluster1
+192.168.0.162   jwp_db_cluster2
+
+view /etc/my.cnf.d/server.cnf
+
+[server]
+
+[mysqld]
+character-set-server=utf8
+log_bin=/var/lib/mysql/mariadb-bin
+log_bin_index=/var/lib/mysql/mariadb-bin.index
+pid-file = /var/lib/mysql/mysql.pid
+socket = /var/lib/mysql/mysql.sock
+log_error=/var/log/mysql.log
+
+[mariadb]
+query_cache_size=0
+binlog_format=ROW
+default_storage_engine=innodb
+innodb_autoinc_lock_mode=2
+innodb_locks_unsafe_for_binlog=1
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+wsrep_cluster_address=gcomm://192.168.0.162
+wsrep_cluster_name='cluster1'
+wsrep_node_address='192.168.0.161'
+wsrep_node_name='jwp_db_cluster1'
+wsrep_sst_method=rsync
+wsrep_sst_auth=root:XXXX
+
+[mariadb-5.5]
+ 
+----------------------------------------------------------------------------------------------
+jwp_db_cluster2
+----------------------------------------------------------------------------------------------
+
+view /etc/my.conf.d/server.cnf
+
+[mysqld]
+character-set-server=utf8
+log_bin=/var/lib/mysql/mariadb-bin
+log_bin_index=/var/lib/mysql/mariadb-bin.index
+pid-file = /var/lib/mysql/mysql.pid
+socket = /var/lib/mysql/mysql.sock
+log_error=/var/log/mysql.log
+
+[mariadb]
+query_cache_size=0
+binlog_format=ROW
+default_storage_engine=innodb
+innodb_autoinc_lock_mode=2
+innodb_locks_unsafe_for_binlog=1
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+wsrep_cluster_address=gcomm://192.168.0.161
+wsrep_cluster_name='cluster1'
+wsrep_node_address='192.168.0.162'
+wsrep_node_name='jwp_db_cluster2'
+wsrep_sst_method=rsync
+wsrep_sst_auth=root:XXXXX
+
+[mariadb-5.5]
+
+[root@jwp_db_cluster2 my.cnf.d]# cat /etc/hosts
+192.168.0.161   jwp_db_cluster1
+192.168.0.162   jwp_db_cluster2
+
+----------------------------------------------------------------------------------------------
+구동 
+----------------------------------------------------------------------------------------------
+기준이 되는 db에서 jwp_db_cluster1이라고 하고, 현재 db가 모두 구동되어 있지 않는 상태에서
+
+jwp_db_cluster1에서 /etc/init.d/mysql bootstrap
+jwp_db_cluster2에서 /etc/init.d/mysql start
+
+1이 다운되고, 2가 계속 운영중일 경우
+jwp_db_cluster1에서 /etc/init.d/mysql start 하면 아래와 같이 2의 값이 동기화 된다. 
+Starting MySQL....SST in progress, setting sleep higher.
+
+이때 1에서 start하지 않고 bootstrap으로 구동하면,
+멈췄던 1의 db내용을 그대로 가지고 온다. 즉, 최신정보인 2의 데이타를 동기화 시키지 않는다. 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
