@@ -55,3 +55,27 @@ ITWeb/서버관리
 	maxThreads="1024"				// 동시 요청에 의해  Connector 가 생성할 수 있는 최대 request size 입니다.
 	minSpareThreads="25"				// tomcat 이 실행 될때 생성되는 thread size 입니다.
 	port="8100"							// httpd 와 tomcat 연동 시 사용할 port
+
+
+Apache Tomcat Configuration Reference
+
+The AJP Connector
+
+Table of Contents
+Introduction
+Attributes
+Common Attributes
+Standard Implementation
+Nested Components
+Introduction
+The AJP Connector element represents a Connector component that communicates with a web connector via the AJP protocol. This is used for cases where you wish to invisibly integrate Tomcat 5 into an existing (or new) Apache installation, and you want Apache to handle the static content contained in the web application, and/or utilize Apache's SSL processing.
+
+This connector supports load balancing when used in conjunction with the jvmRoute attribute of the Engine.
+
+The native connectors supported with this Tomcat release are:
+
+JK 1.2.x with any of the supported servers
+mod_proxy on Apache httpd 2.x (included by default in Apache HTTP Server 2.2), with AJP enabled: see the httpd docs for details.
+Other native connectors supporting AJP may work, but are no longer supported.
+
+http://tomcat.apache.org/tomcat-5.5-doc/config/ajp.html
