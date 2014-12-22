@@ -1,2 +1,25 @@
 http://yupmin.net/install-mariadb-galera-cluster
 
+view /etc/yum.repos.d/MariaDB.repo
+
+[mariadb]
+name = MariaDB
+#baseurl = http://yum.mariadb.org/5.5/centos6-[i386/amd64]
+baseurl = http://yum.mariadb.org/5.5/centos6-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+
+cd /usr/local/src/
+wget http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+rpm -ivh epel-release-6-8.noarch.rpm
+yum install socat
+
+yum update
+yum install -y MariaDB-Galera-server MariaDB-client galera
+
+service mysql start
+
+view /etc/my.cnf.d/server.cnf
+
+
+
