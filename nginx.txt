@@ -108,3 +108,15 @@ ngx_pagespeed : Nginx의 PageSpeed 모듈
 -------------------------------------------------------------------------------------
 http://blog.outsider.ne.kr/1091
 
+-------------------------------------------------------------------------------------
+redirect http://도메인 ==> https://도메인
+-------------------------------------------------------------------------------------
+...
+server {
+      listen      *:80;
+      server_name www.xxxx.com;
+#      rewrite     ^ https://$server_name$request_uri? permanent;
+#      rewrite      ^ https://www.xxxx.com$request_uri? permanent;
+      rewrite      ^ https://www.xxxx.com$request_uri?;
+}
+...
