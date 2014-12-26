@@ -1,0 +1,62 @@
+
+# cd /usr/local/src
+# wget http://nginx.org/download/nginx-1.6.1.tar.gz
+# git clone https://github.com/yaoweibin/nginx_tcp_proxy_module.git
+# tar xfz nginx-1.6.1.tar.gz
+# cd nginx-1.6.1
+# patch -p1 < ../nginx_tcp_proxy_module/tcp.patch
+# yum install openssl openssl-devel pcre pcre-devel -y
+# ./configure --add-module=/usr/local/src/nginx_tcp_proxy_module --with-http_ssl_module --prefix=/usr/local/nginx-tcproxy
+# make && make install
+# cd /usr/local/nginx-tcproxy/conf
+
+# view nginx.conf
+------------------------------------------------------------------------------------------------------------------------
+#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+events {
+    worker_connections  1024;
+}
+
+tcp {
+
+    upstream cluster {
+            # simple round-robin
+            #server 192.168.0.1:80;
+            #server 192.168.0.2:80;
+
+            server 1.1.1.1:3389;
+
+            check interval=3000 rise=2 fall=5 timeout=1000 type=tcp;
+
+            #check interval=3000 rise=2 fall=5 timeout=1000 type=ssl_hello;
+
+            #check interval=3000 rise=2 fall=5 timeout=1000 type=http;
+            #check_http_send "GET / HTTP/1.0\r\n\r\n";
+            #check_http_expect_alive http_2xx http_3xx;
+   }
+
+   server {
+        listen 192.168.0.161:3389;
+
+            proxy_pass cluster;
+            access_log /home/tcp_access.log;
+            so_keepalive on;
+        }
+    }
+
+------------------------------------------------------------------------------------------------------------------------
+-. 실행
+# /usr/local/nginx-tcproxy/sbin/nginx
+
+-. 재실행
+ps auxf|grep nginx ==> pid
+kill -HUP pid
+
