@@ -1,0 +1,7 @@
+Freebsd 
+
+FreeBSD + Trasnparent Proxy
+
+Openfiles session
+
+http://wanproxy.org/examples.shtml
