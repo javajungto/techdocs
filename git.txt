@@ -80,6 +80,12 @@ Work with : [add] click
 Name     : egit
 Location : http://www.jgit.org/updates 
 
+----------------------
+맥에서 한글 깨질때
+----------------------
+
+http://elfinlas.tistory.com/298
+
 -----------------------
 Git에서 non-fast-forward 메시지가 나올때 대처법
 -----------------------
