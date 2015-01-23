@@ -114,4 +114,13 @@ backend app
 
 tail -f /var/log/haproxy.lg
 
+<option>
+    server1  app1 x.x.x.x:3389 check
+    server2  app2 x.x.x.x:3389 check backup
+    
+위와 같이 했을때, app1으로만 접속되다가, app1이 다운되면 app2로 접속이 된다. 
+
+
+
+
 
