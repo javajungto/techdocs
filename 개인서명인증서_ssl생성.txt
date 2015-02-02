@@ -1,0 +1,150 @@
+
+http://zetawiki.com/wiki/리눅스_개인서명_SSL_인증서_생성#.EA.B0.9C.EC.9D.B8.ED.82.A4.EC.97.90.EC.84.9C_.ED.8C.A8.EC.8A.A4.EC.9B.8C.EB.93.9C_.EC.A0.9C.EA.B1.B0
+
+개인 인증기관을 만들고 인증서 발급하기
+=> 웹브라우저에서는 신뢰할수 없는 사이트라고 나오지만, SSL 보안 기능은 사용할수 있다.
+
+openssl 패키지 확인
+#rpm -qa openssl
+
+개인키 생성(-> server.key생성)
+#openssl genrsa -des3 -out server.key 2048
+Generating RSA private key, 2048 bit long modulus
+....................................................................................................................................................................................+++
+..........................................................+++
+e is 65537 (0x10001)
+Enter pass phrase for server.key:
+Verifying - Enter pass phrase for server.key:
+
+인증요청서 생성(-> server.csr)
+#openssl req -new -key server.key -out server.csr
+서버 개인키 패스워드 입력
+
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [XX]:KR
+State or Province Name (full name) []:Seoul
+Locality Name (eg, city) [Default City]:SS
+Organization Name (eg, company) [Default Company Ltd]:COMPANY
+Organizational Unit Name (eg, section) []:COMPANY
+Common Name (eg, your name or your server's hostname) []:m--.k----.co.kr
+Email Address []:s------@g------.co.kr
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+그냥 enter, enter
+
+개인키에서 패스워드 제거
+=> 아파치 구동시 물어보기 때문에 제거함. 
+=> 패스워드를 제거하더라도 SSL암호화 통신에는 문제가 없음.
+
+# cp server.key server.key.org
+# openssl rsa -in server.key.org -out server.key
+Enter pass phrase for server.key.org:
+개인키 패스워드 입력
+writing RSA key
+
+인증서 생성
+# openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+Signature ok
+subject=....
+Getting Private key
+
+개인키와 인증서 설치
+# cp server.key /etc/httpd/conf/
+# cp server.crt /etc/httpd/conf/
+# ll /etc/httpd/conf
+total 60
+-rw-r--r--. 1 root root 34417 Sep 20 07:41 httpd.conf
+-rw-r--r--. 1 root root 13139 Feb 14  2012 magic
+-rw-r--r--. 1 root root  1298 Sep 20 08:45 server.crt
+-rw-r--r--. 1 root root  1679 Sep 20 08:45 server.key
+
+#view /etc/httpd/conf.d/ssl.conf 수정
+
+LoadModule ssl_module modules/mod_ssl.so
+Listen 443
+SSLPassPhraseDialog  builtin
+
+SSLSessionCache         shmcb:/var/cache/mod_ssl/scache(512000)
+SSLSessionCacheTimeout  300
+
+SSLMutex default
+
+SSLRandomSeed startup file:/dev/urandom  256
+SSLRandomSeed connect builtin
+
+SSLCryptoDevice builtin
+
+<VirtualHost _default_:443>
+
+ServerAdmin webmaster@dummy-host.example.com
+DocumentRoot /home/d___/public_html
+ServerName x.x.x.x
+ServerAlias y.y.y.y m__.k_____.co.kr
+
+ErrorLog logs/ssl_error_log
+TransferLog logs/ssl_access_log
+LogLevel warn
+
+SSLEngine on
+
+SSLProtocol all -SSLv2
+
+SSLCipherSuite ALL:!ADH:!EXPORT:!SSLv2:RC4+RSA:+HIGH:+MEDIUM:+LOW
+
+SSLCertificateFile /etc/httpd/conf/server.crt
+
+SSLCertificateKeyFile /etc/httpd/conf/server.key
+
+<Files ~ "\.(cgi|shtml|phtml|php3?)$">
+    SSLOptions +StdEnvVars
+</Files>
+<Directory "/var/www/cgi-bin">
+    SSLOptions +StdEnvVars
+</Directory>
+
+SetEnvIf User-Agent ".*MSIE.*" \
+         nokeepalive ssl-unclean-shutdown \
+         downgrade-1.0 force-response-1.0
+
+CustomLog logs/ssl_request_log \
+          "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
+
+</VirtualHost>       
+
+
+[root@jmnote ~]# yum info mod_ssl
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+Daum                                                                                       | 3.7 kB     00:00     
+Available Packages
+Name        : mod_ssl
+Arch        : x86_64
+Epoch       : 1
+Version     : 2.2.15
+Release     : 15.el6.centos.1
+Size        : 87 k
+Repo        : Daum
+Summary     : SSL/TLS module for the Apache HTTP Server
+URL         : http://httpd.apache.org/
+License     : ASL 2.0
+Description : The mod_ssl module provides strong cryptography for the Apache Web
+            : server via the Secure Sockets Layer (SSL) and Transport Layer
+            : Security (TLS) protocols.
+            
+            
+
+yum install mod_ssl -y
+
+apachectl configtest
+
+apachectl restart
+
