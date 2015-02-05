@@ -1,5 +1,6 @@
 References
 - https://mariadb.com/kb/en/mariadb/yum/
+- https://mariadb.com/kb/en/mariadb/getting-started-with-mariadb-galera-cluster/
 - http://yupmin.net/install-mariadb-galera-cluster
 
 view /etc/yum.repos.d/MariaDB.repo
