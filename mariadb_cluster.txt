@@ -167,6 +167,14 @@ Starting MySQL..SST in progress, setting sleep higher. SUCCESS!
 Bootstrapping the cluster.. Starting MySQL.. SUCCESS!
 => cluster에 연결되지 않고, local1 down전의 데이타를 가지고 로딩됨.
 
+case2)
+db 프로그램을 삭제해도, 데이타는 삭제 되지 않는다. ( /var/lib/mysql )
+yum remove MariaDB-Galera-server MariaDB-client galera
+
+다시 설치시 /etc/my.cnf.d/server.cnf 만 설정해주면 자동으로 동기화 된다. 
+
+
+
 -------------------------------------------------------
 참조)
 -------------------------------------------------------
