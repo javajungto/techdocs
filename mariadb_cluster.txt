@@ -149,12 +149,28 @@ Starting MySQL... SUCCESS!
 [root@local3 my.cnf.d]# /etc/init.d/mysql start
 Starting MySQL... SUCCESS! 
 
+확인)
+show status like 'wsrep_%';
+...
+wsrep_cluster_size            3
+...
+
 case1)
+local1 down, local2 new data inserted, local3 동기화되어 있는 상태.
 
+local1 
+/etc/init.d/mysql start 구동하는 경우
+Starting MySQL..SST in progress, setting sleep higher. SUCCESS! 
+=> local2(local3)의 최신 데이타로 동기화가 된다. 
 
+/etc/init.d/mysql bootstrap 구동하는 경우
+Bootstrapping the cluster.. Starting MySQL.. SUCCESS!
+=> cluster에 연결되지 않고, local1 down전의 데이타를 가지고 로딩됨.
 
+-------------------------------------------------------
 참조)
-or
+-------------------------------------------------------
+
 [mariadb]
 name = MariaDB
 #baseurl = http://yum.mariadb.org/5.5/centos6-[i386/amd64]
