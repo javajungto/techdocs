@@ -173,7 +173,14 @@ yum remove MariaDB-Galera-server MariaDB-client galera
 
 다시 설치시 /etc/my.cnf.d/server.cnf 만 설정해주면 자동으로 동기화 된다. 
 
+case3)
+local3 
+/etc/init.d/mysql stop
+mv /var/lib/mysql /var/lib/mysql.bak
+mkdir /var/lib/mysql
+chown -R mysql:mysql /var/lib/mysql
 
+/etc/init.d/mysql start시 동기화가 진행되고, /var/lib/mysql/아래 복사정상적으로 된다.
 
 -------------------------------------------------------
 참조)
