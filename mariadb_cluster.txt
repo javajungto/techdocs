@@ -1,10 +1,23 @@
+-------------------------------------------------------
 References
+-------------------------------------------------------
 - https://mariadb.com/kb/en/mariadb/yum/
 - https://mariadb.com/kb/en/mariadb/getting-started-with-mariadb-galera-cluster/
 - http://yupmin.net/install-mariadb-galera-cluster
 - http://galeracluster.com/documentation-webpages/?id=mysql_galera_configuration
 
-view /etc/yum.repos.d/MariaDB.repo
+-------------------------------------------------------
+test environment
+-------------------------------------------------------
+[root@local1 my.cnf.d]# cat /etc/hosts
+192.168.0.222	local1	
+192.168.0.226	local2	
+192.168.0.230	local3
+
+-------------------------------------------------------
+on local1,local2,local3
+-------------------------------------------------------
+#view /etc/yum.repos.d/MariaDB.repo
 
 [mariadb]
 name = MariaDB
@@ -12,6 +25,135 @@ baseurl = http://yum.mariadb.org/10.0/centos6-amd64
 gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck=1
 
+Installing MariaDB Galera Cluster with YUM
+#yum install MariaDB-Galera-server MariaDB-client galera
+
+-------------------------------------------------------
+on local1
+-------------------------------------------------------
+[root@local1 my.cnf.d]# cat server.cnf
+
+[server]
+
+[mysqld]
+character-set-server=utf8
+log_bin=/var/lib/mysql/mariadb-bin
+log_bin_index=/var/lib/mysql/mariadb-bin.index
+pid-file = /var/lib/mysql/mysql.pid
+socket = /var/lib/mysql/mysql.sock
+log_error=/var/log/mysql.log
+
+[galera]
+
+[embedded]
+
+[mariadb]
+query_cache_size=0
+binlog_format=ROW
+default_storage_engine=innodb
+innodb_autoinc_lock_mode=2
+innodb_locks_unsafe_for_binlog=1
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+wsrep_cluster_address=gcomm://192.168.0.226,192.168.0.130
+wsrep_cluster_name='cluster1'
+wsrep_node_address='192.168.0.222'
+wsrep_node_name='local1'
+wsrep_sst_method=rsync
+wsrep_sst_auth=root:xxxxx
+
+[mariadb-10.0]
+
+-------------------------------------------------------
+on local2
+-------------------------------------------------------
+[root@local2 my.cnf.d]# cat server.cnf
+
+[server]
+
+[mysqld]
+character-set-server=utf8
+log_bin=/var/lib/mysql/mariadb-bin
+log_bin_index=/var/lib/mysql/mariadb-bin.index
+pid-file = /var/lib/mysql/mysql.pid
+socket = /var/lib/mysql/mysql.sock
+log_error=/var/log/mysql.log
+
+[galera]
+
+[embedded]
+
+[mariadb]
+query_cache_size=0
+binlog_format=ROW
+default_storage_engine=innodb
+innodb_autoinc_lock_mode=2
+innodb_locks_unsafe_for_binlog=1
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+wsrep_cluster_address=gcomm://192.168.0.222,192.168.0.130
+wsrep_cluster_name='cluster1'
+wsrep_node_address='192.168.0.226'
+wsrep_node_name='local2'
+wsrep_sst_method=rsync
+wsrep_sst_auth=root:xxxxx
+
+[mariadb-10.0]
+
+-------------------------------------------------------
+on local3
+-------------------------------------------------------
+[root@local3 my.cnf.d]# cat server.cnf
+
+[server]
+
+[mysqld]
+character-set-server=utf8
+log_bin=/var/lib/mysql/mariadb-bin
+log_bin_index=/var/lib/mysql/mariadb-bin.index
+pid-file = /var/lib/mysql/mysql.pid
+socket = /var/lib/mysql/mysql.sock
+log_error=/var/log/mysql.log
+
+[galera]
+
+[embedded]
+
+[mariadb]
+query_cache_size=0
+binlog_format=ROW
+default_storage_engine=innodb
+innodb_autoinc_lock_mode=2
+innodb_locks_unsafe_for_binlog=1
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+wsrep_cluster_address=gcomm://192.168.0.222,192.168.0.226
+wsrep_cluster_name='cluster1'
+wsrep_node_address='192.168.0.130'
+wsrep_node_name='local3'
+wsrep_sst_method=rsync
+wsrep_sst_auth=root:xxxxx
+
+# This group is only read by MariaDB-10.0 servers.
+# If you use the same .cnf file for MariaDB of different versions,
+# use this group for options that older servers don't understand
+[mariadb-10.0]
+
+-------------------------------------------------------
+구동
+-------------------------------------------------------
+기본구동1
+[root@local1 ~]# /etc/init.d/mysql bootstrap
+Bootstrapping the cluster.. Starting MySQL.. SUCCESS! 
+
+[root@local2 ~]# /etc/init.d/mysql start
+Starting MySQL... SUCCESS! 
+
+[root@local3 my.cnf.d]# /etc/init.d/mysql start
+Starting MySQL... SUCCESS! 
+
+case1)
+
+
+
+참조)
 or
 [mariadb]
 name = MariaDB
@@ -135,6 +277,7 @@ Starting MySQL....SST in progress, setting sleep higher.
 
 이때 1에서 start하지 않고 bootstrap으로 구동하면,
 멈췄던 1의 db내용을 그대로 가지고 온다. 즉, 최신정보인 2의 데이타를 동기화 시키지 않는다. 
+
 
 
 
