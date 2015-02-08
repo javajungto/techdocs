@@ -170,4 +170,12 @@ replicate-do-db=powerdns
 log-bin
 binlog-do-db=powerdns
 
+------------------------
+References
+
+Generic MySQL and PgSQL backends
+
+https://doc.powerdns.com/md/authoritative/backend-generic-mypgsql/
+
+
 
