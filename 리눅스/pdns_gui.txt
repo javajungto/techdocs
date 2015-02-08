@@ -179,5 +179,8 @@ https://doc.powerdns.com/md/authoritative/backend-generic-mypgsql/
 How To Install PowerDNS on CentOS 6.3 x64
 https://www.digitalocean.com/community/tutorials/how-to-install-powerdns-on-centos-6-3-x64
 
+Installing PowerDNS With MySQL On CentOS
+https://www.howtoforge.com/installing-powerdns-with-mysql-on-centos
+
 
 
