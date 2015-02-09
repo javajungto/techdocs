@@ -182,6 +182,10 @@ https://www.digitalocean.com/community/tutorials/how-to-install-powerdns-on-cent
 Installing PowerDNS With MySQL On CentOS
 https://www.howtoforge.com/installing-powerdns-with-mysql-on-centos
 
+http://xinet.kr/tc/category/7
+
+https://www.linux.co.kr/dns/power-dns/page04_2.htm
+
 
 --------------------------
 trouble shooting
