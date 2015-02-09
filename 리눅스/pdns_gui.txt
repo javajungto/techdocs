@@ -338,6 +338,15 @@ NameVirtualHost *:80
 #apachectl configtest
 #apachectl restart
 
+#service pdns restart
+
+http://x.x.x.x/install/ 
+
+#rm -rf /home/user01/public_html/install 
+
+설치 완료후 admin / 입력한암호 
+
+
 
 
 
