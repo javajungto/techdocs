@@ -196,6 +196,47 @@ config-me.inc.php 파일이 있어야 함.
 
 => https://www.howtoforge.com/community/threads/powerdns-on-centos-with-poweradmin.47481/
 
+<install powerdns>
+
+rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+
+yum install php php-mcrypt php-pdo php-mysql pdns pdns-backend-mysql httpd httpd-devel php-devel php-gd php-pear php-xml php-xmlrpc php-mbstring php-mhash
+
+<install poweradmin> 
+
+download http://www.poweradmin.org 
+
+#cd /usr/local/src/
+#tar xvf poweradmin-2.1.7.tar 
+#cd poweradmin-2.1.7/inc
+#cp config-me.inc.php config.inc.php 
+#useradd user01
+#cd /home/
+#mkdir /home/user01/public_html
+#mv /usr/local/src/poweradmin-2.1.7/* /home/user01/public_html/
+#chown -R user01.user01 /home/user01/
+#chmod 755 /home/user01/
+#apachectl configtest
+#apachectl restart
+#view /etc/httpd/conf/httpd.conf 
+...
+NameVirtualHost *:80
+...
+<VirtualHost *:80>
+    ServerAdmin webmaster@dummy-host.example.com
+    DocumentRoot /home/user01/public_html
+    ServerName xxx.com
+    ErrorLog logs/xxx.com-error_log
+    CustomLog logs/xxx.com-access_log common
+</VirtualHost>
+...
+ 
+#apachectl configtest
+#apachectl restart
+
+
+
+
 
 
 
