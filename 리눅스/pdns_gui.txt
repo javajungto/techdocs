@@ -346,6 +346,8 @@ http://x.x.x.x/install/
 
 설치 완료후 admin / 입력한암호 
 
+dnstop
+
 
 
 
