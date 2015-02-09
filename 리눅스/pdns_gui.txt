@@ -183,5 +183,16 @@ Installing PowerDNS With MySQL On CentOS
 https://www.howtoforge.com/installing-powerdns-with-mysql-on-centos
 
 
+--------------------------
+trouble shooting
+--------------------------
+
+로그인후 세션이 바로 끊어지는 현상이 있을때
+config-me.inc.php 파일이 있어야 함. 
+
+=> https://www.howtoforge.com/community/threads/powerdns-on-centos-with-poweradmin.47481/
+
+
+
 
 
