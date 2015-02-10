@@ -1,0 +1,181 @@
+download at /usr/local/src/
+- jdk ( jdk-8u31-linux-x64.tar ) 
+  http://java.sun.com
+
+- tomcat ( apache-tomcat-8.0.18.tar.gz )
+  http://tomcat.apache.org
+
+- tomcat-connectors ( tomcat-connectors-1.2.40-src.tar.gz )
+  http://tomcat.apache.org/connectors-doc/
+  
+- mariadb-java-client.jar ( mariadb-java-client-1.1.8.jar )
+  https://downloads.mariadb.org/client-java/
+  https://mariadb.com/kb/en/mariadb/about-the-mariadb-java-client/
+
+-----------------------------------------------------
+0. httpd pdns
+-----------------------------------------------------
+yum install php php-mcrypt php-pdo php-mysql pdns pdns-backend-mysql httpd httpd-devel php-devel php-gd php-pear php-xml php-xmlrpc php-mbstring php-mhash
+
+-----------------------------------------------------
+1. jdk
+-----------------------------------------------------
+#yum list "*gcj*"
+#yum remove "*gcj*"
+#tar xvf jdk-8u31-linux-x64.tar -C /usr/local/
+#ln -s /usr/local/jdk1.8.0_31/ /usr/local/java
+#view /etc/profile
+...
+export JAVA_HOME=/usr/local/java
+export CATALINA_HOME=/usr/local/tomcat
+export PATH=$PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin
+...
+
+#source /etc/profile
+#java -version
+
+-----------------------------------------------------
+2. tomcat 
+-----------------------------------------------------
+#tar xvf apache-tomcat-8.0.18.tar.gz -C /usr/local/
+#ln -s /usr/local/apache-tomcat-8.0.18/ /usr/local/tomcat
+#/usr/local/tomcat/bin/startup.sh 
+#netstat -tnlp
+#tail -f /usr/local/tomcat/logs/catalina.out 
+
+http://ip:8080 
+ > Examples : Servlets, JSP, WebSocket 클릭해서 정상작동하는지 확인
+ 
+-----------------------------------------------------
+3. tomcat-connectors ( mod_jk.so )
+-----------------------------------------------------
+#tar xvfz tomcat-connectors-1.2.40-src.tar.gz 
+#cd tomcat-connectors-1.2.40-src
+#cd native/
+#./configure --with-apxs=/usr/sbin/apxs 
+#make && make install
+# ls -l /etc/httpd/modules/|grep mod_jk
+-rwxr-xr-x 1 root root 1161249 2015-02-10 02:31 mod_jk.so
+
+-----------------------------------------------------
+4. 연동 설정 ( workers.properties, mod_jk, server.xml )
+-----------------------------------------------------
+#view /etc/httpd/conf/workers.properties
+...
+# Define 1 real worker using ajp13
+worker.list=worker1
+# Set properties for worker1 (ajp13)
+worker.worker1.type=ajp13
+worker.worker1.host=localhost
+worker.worker1.port=8009
+...
+
+#view /etc/httpd/conf/httpd.conf 
+...
+NameVirtualHost *:80
+...
+<VirtualHost *:80>
+    ServerAdmin webmaster@XXXX.com
+    DocumentRoot /home/XXXX/public_html
+    ServerName www.XXXX.net
+    ServerAlias 192.168.0.222
+    ErrorLog logs/XXXX.com-error_log
+    CustomLog logs/XXXX.com-access_log common
+    JkMount /*.jsp worker1
+    JkMount /servlet/* worker1
+</VirtualHost>
+...
+# Load mod_jk module
+# Update this path to match your modules location
+LoadModule    jk_module  modules/mod_jk.so
+# Declare the module for <IfModule directive> (remove this line on Apache 2.x)
+#AddModule     mod_jk.c
+# Where to find workers.properties
+# Update this path to match your conf directory location (put workers.properties next to httpd.conf)
+JkWorkersFile /etc/httpd/conf/workers.properties
+# Where to put jk shared memory
+# Update this path to match your local state directory or logs directory
+JkShmFile     /var/log/httpd/mod_jk.shm
+# Where to put jk logs
+# Update this path to match your logs directory location (put mod_jk.log next to access_log)
+JkLogFile     /var/log/httpd/mod_jk.log
+# Set the jk log level [debug/error/info]
+JkLogLevel    info
+# Select the timestamp log format
+JkLogStampFormat "[%a %b %d %H:%M:%S %Y] "
+# Send everything for context /examples to worker named worker1 (ajp13)
+JkMount  /examples/* worker1
+...
+
+#view /usr/local/tomcat/conf/server.xml
+...
+<Engine ...>
+...
+     <Host name="192.168.0.222" appBase="/home/XXXX/public_html" unpackWARs="true" autoDeploy="true"
+       xmlValidation="false" xmlNamespaceAware="false">
+
+        <Valve className="org.apache.catalina.valves.AccessLogValve"
+         directory="logs" prefix="192.168.0.222_access_log." suffix=".txt" pattern="common" resolveHosts="false"/>
+
+         <Context path="" docBase="" debug="0" reloadable="true"/>
+      </Host>
+...
+</Engine>
+
+연동 확인
+#mkdir /home/XXXX/public_html/jwpark/
+#view /home/XXXX/public_html/jwpark/j.jsp
+<%
+        System.out.println("test");
+%>
+http://ip/jwpark/j.jsp
+#tail -f /usr/local/tomcat/logs/catalina.out
+
+-----------------------------------------------------
+5. mariadb-java-client ( jdbc 연동 ) 
+-----------------------------------------------------
+#cp mariadb-java-client-1.1.8.jar /usr/local/java/jre/lib/ext/
+
+#view /home/XXXX/public_html/jwpark/mysql.jsp
+
+<%@ page language="java" import="java.sql.*,java.io.*" %>
+
+   <html><body>
+   <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+   
+   <%@ page contentType="text/html; charset=EUC-KR" %>
+   
+   <%
+   java.sql.Connection conn = null;
+   java.sql.PreparedStatement ps = null;
+   java.sql.ResultSet rs = null;
+   String strRet = null;
+   int    intRet = 0;
+   
+     try { 
+	Class.forName("org.mariadb.jdbc.Driver");
+     } catch (ClassNotFoundException e ) { out.println(e); }
+   
+     try { 
+	conn =   java.sql.DriverManager.getConnection("jdbc:mariadb://localhost:3306/mysql","root","");
+     } catch (java.sql.SQLException e) { out.println(e); }
+   
+     try { ps = conn.prepareStatement("select host, user from user where user =   'root' ");
+           rs = ps.executeQuery();
+   
+           rs.next();
+           out.println("DB connected..." + "<br><br>");
+           out.println("id:  " + rs.getString("host") + "<br>");
+           out.println("user:  " + rs.getString("user") + "<br><br>");
+           rs.close();
+           ps.close();
+           conn.close();
+   
+         } catch (java.sql.SQLException e) { System.out.println(e); }
+           catch (java.io.UnsupportedEncodingException e) {
+           System.out.println(e); }
+   %>
+   </body></html>
+
+
+http://ip/jwpark/mysql.jsp
