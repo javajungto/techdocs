@@ -338,6 +338,15 @@ NameVirtualHost *:80
 #apachectl configtest
 #apachectl restart
 
+#view /etc/pdns/pdns.conf
+...
+launch=gmysql
+gmysql-host=127.0.0.1
+gmysql-user=powerdns
+gmysql-password=XXXXX
+gmysql-dbname=powerdns
+...
+
 #service pdns restart
 
 http://x.x.x.x/install/ 
