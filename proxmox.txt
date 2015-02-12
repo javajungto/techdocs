@@ -16,7 +16,7 @@ hp1# pvecm status
 -----------------------------------
 add nodes
 -----------------------------------
-hp2# pvecm add IP-ADDRESS-CLUSTER
+hp2# pvecm add IP-ADDRESS-CLUSTER <== 기존 cluster구성되어 있는 node ip임.
 hp2# pvecm status
 hp2# pvecm nodes
 
@@ -68,14 +68,14 @@ Example for OpenVZ container 126.
 Esc . 
 
 
- /usr/bin/rsync -aHAX --delete --numeric-ids --sparse /var/lib/vz/private/200 root@38.91.105.140:/var/lib/vz/private
+ /usr/bin/rsync -aHAX --delete --numeric-ids --sparse /var/lib/vz/private/200 root@192.168.0.35:/var/lib/vz/private
 
 1) vm에 web console 접속시 다음과 같은 메세지가 뜨면서 연결이 안될때
 Connected(encrypted) to:VNC Command Termin
 
 root@pm1:~# vzlist
       CTID      NPROC STATUS    IP_ADDR         HOSTNAME
-       100         19 running   38.91.105.135   test100.8.8.8.8
+       100         19 running   192.168.0.35   test100.8.8.8.8
        
 
 root@pm1:~# vzctl enter 100
