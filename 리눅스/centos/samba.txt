@@ -29,3 +29,24 @@
 Z: ↔ \\116.122.39.189\USER1\
 
 부팅 시 연결되도록 설정해두었습니다.
+
+--------------------------------------------------------------------------------
+rscd (System Rescue CD로 삼바 구동하기)
+--------------------------------------------------------------------------------
+=> http://serverfault.com/questions/369481/create-a-share-with-system-rescue-cd
+
+#/etc/samba/smb.conf.default /etc/samba/smb.conf
+
+[public]
+path = /mnt/windows
+public = yes
+writable = yes
+printable = no
+browsable = yes
+
+계정 설정
+#pdbedit -a -u root
+
+#smbd
+
+\\IP\public 
