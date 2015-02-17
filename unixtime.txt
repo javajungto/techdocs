@@ -1,0 +1,37 @@
+
+http://www.nicklib.com/?mid=operatingsystem&category=246&document_srl=4991&sort_index=readed_count&order_type=desc
+
+프로그램 관련 서적이나 메뉴얼등을 보다보면 날짜나 시간을 유닉스 타임으로 기록했다는 표현을 볼 수 있다.
+
+실제 값은 1397236159 식의 알 수 없는 엄청 큰 숫자가 적혀있는 경우가 대부분이다.
+
+유닉스타임이란 유닉스에서 사용한 시간의 표현방법으로 1970년 1월 1일 1시부터 지나온 초를 카운팅한 값을 의미한다.
+
+유닉스를 C로 만들었기 때문에서 표준 C언어의 time_t 데이터 형이 저장하는 시간 개념과도 같다.
+
+즉 1970년 1월 1일 0시는 유닉스 타임 0 이고 
+    1970년 1월 1일 1시는 유닉스 타임 3600 이다.
+
+참고로 다음 사이트에 가면 유닉스 타임을 변환해 볼 수 있다.
+http://www.4webhelp.net/us/timestamp.php
+http://www.onlineconversion.com/unix_time.htm
+
+Linux의 date 명령으로도 계산이 가능한데 사용법은 다음과 같다.
+
+* Unix Time 을 일반 날짜로 변환
+?
+date -d '1970-01-01 1397237119 sec'
+
+* Unix Time을 지정된 형태의 날짜로 변환
+?
+date -d '1970-01-01 1397237119 sec' +'%Y-%m-%d %H:%M:%S'
+
+* 일반 날짜를 Unix Time으로 변환
+?
+date -d '2014-04-11 17:25:19' +%s
+
+* 현재 시간의 Unix Time알아내기
+?
+date +%s
+
+
