@@ -351,6 +351,25 @@ gmysql-dbname=powerdns
 
 http://x.x.x.x/install/ 
 
+웹에서 입력하는 정보는 반영되지 않는듯.그냥 next 진행후, 아래와 같이 파일 직접 수정.
+view inc/config.inc.php에서 해당 정보 저장
+
+....
+$db_host = 'localhost';
+$db_port = '3306';
+$db_user = 'USER';
+$db_pass = 'PWD';
+$db_name = 'DB';
+$db_type = 'mysql';
+//$db_file              = '';           # used only for SQLite, provide full path to database file
+//$db_debug             = false;        # show all SQL queries
+$db_layer               = 'PDO';        # or MDB2
+//$db_ssl_ca            = '';
+// Security settings
+// This should be changed upon install
+$session_key = 'djfkjoejiwfiojvljwoejjbojejriojeo';  <==임의의 값으로 변경. 
+...
+
 #rm -rf /home/user01/public_html/install 
 
 설치 완료후 admin / 입력한암호 
