@@ -206,7 +206,7 @@ db / table 생성
 <= https://doc.powerdns.com/md/authoritative/backend-generic-mypgsql/
 
 create database powerdns;
-grant all privileges on powerdn.* to yyyyy@localhost identified 'XXXXX';
+grant all privileges on powerdn.* to yyyyy@localhost identified by 'XXXXX';
 
 use powerdns;
 
