@@ -365,6 +365,54 @@ $session_key = 'djfkjoejiwfiojvljwoejjbojejriojeo';  <==임의의 값으로 변�
 
 설치 완료후 admin / 입력한암호 
 
+-----------------------------------------------------
+7. mariadb cluster 
+-----------------------------------------------------
 
+#view /etc/yum.repos.d/MariaDB.repo
 
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.0/centos6-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+
+Installing MariaDB Galera Cluster with YUM
+#yum install MariaDB-Galera-server MariaDB-client galera
+
+[root@local1 my.cnf.d]# cat server.cnf
+
+[server]
+
+[mysqld]
+character-set-server=utf8
+log_bin=/var/lib/mysql/mariadb-bin
+log_bin_index=/var/lib/mysql/mariadb-bin.index
+pid-file = /var/lib/mysql/mysql.pid
+socket = /var/lib/mysql/mysql.sock
+log_error=/var/log/mysql.log
+
+[galera]
+
+[embedded]
+
+[mariadb]
+query_cache_size=0
+binlog_format=ROW
+default_storage_engine=innodb
+innodb_autoinc_lock_mode=2
+innodb_locks_unsafe_for_binlog=1
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+wsrep_cluster_address=gcomm://192.168.0.226,192.168.0.130
+wsrep_cluster_name='cluster1'
+wsrep_node_address='192.168.0.222'
+wsrep_node_name='local1'
+wsrep_sst_method=rsync
+wsrep_sst_auth=root:xxxxx
+
+[mariadb-10.0]
+
+확인)
+show status like 'wsrep_%';
+...
 
