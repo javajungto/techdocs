@@ -179,3 +179,15 @@ http://ip/jwpark/j.jsp
 
 
 http://ip/jwpark/mysql.jsp
+
+-----------------------------------------------------
+6. pdns 
+-----------------------------------------------------
+
+centos 6.x pdns 설치 
+#rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+#yum install pdns pdns-backend-mysql
+
+
+
+
