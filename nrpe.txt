@@ -77,6 +77,59 @@ test
 -----------
 /usr/lib64/nagios/plugins/check_nrpe  -H i.i.i.i -c check_disk -a 10% 5% /
 
+-----------
+2015.03.13
+-----------
+
+기본 개념
+nrpe가 설치된 서버에서 대상 서버까지 체크를 하고 싶은경우, nagios에서 대상 서버까지 체크까 아니고,
+
+예)
+nagios 1.1.1.1
+nrpe   2.2.2.2
+server 3.3.3.3
+
+nrpe <---> server간 ping 상태를 알고 싶을때,
+nrpe를 2.2.2.2에 설치를 하고(/usr/lib64/nagios/plugins/check_ping 등의 커맨드 설치) 
+nagios에서 다음과 호출을 하여 결과값을 받는다.
+
+/usr/lib64/nagios/plugins/check_nrpe -H 2.2.2.2 -c check_remote_ping -a 3.3.3.3 200,10% 250,20%
+PING OK - Packet loss = 0%, RTA = 1.05 ms|rta=1.047000ms;200.000000;250.000000;0.000000 pl=0%;10;20;0
+
+
+설치(해당 패키지가 없으면 epel설치후)
+#yum install "*nrpe*"
+#view /etc/nagios/nrpe.cfg
+...
+log_facility=daemon
+pid_file=/var/run/nrpe/nrpe.pid
+server_port=5666
+nrpe_user=nagios  <== nagios 계정으로 변경
+nrpe_group=nagios <== nagios 계정으로 변경
+allowed_hosts=127.0.0.1,1.1.1.1  <== nagios 서버ip 입력(alias도 추가해야 함)
+dont_blame_nrpe=1
+allow_bash_command_substitution=0
+debug=0
+command_timeout=60
+connection_timeout=300
+command[check_remote_ping]=/usr/lib64/nagios/plugins/check_ping -H $ARG1$ -t 20 -w $ARG2$ -c $ARG3$
+command[check_remote_tcp]=/usr/lib64/nagios/plugins/check_tcp -H $ARG1$ -t 20 -p $ARG2$ -w $ARG3$ -c $ARG4$
+include_dir=/etc/nrpe.d/
+...
+
+#scp root@1.1.1.1:/usr/lib64/nagios/plugins/check_ping /usr/lib64/nagios/plugins/
+#scp root@1.1.1.1:/usr/lib64/nagios/plugins/check_tcp /usr/lib64/nagios/plugins/
+#/etc/init.d/nrpe restart
+#chkconfig --level 345 nrpe on
+
+작동 확인
+nagios서버에서 테스트 
+#/usr/lib64/nagios/plugins/check_nrpe -H 2.2.2.2(nrpe서버) -c check_remote_ping -a 3.3.3.3(대상서버) 200,10% 250,20%
+PING OK - Packet loss = 0%, RTA = 1.05 ms|rta=1.047000ms;200.000000;250.000000;0.000000 pl=0%;10;20;0
+
+
+
+
 
 
 
