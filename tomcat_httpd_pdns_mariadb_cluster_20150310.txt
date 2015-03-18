@@ -416,3 +416,53 @@ wsrep_sst_auth=root:xxxxx
 show status like 'wsrep_%';
 ...
 
+---------------------------
+tomcat 한글깨짐
+---------------------------
+html5
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+...
+
+html
+...
+<head>
+    <META HTTP-EQUIV="contentType" CONTENT="text/html;charset=UTF-8">
+...
+
+Servlet
+
+doPost() 나 doGet() 안에
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    request.setCharacterEncoding("UTF-8");
+
+    // 파라미터 받는 부분 utf-8 사용
+    String keyword = request.getParameter("keyword");
+    String urlEncodedKeyword = URLEncoder.encode(keyword,"utf-8");
+    
+JSP
+
+페이지 상단 지시자 지정 부분에
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+서버설정처리
+
+server.xml
+
+...
+<Connector port="8080" protocol="HTTP/1.1" connectionTimeout="20000" URIEncoding="UTF-8" redirectPort="8443" />
+...
+
+setenv.sh
+
+TOMCAT/bin 디렉토리에 setenv.sh 라는 파일을 새로 만들어 아래 내용 추가하여 기본 파일 인코딩을 utf-8로 지정해 주고 TOMCAT 재시작
+    #!/bin/bash
+    JAVA_OPTS="$JAVA_OPTS -Dfile.encoding=\"utf-8\""
+   
+
+
