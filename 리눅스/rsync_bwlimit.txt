@@ -7,3 +7,70 @@ rsync -av --progress --bwlimit=460 / /mnt/os.new/ --exclude=/proc --exclude=/bac
 rsync -av --progress / /mnt/os.new/ --exclude=/proc --exclude=/backup
 
 1.5MB/s   => 1536 KB/s
+
+
+-----------
+http://algo79.tistory.com/146
+
+기본적인 사용법
+
+# rsync [옵션] [계정]@[sourcePC:/디렉토리] [target 디렉토리]
+
+-a : archice mode ( 심볼릭 링크, 속성, 퍼미션, 소유권 등 보곤)
+
+-v : verbose mode (자세한 정보 출력)
+
+-z : compress (전송시 압축)
+
+-r : 하위 디렉토리 포함
+
+-u :  --update update only (don't overwrite newer files)
+
+-e ssh : ssh를 이용한 rsync 동기화
+
+--stats : 결과보고
+
+--delete : 원본 서버에 없는 파일은 백업 서버에서 삭제
+
+--progress : rsync 진행 상항 보기
+
+--exclude : 제외할 파일 지정
+
+--bwlimit : 대역폭(복사속도) 제어
+
+--max-size : 특정 크기 이상 파일 제외(rsync 2.6.4 버전부터 추가된옵션)
+
+--min-size : 특정 크기 이하 파일 제외(rsync 2.6.7 버전부터 추가된옵션)
+
+
+
+
+응용
+
+1) 단순동기화(원본파일 복사)
+
+ex) rsync -avz root@soucepc:/data/backup  /data/backup
+
+2) 동기화(삭제파일도 동일적용)
+
+ex) rsync -avz --delete root@soucepc:/data/backup  /data/backup
+
+3) 대역폭 조절
+
+ex) rsync -avz --bwlimit=1024 root@soucepc:/data/backup  /data/backup
+
+4) -e ssh
+
+ex) rsync -avz -e "ssh -i /home/test/rsync-key" root@soucepc:/data/backup  /data/backup
+
+5) 특정파일
+
+ex) rsync -avz --exclude=.txt --exclude=.sh root@soucepc:/data/backup  /data/backup/
+
+6) 특정폴더
+
+ex) rsync -avz --exclude=aaa(폴더1) --exclude=bbb(폴더2) root@soucepc:/data/backup  /data/backup/
+
+7) 날짜(3일이내 파일만 복사)
+
+ex) find . -type f -mtime -3  | rsync -avz --files-from=- /soucepc /data/backup
