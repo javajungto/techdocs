@@ -464,6 +464,34 @@ TOMCAT/bin 디렉토리에 setenv.sh 라는 파일을 새로 만들어 아래 �
     #!/bin/bash
     JAVA_OPTS="$JAVA_OPTS -Dfile.encoding=\"utf-8\""
    
+----------------
+참고
+----------------
 
 http://www.jopenbusiness.com/mediawiki/index.php?title=PowerDNS
 
+----------------
+등록확인
+----------------
+
+도메인 관리 루트기관의 도메인 등록정보 검색으로 확인하실 수 있습니다. 다만 네임 서버 호스트 등록에 관한 검색이므로, [NameServer] 로 검색 선택을 하시고 검색하셔야 합니다.
+
+국내 kr 도메인은 http://whois.nic.or.kr/ 에서
+
+국제도메인 com, net 은 http://www.internic.net/whois.html
+에서 등록여부를 확인하실 수 있습니다.
+(단, 국제도메인 com, net 신규 정보업데이트에 하루가 걸립니다.) 
+
+국제 도메인 org 는 http://www.pir.org/whois_search/ 에서
+
+국제 도메인 info 는 http://www.afilias.info/whois_search/ 에서
+
+국제 도메인 biz 는 http://www.whois.biz/ 에서
+
+미국 국가 도메인 us 는 http://www.whois.us/ 에서
+
+영국 국가 도메인 uk 는 http://www.nic.uk/whois/ 에서
+
+일본 국가 도메인 jp 는 http://whois.nic.ad.jp/cgi-bin/whois_gw 에서
+
+중국 국가 도메인 cn 는 http://ewhois.cnnic.net.cn/index.jsp 에서 확인할 수 있습니다.
