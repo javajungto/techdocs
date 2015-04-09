@@ -465,4 +465,5 @@ TOMCAT/bin 디렉토리에 setenv.sh 라는 파일을 새로 만들어 아래 �
     JAVA_OPTS="$JAVA_OPTS -Dfile.encoding=\"utf-8\""
    
 
+http://www.jopenbusiness.com/mediawiki/index.php?title=PowerDNS
 
