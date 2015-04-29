@@ -26,4 +26,67 @@ fi
 
 4. sudo /etc/init.d/xrdp restart
 
+
+--------
+samba
+출처 : http://noldit.tistory.com/entry/%EC%9A%B0%EB%B6%84%ED%88%AC-1404-%EC%82%BC%EB%B0%94-%EC%84%A4%EC%B9%98
+
+우분투 14.04 삼바 설치
+linux/ubuntu
+
+1. 삼바 패키지 설치
+
+
+아래 명령어로 삼바를 설치하도록 하자.
+
+$ sudo apt-get install samba samba-common
+
+
+
+2. user 추가 
+
+$ sudo smbpass -a "유저이름"
+
+
+유저의 패스워드를 설정하도록 하자
+
+New SMB password:
+
+Retype new SMB password:
+
+Added user "유저이름".
+
+
+
+
+3. 삼바 설정 파일 수정
+
+
+$ sudo vim /etc/samba/smb.conf
+
+위 파일에서 [home]과 관련된 주석을 해제한다.
+
+
+[homes]
+
+   comment = Home Directories
+
+   browseable = no
+위 내용 앞에 ;를 지워주면 된다.
+그러면 2에서 추가한 user의 홈 디렉토리가 자동으로 공유된다.
+
+
+
+4. 삼바 재시작
+
+
+$ sudo /etc/init.d/samba restart
+
+
+
+이제 윈도우에서 접속해서 사용하면 된다.
+
+
+\\"ip 주소"\"유저이름"
+
  
