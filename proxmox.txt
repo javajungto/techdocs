@@ -105,6 +105,14 @@ backup
 
 https://pve.proxmox.com/wiki/Backup_and_Restore
 
+----------------------
+command
+http://pve.proxmox.com/wiki/Manual:_qm
+http://thescriptingadmin.blogspot.kr/2013/04/proxmox-tips.html
+----------------------
+qm list
+qm shutdown 109 -forceStop
+
 
 
 
