@@ -45,6 +45,10 @@ LVM
 
 8. pvremove /dev/sdb1
    
+참조:
+https://www.centos.org/docs/5/html/Cluster_Logical_Volume_Manager/LV_create.html
+
+
 ----------------------------------------------------------------------
 퍼옴 : http://wiki.lug.or.kr/linux/lvm
 ----------------------------------------------------------------------
