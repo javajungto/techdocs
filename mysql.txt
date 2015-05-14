@@ -1,0 +1,6 @@
+auto_increment 조정 하기 
+
+alter table hb_client_details auto_increment=7;
+
+http://www.mysqlkorea.com/sub.html?mcode=develop&scode=01&lang=k&m_no=20181&cat1=3&cat2=94&cat3=111
+
