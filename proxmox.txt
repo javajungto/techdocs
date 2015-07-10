@@ -114,7 +114,9 @@ qm list
 qm shutdown 109 -forceStop
 
 
+--------------
 
+--------------
 
-
+apt-get update && apt-get install ntfs-3g
  
