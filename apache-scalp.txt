@@ -1,0 +1,9 @@
+apache-scalp
+
+https://code.google.com/p/apache-scalp/
+
+wget https://apache-scalp.googlecode.com/files/scalp-0.4.py
+python scalp-0.4.py -l x.x.x.x_access.log -f ./default_filter.xml -o scalp-output --html
+cd scalp-output/
+
+default_filter.xml : https://dev.itratos.de/projects/php-ids/repository/raw/trunk/lib/IDS/default_filter.xml
