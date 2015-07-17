@@ -1,6 +1,7 @@
 apache-scalp
 
 https://code.google.com/p/apache-scalp/
+http://resources.infosecinstitute.com/log-analysis-web-attacks-beginners-guide/
 
 wget https://apache-scalp.googlecode.com/files/scalp-0.4.py
 python scalp-0.4.py -l x.x.x.x_access.log -f ./default_filter.xml -o scalp-output --html
