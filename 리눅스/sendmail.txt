@@ -1,0 +1,16 @@
+
+httpd에서 php mail발송시 오류
+
+NOQUEUE: SYSERR(apache): can not chdir(/var/spool/clientmqueue/): Permission denied
+ 
+# getsebool httpd_can_sendmail
+httpd_can_sendmail --> off
+
+==>
+setsebool httpd_can_sendmail 1
+
+reference
+http://stackoverflow.com/questions/12804841/how-can-apache-be-allowed-to-send-email
+
+
+ 
