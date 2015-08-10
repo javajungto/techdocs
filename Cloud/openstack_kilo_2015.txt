@@ -7,14 +7,15 @@ On centos 7.x
 
 Basic 
 
-   31  systemctl stop NetworkManager
-   32  systemctl disable NetworkManager
-   33  systemctl enable network
-   52  systemctl restart network
-   53  systemctl status network.service
-   67  view ifcfg-ens18 
-   75  ip addr show
-   84  yum update -y
-   85  yum install -y https://rdoproject.org/repos/rdo-release.rpm
-   86  packstack --allinone
+#systemctl stop NetworkManager
+#systemctl disable NetworkManager
+#systemctl enable network
+#systemctl restart network
+#systemctl status network.service
+#view ifcfg-ens18 
+#ip addr show
+#yum update -y
+#yum install -y https://rdoproject.org/repos/rdo-release.rpm
+#yum install -y openstack-packstack
+#packstack --allinone
 
