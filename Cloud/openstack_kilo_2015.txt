@@ -1,1 +1,7 @@
-openstack_kilo_2015
+OpenStack
+
+DevStack
+
+PackStack by RDO
+
+TryStack
