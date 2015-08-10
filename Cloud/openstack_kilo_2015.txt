@@ -1,13 +1,12 @@
 OpenStack
-
 DevStack
-
 PackStack by RDO
-
 TryStack
 
+On centos 7.x
 
-[root@localhost ~]# history
+Basic 
+
    31  systemctl stop NetworkManager
    32  systemctl disable NetworkManager
    33  systemctl enable network
@@ -18,3 +17,4 @@ TryStack
    84  yum update -y
    85  yum install -y https://rdoproject.org/repos/rdo-release.rpm
    86  packstack --allinone
+
