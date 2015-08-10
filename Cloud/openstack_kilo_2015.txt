@@ -12,8 +12,13 @@ Basic
 #systemctl stop NetworkManager
 #systemctl disable NetworkManager
 #systemctl enable network
-#systemctl restart network
-#systemctl status network.service
+
+ifdown ens18
+ifdown ens18 && systemctl start network
+
+(#systemctl restart network)
+(#systemctl status network.service)
+
 #view ifcfg-ens18 
 #ip addr show
 #yum update -y
