@@ -3,6 +3,8 @@ DevStack
 PackStack by RDO
 TryStack
 
+Reference : https://www.rdoproject.org/Quickstart
+
 On centos 7.x
 
 Basic 
