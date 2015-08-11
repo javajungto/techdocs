@@ -26,3 +26,10 @@ ifdown ens18 && systemctl start network
 #yum install -y openstack-packstack
 #packstack --allinone
 
+issue
+invalid command "FcgidIPCDir"
+
+==> yum install php-cli
+
+
+
