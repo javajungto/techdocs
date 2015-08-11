@@ -40,7 +40,21 @@ http://..../dashboard
 id/pwd : cat /root/keystonerc_admin 
 
 Floating IP range
-https://www.rdoproject.org/Floating_IP_range
+=>https://www.rdoproject.org/Floating_IP_range
+
+With nova-network
+source /root/keystonerc_admin
+nova  floating-ip-bulk-delete 10.3.4.0/22 (this is the hard-coded range in packstack)
+nova floating-ip-bulk-create CORRECT-RANGE (in the above example, this would be 192.168.1.56/29)
+nova-manage floating list (to see your new list of floating IPs)
+
+With Neutron
+source /root/keystonerc_admin
+neutron net-create public --router:external
+neutron subnet-create public 192.168.1.0/24 --name vlan --enable_dhcp=False --allocation_pool start=192.168.1.57,end=192.168.1.62 --gateway 192.168.1.1 (use your network gateway here - change the IP addresses in the allocation range to match what is available on your network)
+neutron router-create router1 (router1 has to be replaced by the name of your router)
+neutron router-gateway-set $router_id $vlan_id (use your router id and previous created vlan id)
+neutron floatingip-create public (repeat as necessary)
 
 issue
 invalid command "FcgidIPCDir"
