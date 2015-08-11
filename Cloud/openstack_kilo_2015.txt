@@ -14,6 +14,9 @@ minimal install
 #systemctl enable network
 
 ifdown enp0s25
+
+/sbin/shutdown -r now 
+
 ifdown enp0s25 && systemctl start network
 
 (#systemctl restart network)
