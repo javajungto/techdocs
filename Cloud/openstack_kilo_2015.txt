@@ -39,6 +39,9 @@ http://..../dashboard
 
 id/pwd : cat /root/keystonerc_admin 
 
+dashboard > Compute > 접근&보안 > 키페어 생성 ( ex: keypari2.pem )
+dashboard > Compute > 접근&보안 > 시큐리티 그룹 > default 규칙관리 > 규칙추가 22 추가 
+
 
 #view /etc/sysconfig/network-scripts/ifcfg-br-ex (new)
 DEVICE=br-ex
