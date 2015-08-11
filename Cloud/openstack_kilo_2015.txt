@@ -28,6 +28,15 @@ ifdown enp0s25
 #packstack --allinone
 
 yum -y update && yum -y install https://rdoproject.org/repos/rdo-release.rpm && yum -y install openstack-packstack && packstack --allinone
+
+
+view /etc/httpd/conf.d/15-horizon_vhost.conf
+...
+ServerAlias .......
+....
+
+
+
 issue
 invalid command "FcgidIPCDir"
 
