@@ -15,9 +15,7 @@ minimal install
 
 ifdown enp0s25
 
-/sbin/shutdown -r now 
-
-ifdown enp0s25 && systemctl start network
+/etc/init.d/network restart
 
 (#systemctl restart network)
 (#systemctl status network.service)
