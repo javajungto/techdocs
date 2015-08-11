@@ -39,6 +39,38 @@ http://..../dashboard
 
 id/pwd : cat /root/keystonerc_admin 
 
+
+#view /etc/sysconfig/network-scripts/ifcfg-br-ex (new)
+DEVICE=br-ex
+DEVICETYPE=ovs
+TYPE=OVSBridge
+BOOTPROTO=static
+IPADDR=192.168.0.150 # Old eth0 IP since we want the network restart to not
+                       # kill the connection, otherwise pick something outside your dhcp range
+NETMASK=255.255.255.0  # your netmask
+GATEWAY=192.168.0.1  # your gateway
+DNS1=168.126.63.1     # your nameserver
+ONBOOT=yes
+
+#view view /etc/sysconfig/network-scripts/ifcfg-enp0s25 (modify)
+DEVICE=enp0s25
+TYPE=OVSPort
+DEVICETYPE=ovs
+OVS_BRIDGE=br-ex
+ONBOOT=yes
+
+#openstack-config --set /etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini ovs bridge_mappings extnet:br-ex
+#openstack-config --set /etc/neutron/plugin.ini ml2 type_drivers vxlan,flat,vlan
+
+# reboot
+
+or, alternatively:
+ 
+# service network restart
+# service neutron-openvswitch-agent restart
+# service neutron-server restart
+
+
 Floating IP range
 =>https://www.rdoproject.org/Floating_IP_range
 
