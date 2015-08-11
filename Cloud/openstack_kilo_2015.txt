@@ -73,6 +73,18 @@ or, alternatively:
 # service neutron-openvswitch-agent restart
 # service neutron-server restart
 
+--------------------------------------------
+Add an image 
+--------------------------------------------
+dashboard > Compute > 이미지 > 이미지생성 
+
+image resources 
+=> https://www.rdoproject.org/Image_resources
+
+이름 : centos6
+이미지위치 :http://cloud.centos.org/centos/6/images/CentOS-6-x86_64-GenericCloud-20141129_01.qcow2
+* 필요에 따라 공용 체크 
+
 
 Floating IP range
 =>https://www.rdoproject.org/Floating_IP_range
