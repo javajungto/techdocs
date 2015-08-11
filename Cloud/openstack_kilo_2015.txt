@@ -27,10 +27,8 @@ ifdown enp0s25
 #yum install -y openstack-packstack
 #packstack --allinone
 
+yum -y update && yum -y install https://rdoproject.org/repos/rdo-release.rpm && yum -y install openstack-packstack && packstack --allinone
 issue
 invalid command "FcgidIPCDir"
 
 ==> yum install php-cli
-
-
-
