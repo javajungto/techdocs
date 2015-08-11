@@ -13,13 +13,13 @@ minimal install
 #systemctl disable NetworkManager
 #systemctl enable network
 
-ifdown ens18
-ifdown ens18 && systemctl start network
+ifdown enp0s25
+ifdown enp0s25 && systemctl start network
 
 (#systemctl restart network)
 (#systemctl status network.service)
 
-#view ifcfg-ens18 
+#view ifcfg-enp0s25
 #ip addr show
 #yum update -y
 #yum install -y https://rdoproject.org/repos/rdo-release.rpm
