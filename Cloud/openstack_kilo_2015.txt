@@ -35,7 +35,12 @@ view /etc/httpd/conf.d/15-horizon_vhost.conf
 ServerAlias .......
 ....
 
+http://..../dashboard
 
+id/pwd : cat /root/keystonerc_admin 
+
+Floating IP range
+https://www.rdoproject.org/Floating_IP_range
 
 issue
 invalid command "FcgidIPCDir"
