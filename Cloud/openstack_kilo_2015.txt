@@ -93,9 +93,9 @@ dashboard > Compute > image > centos6 > 인스턴스구동 >
 Flavor : m1.small
 private network 
 
-
-
+--------------------------------------------
 Floating IP range
+--------------------------------------------
 =>https://www.rdoproject.org/Floating_IP_range
 
 With nova-network
