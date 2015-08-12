@@ -161,6 +161,26 @@ swift upload myfiles r.txt
 swift download myfiles
 
 --------------------------------------------
+windows image
+--------------------------------------------
+Reference
+=> https://poolsidemenace.wordpress.com/2011/06/16/porting-windows-to-openstack/
+
+on promox
+created window image to .qcow2 with virtio
+
+copy the window image file to openstack server
+
+glance image-create --name 'Windows 2008 R2 Standard x64 update' --disk-format qcow2 --container-format bare --is-public true < vm-105-disk-1.qcow2
+
+Reference
+=> https://www.rdoproject.org/Image_resources
+
+glance image-create --name 'Fedora 20 x86_64' --disk-format qcow2 --container-format bare --is-public true \
+--copy-from http://cloud.fedoraproject.org/fedora-20.x86_64.qcow2
+
+
+--------------------------------------------
 check
 --------------------------------------------
 - backup, restore
