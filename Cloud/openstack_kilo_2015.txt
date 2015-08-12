@@ -153,6 +153,12 @@ cinder list
 cinder create --display-name myVolume 1
 cinder show myVolume
 
+--------------------------------------------
+swift
+--------------------------------------------
+swift stat
+swift upload myfiles r.txt
+swift download myfiles
 
 --------------------------------------------
 check
