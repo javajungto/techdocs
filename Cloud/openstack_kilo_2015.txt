@@ -16,7 +16,7 @@ minimal install
 #systemctl disable NetworkManager
 #systemctl enable network
 
-ifdown enp0s25
+-ifdown enp0s25
 
 /etc/init.d/network restart
 
