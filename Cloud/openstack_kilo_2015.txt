@@ -151,6 +151,7 @@ check
 - backup, restore
 - creating windows os image 
 - change ip range during service is online
+- append or detach disk on instance
 
 --------------------------------------------
 issue
