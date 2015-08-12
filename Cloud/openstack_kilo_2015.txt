@@ -146,6 +146,15 @@ neutron router-gateway-set $router_id $vlan_id (use your router id and previous 
 neutron floatingip-create public (repeat as necessary)
 
 --------------------------------------------
+cinder
+--------------------------------------------
+source keystonerc_admin (or source keystonerc_demo)
+cinder list
+cinder create --display-name myVolume 1
+cinder show myVolume
+
+
+--------------------------------------------
 check
 --------------------------------------------
 - backup, restore
