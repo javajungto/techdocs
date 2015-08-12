@@ -145,7 +145,16 @@ neutron router-create router1 (router1 has to be replaced by the name of your ro
 neutron router-gateway-set $router_id $vlan_id (use your router id and previous created vlan id)
 neutron floatingip-create public (repeat as necessary)
 
+--------------------------------------------
+check
+--------------------------------------------
+- backup, restore
+- creating windows os image 
+- change ip range during service is online
+
+--------------------------------------------
 issue
+--------------------------------------------
 invalid command "FcgidIPCDir"
 
 ==> yum install php-cli
