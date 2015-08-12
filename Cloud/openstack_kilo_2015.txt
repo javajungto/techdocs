@@ -7,6 +7,9 @@ Reference : https://www.rdoproject.org/Quickstart
 
 On centos 7.x
 
+partition LVM (320G)
+/ 289G
+swap 8G
 minimal install
 
 #systemctl stop NetworkManager
