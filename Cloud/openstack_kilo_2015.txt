@@ -271,6 +271,11 @@ Other services follow the same process, with their respective directories and da
 
 Backup and subsequent recovery is one of the first tasks system administrators learn. However, each system has different items that need attention. By taking care of your database, image service, and appropriate file system locations, you can be assured that you can handle any event requiring recovery.
 
+--------------------------------------------
+Maintenance
+--------------------------------------------
+http://docs.openstack.org/openstack-ops/content/maintenance.html
+
 
 --------------------------------------------
 check
