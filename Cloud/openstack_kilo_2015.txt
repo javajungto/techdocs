@@ -212,6 +212,13 @@ filename="${backup_dir}/mysql-`hostname`-`eval date +%Y%m%d`.sql.gz"
 find $backup_dir -ctime +7 -type f -delete
 
 File System Backups
+/etc/nova
+/var/lib/nova
+
+/etc/glance
+/var/lib/glance
+/var/lib/glance/images => RAID array / to use a tool such as rsync to replicate the images to another server
+(# rsync -az --progress /var/lib/glance/images backup-server:/var/lib/glance/images/)
 
 --------------------------------------------
 check
