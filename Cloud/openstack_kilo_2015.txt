@@ -212,13 +212,66 @@ filename="${backup_dir}/mysql-`hostname`-`eval date +%Y%m%d`.sql.gz"
 find $backup_dir -ctime +7 -type f -delete
 
 File System Backups
+
+<compute>
 /etc/nova
 /var/lib/nova
 
+<Image Catalog and Delivery>
 /etc/glance
+/var/log/glance
 /var/lib/glance
 /var/lib/glance/images => RAID array / to use a tool such as rsync to replicate the images to another server
 (# rsync -az --progress /var/lib/glance/images backup-server:/var/lib/glance/images/)
+
+<Identity>
+/etc/keystone
+/var/log/keystone
+/var/lib/keystone
+
+<Block Storage>
+/etc/cinder
+/var/log/cinder
+/var/lib/cinder
+
+<Object Storage>
+/etc/swift
+
+Recovering Backups
+
+Recovering backups is a fairly simple process. To begin, first ensure that the service you are recovering is not running. For example, to do a full recovery of nova on the cloud controller, first stop all nova services:
+
+ Select Text
+# stop nova-api
+# stop nova-cert
+# stop nova-consoleauth
+# stop nova-novncproxy
+# stop nova-objectstore
+# stop nova-scheduler
+Now you can import a previously backed-up database:
+
+Select Text
+# mysql nova < nova.sql
+You can also restore backed-up nova directories:
+
+Select Text
+# mv /etc/nova{,.orig}
+# cp -a /path/to/backup/nova /etc/
+Once the files are restored, start everything back up:
+
+Select Text
+# start mysql
+# for i in nova-api nova-cert nova-consoleauth nova-novncproxy
+nova-objectstore nova-scheduler
+> do
+> start $i
+> done
+Other services follow the same process, with their respective directories and databases.
+
+ Summary
+
+Backup and subsequent recovery is one of the first tasks system administrators learn. However, each system has different items that need attention. By taking care of your database, image service, and appropriate file system locations, you can be assured that you can handle any event requiring recovery.
+
 
 --------------------------------------------
 check
