@@ -197,6 +197,21 @@ Reference
 glance image-create --name 'Fedora 20 x86_64' --disk-format qcow2 --container-format bare --is-public true \
 --copy-from http://cloud.fedoraproject.org/fedora-20.x86_64.qcow2
 
+--------------------------------------------
+backup
+--------------------------------------------
+# mysqldump --opt --all-databases > openstack.sql
+# mysqldump --opt nova > nova.sql
+
+#!/bin/bash
+backup_dir="/var/lib/backups/mysql"
+filename="${backup_dir}/mysql-`hostname`-`eval date +%Y%m%d`.sql.gz"
+# Dump the entire MySQL database
+/usr/bin/mysqldump --opt --all-databases | gzip > $filename
+# Delete backups older than 7 days
+find $backup_dir -ctime +7 -type f -delete
+
+File System Backups
 
 --------------------------------------------
 check
