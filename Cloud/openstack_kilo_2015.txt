@@ -289,3 +289,77 @@ issue
 invalid command "FcgidIPCDir"
 
 ==> yum install php-cli
+
+--------------------------------------------
+script
+--------------------------------------------
+source keystonerc_admin
+mysql -uroot < mysql-localhost.localdomain-20150814.sql
+
+#!/usr/bin/expect -f
+
+set SRV 192.168.0.150
+set timeout 120
+spawn rsync -avz -e ssh root@${SRV}:/etc/nova/* /etc/nova/
+expect {
+ -re "password: " {
+        send "PWD\r"
+ }
+}
+expect eof
+
+spawn rsync -avz -e ssh root@${SRV}:/var/lib/nova/* /var/lib/nova/
+expect {
+ -re "password: " {
+        send "PWD\r"
+ }
+}
+expect eof
+
+spawn rsync -avz -e ssh root@${SRV}:/etc/glance/* /etc/glance/
+expect {
+ -re "password: " {
+        send "PWD\r"
+ }
+}
+expect eof
+
+spawn rsync -avz -e ssh root@${SRV}:/var/lib/glance/* /var/lib/glance/
+expect {
+ -re "password: " {
+        send "PWD\r"
+ }
+}
+expect eof
+
+spawn rsync -avz -e ssh root@${SRV}:/etc/keystone/* /etc/keystone
+expect {
+ -re "password: " {
+        send "PWD\r"
+ }
+}
+expect eof
+
+spawn rsync -avz -e ssh root@${SRV}:/var/lib/keystone/* /var/lib/keystone/
+expect {
+ -re "password: " {
+        send "PWD\r"
+ }
+}
+expect eof
+
+spawn rsync -avz -e ssh root@${SRV}:/etc/cinder/* /etc/cinder/
+expect {
+ -re "password: " {
+        send "PWD\r"
+ }
+}
+expect eof
+
+spawn rsync -avz -e ssh root@${SRV}:/var/lib/cinder/* /var/lib/cinder/
+expect {
+ -re "password: " {
+        send "PWD\r"
+ }
+}
+expect eof
