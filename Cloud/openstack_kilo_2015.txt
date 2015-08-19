@@ -116,7 +116,8 @@ neutron router-interface-add router1 private_subnet
 네트워크타입:flat
 물리적인네트워크:default
 
-네트워크 편집
+위에서 생성한 네트워크 이름 클릭
+서브넷 생성 
 서브넷이름 : public_subnet
 네트워크주소 : 192.168.0.0/24
 게이트웨이IP:192.168.0.1
