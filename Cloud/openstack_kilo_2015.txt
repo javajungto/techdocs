@@ -141,6 +141,8 @@ Launch the instance
 dashboard > Compute > image > centos6 > 인스턴스구동 > 
 인스턴스이름 : test1
 Flavor : m1.small
+인스턴스 부팅 소스 : 이미지로 부팅
+이미지 이름 : centos-x86_64
 private network 
 
 --------------------------------------------
