@@ -111,10 +111,11 @@ neutron router-interface-add router1 private_subnet
 
 시스템 > 네트워크 > public 삭제 
 네트워크 생성
-이름 : public_subnet
+이름 : public
 프로젝트 : admin
 네트워크타입:flat
 물리적인네트워크:default
+외부네트워크 : 체크 
 
 위에서 생성한 네트워크 이름 클릭
 서브넷 생성 
