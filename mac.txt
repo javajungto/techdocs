@@ -55,6 +55,9 @@ libtool
   596  make
   597  sudo make install
 
+mkdir ~/mnt/iodd
+sudo ntfs-3g /dev/disk2s1 ./mnt/iodd/
+
 참조)
 
 http://fillin.tistory.com/138
