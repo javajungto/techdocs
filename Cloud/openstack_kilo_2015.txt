@@ -57,6 +57,36 @@ ONBOOT=yes
 
 # reboot
 
+확인
+[root@localhost ~]# ifconfig
+br-ex: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.0.150  netmask 255.255.255.0  broadcast 192.168.0.255
+        inet6 fe80::20b8:4ff:fef9:2549  prefixlen 64  scopeid 0x20<link>
+        ether 00:22:4d:69:00:88  txqueuelen 0  (Ethernet)
+        RX packets 205  bytes 23919 (23.3 KiB)
+        RX errors 0  dropped 38  overruns 0  frame 0
+        TX packets 154  bytes 16419 (16.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+enp0s25: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::222:4dff:fe69:88  prefixlen 64  scopeid 0x20<link>
+        ether 00:22:4d:69:00:88  txqueuelen 1000  (Ethernet)
+        RX packets 205  bytes 24739 (24.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 151  bytes 17069 (16.6 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 20  memory 0xefa00000-efa20000  
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 0  (Local Loopback)
+        RX packets 6629  bytes 881061 (860.4 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 6629  bytes 881061 (860.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
 view /etc/httpd/conf.d/15-horizon_vhost.conf
 ...
 ServerAlias .......
