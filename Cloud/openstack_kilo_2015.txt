@@ -25,9 +25,10 @@ minimal install
 
 #view ifcfg-enp0s25
 #ip addr show
-#yum update -y
-#yum install -y https://rdoproject.org/repos/rdo-release.rpm
-#yum install -y openstack-packstack
+
+#yum -y update
+#yum -y install https://rdoproject.org/repos/rdo-release.rpm
+#yum -y install openstack-packstack
 #packstack --allinone
 
 yum -y update && yum -y install https://rdoproject.org/repos/rdo-release.rpm && yum -y install openstack-packstack && packstack --allinone
