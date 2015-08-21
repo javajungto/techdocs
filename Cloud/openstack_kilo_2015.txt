@@ -400,3 +400,8 @@ expect {
  }
 }
 expect eof
+
+
+backup
+
+http://elastx.com/our-blog/backups-in-openstack-cloud#.Vdbhq3vxEVY
