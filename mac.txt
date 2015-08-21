@@ -37,7 +37,17 @@ tar xvfz autoconf-latest.tar.xz
 cd autoconf-2.69/
 ./configure && make && sudo make install
 
+automake
+  573  wget http://ftp.gnu.org/gnu/automake/automake-1.15.tar.xz
+  574  tar xvfz automake-1.15.tar.xz 
+  575  cd automake-1.15
+  576  ./configure && make && sudo make install
 
+libtool
+ 580  wget http://ftp.jaist.ac.jp/pub/GNU/libtool/libtool-2.4.6.tar.gz
+  581  tar xvfz libtool-2.4.6.tar.gz 
+  582  cd libtool-2.4.6
+  583  ./configure && make && sudo make install
 
 
 http://fillin.tistory.com/138
