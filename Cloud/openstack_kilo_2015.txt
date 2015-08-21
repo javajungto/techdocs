@@ -428,3 +428,22 @@ volume생성
 Flavor
 인스턴스부팅소스:볼륨으로부팅
 
+os이미지 --> 부팅가능한볼률생성 -> 인스턴스생성
+
+볼륨 -> 볼륨 스냅샵 -> 볼륨으로 생성 -> 
+
+Backup volume방법
+1) Create a snapshot
+cinder snapshot-create vtest2 --force true --display-name vtest2-backup
+
+2) Create a volume from the snapshot
+   70  cinder snapshot-list
+   71  cinder create --snapshot-id f6b0ce67-ad0b-443d-b57c-17e7f9dceca4 --display-name vtest2-backup 1
+
+3) Make a volume backup
+cinder backup-create --container volume-backup --display-name vtest2-backup-1 vtest2-backup
+cinder backup-list
+
+Recover a volume
+
+os는 이미
