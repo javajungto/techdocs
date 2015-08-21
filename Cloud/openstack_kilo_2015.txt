@@ -412,3 +412,19 @@ nova backup test1 test-backup-1 hourly 4
 nova rebuild test1 cirros <== os이미지로 초기화 
 nova rebuild test1 test-backup-1 <== 백업한 이지지로 초기화 
 
+volume생성
+볼륨이름:vtest3
+볼륨소스:이미지
+소스를이미지를 사용:cirros
+유형:볼륨타입이 없음
+크기:1
+가용영역:nova
+
+볼륨편집
+부팅가능:체크 
+
+이미지 > 공용 > cirros > 인스턴스 구동 
+인스턴스이름
+Flavor
+인스턴스부팅소스:볼륨으로부팅
+
