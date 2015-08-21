@@ -49,6 +49,13 @@ libtool
   582  cd libtool-2.4.6
   583  ./configure && make && sudo make install
 
+  592  tar xvfz ntfs-3g_ntfsprogs-2015.3.14.tgz 
+  593  cd ntfs-3g_ntfsprogs-2015.3.14
+  595  ./configure --exec-prefix=/usr/local
+  596  make
+  597  sudo make install
+
+참조)
 
 http://fillin.tistory.com/138
 
