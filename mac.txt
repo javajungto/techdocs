@@ -1,0 +1,56 @@
+
+mac에서 ntfs-3g write 안됨
+=> ntfs-3g read만 됨.
+
+1.port 설치
+=> 다운로드 : https://distfiles.macports.org/MacPorts/MacPorts-2.3.3-10.10-Yosemite.pkg
+
+port version
+sudo port selfupdate
+
+2.port로 pkg-config 로 설치
+=> http://www.fantageek.com/318/install-pkg-config-for-mac-osx/
+
+sudo port install pkgconfig
+
+3.ntfs-3g for mac 설치 
+=> http://www.tuxera.com/community/open-source-ntfs-3g/
+download source
+
+configure: error: FUSE >= 2.6.0 was not found. Either older FUSE is still present, or FUSE is not fully installed (e.g. fuse, libfuse, libfuse2, libfuse-dev, etc packages). Source code: http://fuse.sf.net
+=> http://sourceforge.net/projects/osxfuse/files/osxfuse-2.8.0/osxfuse-2.8.0.dmg/download
+
+mv: rename //usr/local/lib/libntfs-3g.so* to //lib: No such file or directory
+make[3]: *** [install-exec-hook] Error 1
+make[2]: *** [install-exec-am] Error 2
+make[1]: *** [install-am] Error 2
+make: *** [install-recursive] Error 1
+
+==> http://www.tuxera.com/forum/viewtopic.php?f=4&t=13384
+
+./configure --prefix=/usr/local && make && sudo make install
+
+autoconf
+
+wget http://ftp.gnu.org/gnu/autoconf/autoconf-latest.tar.xz
+tar xvfz autoconf-latest.tar.xz 
+cd autoconf-2.69/
+./configure && make && sudo make install
+
+
+
+
+http://fillin.tistory.com/138
+
+http://dosx.tistory.com/4
+
+https://www.macports.org/install.php
+
+http://guide.macports.org/#installing.xcode
+
+http://www.fantageek.com/318/install-pkg-config-for-mac-osx/
+
+https://rkjun.wordpress.com/2013/07/14/os-x-%EC%97%90%EC%84%9C-ntfs-%EC%93%B0%EA%B8%B0-fuse-for-os-x-%EA%B7%B8%EB%A6%AC%EA%B3%A0-ntfs-3g/
+
+
+
