@@ -33,18 +33,6 @@ minimal install
 
 yum -y update && yum -y install https://rdoproject.org/repos/rdo-release.rpm && yum -y install openstack-packstack && packstack --allinone
 
-view /etc/httpd/conf.d/15-horizon_vhost.conf
-...
-ServerAlias .......
-....
-
-http://..../dashboard
-
-id/pwd : cat /root/keystonerc_admin 
-
-dashboard > Compute > 접근&보안 > 키페어 생성 ( ex: keypari2.pem )
-dashboard > Compute > 접근&보안 > 시큐리티 그룹 > default 규칙관리 > 규칙추가 22 추가 
-
 #view /etc/sysconfig/network-scripts/ifcfg-br-ex (new)
 DEVICE=br-ex
 DEVICETYPE=ovs
@@ -68,6 +56,20 @@ ONBOOT=yes
 #openstack-config --set /etc/neutron/plugin.ini ml2 type_drivers vxlan,flat,vlan
 
 # reboot
+
+view /etc/httpd/conf.d/15-horizon_vhost.conf
+...
+ServerAlias .......
+....
+
+http://..../dashboard
+
+id/pwd : cat /root/keystonerc_admin 
+
+dashboard > Compute > 접근&보안 > 키페어 생성 ( ex: keypari2.pem )
+dashboard > Compute > 접근&보안 > 시큐리티 그룹 > default 규칙관리 > 규칙추가 22 추가 
+
+
 
 or, alternatively:
  
