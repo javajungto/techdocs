@@ -405,3 +405,10 @@ expect eof
 backup
 
 http://elastx.com/our-blog/backups-in-openstack-cloud#.Vdbhq3vxEVY
+
+source keystone_demo
+nova list
+nova backup test1 test-backup-1 hourly 4
+nova rebuild test1 cirros <== os이미지로 초기화 
+nova rebuild test1 test-backup-1 <== 백업한 이지지로 초기화 
+
