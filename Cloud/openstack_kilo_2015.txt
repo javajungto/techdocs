@@ -464,6 +464,22 @@ glance image-download --file test1-backup-1 --progress 062759f9-a268-4d13-a0cf-d
 
 rsync -ave ssh test1-backup-1 root@192.168.0.160:/root/
 
+2)
+source keystone_demo
+nova list
++--------------------------------------+---------+--------+------------+-------------+---------------------------------+
+| ID                                   | Name    | Status | Task State | Power State | Networks                        |
++--------------------------------------+---------+--------+------------+-------------+---------------------------------+
+| ecc71fab-eaf5-4a6d-87f8-5c78f7879be4 | centos6 | ACTIVE | -          | Running     | private=10.0.0.16, 192.168.0.23 |
++--------------------------------------+---------+--------+------------+-------------+---------------------------------+
+
+nova image-create centos6 centos6-image
+[root@localhost ~(keystone_demo)]# glance image-download --file centos6-image --progress a0cb7bc6-efcc-4c2f-b4df-e8e3b049c163
+[=============================>] 100%
+[root@localhost ~(keystone_demo)]# 
+
+
+
 on 160 server)
 
 source keystone_admin
