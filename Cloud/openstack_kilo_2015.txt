@@ -446,4 +446,27 @@ cinder backup-list
 
 Recover a volume
 
-os는 이미
+
+on 150 server)
+source keystone_admin
+[root@localhost ~(keystone_demo)]# glance image-list
++--------------------------------------+----------------+-------------+------------------+----------+--------+
+| ID                                   | Name           | Disk Format | Container Format | Size     | Status |
++--------------------------------------+----------------+-------------+------------------+----------+--------+
+| 7090f5c7-178a-4387-84e0-e697c36d6ca1 | cirros         | qcow2       | bare             | 13200896 | active |
+| fb1ba861-eaef-4984-a78f-8f2d28e3b051 | s1             | qcow2       | bare             | 19267584 | active |
+| 062759f9-a268-4d13-a0cf-d1a0e48aeb4a | test1-backup-1 | qcow2       | bare             | 19267584 | active |
++--------------------------------------+----------------+-------------+------------------+----------+--------+
+
+glance image-download --file test1-backup-1 --progress 062759f9-a268-4d13-a0cf-d1a0e48aeb4a
+
+rsync -ave ssh test1-backup-1 root@192.168.0.160:/root/
+
+on 160 server)
+
+source keystone_admin
+glance image-list
+glance image-create --name test1-backup-1 --min-disk 1 --min-ram 768 --file test1-backup-1 --is-public True  --disk-format=qcow2 --container-format bare --progress
+
+
+
