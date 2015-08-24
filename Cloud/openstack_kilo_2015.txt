@@ -446,6 +446,8 @@ cinder backup-list
 
 Recover a volume
 
+snapshot -> volume -> backup 
+
 
 on 150 server)
 source keystone_admin
