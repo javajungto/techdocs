@@ -447,29 +447,12 @@ cinder backup-list
 
 Recover a volume
 
-snapshot -> volume -> backup 
+---------------------------------------------------
+instance 다른 서버로 옮기기 (이미지부팅 instance)
+---------------------------------------------------
 
+150 server (server server)
 
-on 150 server)
-source keystone_demo
-[root@localhost ~(keystone_demo)]# glance image-list
-+--------------------------------------+----------------+-------------+------------------+----------+--------+
-| ID                                   | Name           | Disk Format | Container Format | Size     | Status |
-+--------------------------------------+----------------+-------------+------------------+----------+--------+
-| 7090f5c7-178a-4387-84e0-e697c36d6ca1 | cirros         | qcow2       | bare             | 13200896 | active |
-| fb1ba861-eaef-4984-a78f-8f2d28e3b051 | s1             | qcow2       | bare             | 19267584 | active |
-| 062759f9-a268-4d13-a0cf-d1a0e48aeb4a | test1-backup-1 | qcow2       | bare             | 19267584 | active |
-+--------------------------------------+----------------+-------------+------------------+----------+--------+
-
-nova image-create centos6 centos6-snapshot-2
-nova image-list
-glance image-list
-
-glance image-download --file test1-backup-1 --progress 062759f9-a268-4d13-a0cf-d1a0e48aeb4a
-
-rsync -ave ssh test1-backup-1 root@192.168.0.160:/root/
-
-2)
 source keystone_demo
 nova image-list
 
@@ -482,16 +465,35 @@ nova image-create centos6 centos6-image
 [=============================>] 100%
 [root@localhost ~(keystone_demo)]# 
 
-on 160 server)
+on 160 server(new server)
 
 source keystone_admin
 glance image-list
-glance image-create --name test1-backup-1 --file test1-backup-1 --is-public True  --disk-format=qcow2 --container-format bare --progress
+glance image-create --name test1-backup-1 --file centos6-image --is-public True  --disk-format=qcow2 --container-format bare --progress
 
-or
+혹은
+horizon(웹)에서 
+http://192.168.0.116/centos6-image 
+
 
 #glance image-create --name test1-backup-1 --min-disk 1 --min-ram 768 --file test1-backup-1 --is-public True  --disk-format=qcow2 --container-format bare --progress
 
 horizon에서 이미지 생성여부 확인 
 
 참조) https://www.mirantis.com/blog/advanced-examples-openstack-image-service-glance-usage/
+
+-source keystone_demo
+-[root@localhost ~(keystone_demo)]# glance image-list
++--------------------------------------+----------------+-------------+------------------+----------+--------+
+| ID                                   | Name           | Disk Format | Container Format | Size     | Status |
++--------------------------------------+----------------+-------------+------------------+----------+--------+
+| 7090f5c7-178a-4387-84e0-e697c36d6ca1 | cirros         | qcow2       | bare             | 13200896 | active |
+| fb1ba861-eaef-4984-a78f-8f2d28e3b051 | s1             | qcow2       | bare             | 19267584 | active |
+| 062759f9-a268-4d13-a0cf-d1a0e48aeb4a | test1-backup-1 | qcow2       | bare             | 19267584 | active |
++--------------------------------------+----------------+-------------+------------------+----------+--------+
+
+-nova image-create centos6 centos6-snapshot-2
+-nova image-list
+-glance image-list
+-glance image-download --file test1-backup-1 --progress 062759f9-a268-4d13-a0cf-d1a0e48aeb4a
+-rsync -ave ssh test1-backup-1 root@192.168.0.160:/root/
