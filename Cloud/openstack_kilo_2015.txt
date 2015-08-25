@@ -142,6 +142,7 @@ neutron router-create router1
 neutron router-gateway-set router1 external_network
 neutron router-interface-add router1 private_subnet
 
+admin로그인 >
 시스템 > 네트워크 > public 삭제 
 네트워크 생성
 이름 : public
