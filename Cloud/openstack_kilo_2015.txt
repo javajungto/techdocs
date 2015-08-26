@@ -527,3 +527,10 @@ nova stop new1 ==> 전원 SHUTOFF 상태
 nova start new1 
 
 glance image-create --name centos7 --copy-from http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-1503.qcow2 --is-public True --progress
+
+glance image-list
+glance image-download --file centos7 --progress bcf9bac8-ad01-481c-9f4d-db0738cba7b4
+
+source keystone_admin
+glance image-create --name centos7 --copy-from http://192.168.0.116/centos7.qcow2 --is-public True --progress
+
