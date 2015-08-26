@@ -512,6 +512,7 @@ cat .ssh/id_rsa.pub
 
 scp -r .ssh root@centos2:
 
+nova net-list
 nova boot --poll --flavor m1.small --image centos6 --nic net-id=a8f6a62b-cf09-455c-8f02-393a8fd660e3 --key-name keypair1a --availability-zone nova  test2
 
 nova floating-ip-list
