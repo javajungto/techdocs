@@ -99,8 +99,6 @@ id/pwd : cat /root/keystonerc_admin
 dashboard > Compute > 접근&보안 > 키페어 생성 ( ex: keypari2.pem )
 dashboard > Compute > 접근&보안 > 시큐리티 그룹 > default 규칙관리 > 규칙추가 22 추가 
 
-
-
 or, alternatively:
  
 # service network restart
@@ -221,6 +219,8 @@ Reference
 
 on promox
 created window image to .qcow2 with virtio
+(cd-rom add해서 virtio-win-0.1-93.iso) 윈두우 부팅시 driver 로드함. 
+(w2k8r2경우 win7/amd64아래)
 
 copy the window image file to openstack server
 
