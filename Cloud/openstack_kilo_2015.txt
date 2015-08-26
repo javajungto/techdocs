@@ -497,3 +497,11 @@ horizon에서 이미지 생성여부 확인
 -glance image-list
 -glance image-download --file test1-backup-1 --progress 062759f9-a268-4d13-a0cf-d1a0e48aeb4a
 -rsync -ave ssh test1-backup-1 root@192.168.0.160:/root/
+
+ex
+ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa
+ls -la .ssh/
+cat .ssh/id_rsa
+cat .ssh/id_rsa.pub
+
+scp -r .ssh root@centos2:
