@@ -534,3 +534,53 @@ glance image-download --file centos7 --progress bcf9bac8-ad01-481c-9f4d-db0738cb
 source keystone_admin
 glance image-create --name centos7 --copy-from http://192.168.0.116/centos7.qcow2 --is-public True --progress
 
+----------------------------------------------------------------------------------------------
+미션1)
+----------------------------------------------------------------------------------------------
+환경
+srv1 service server : 192.168.0.150 / instance-name test7 / image centos7
+srv2 backup  server : 192.168.0.160
+
+srv1 서버 보드 장애로, disk만 살아 있는 상태에서 srv2 서버에 instance test7를 복구하라.
+(srv1은 openstack이 정상적으로 구동중이지 않는 상태)
+
+방법)
+srv1의 centos7 기반 instance test7의 disk파일을 srv2로 복사한후 srv2에서 instance를 구동한다. 
+
+미리 알아야할 내용
+- srv1 test7 instance id <== sql을 별도로 백업을 받아서, 확인을 하거나, instance생성시 별도 기록이 필요함. 
+
+srv2에 아래 동일하게 구성
+키페어 : keypair1a
+시큐리티그룹 : default
+이미지 : centos7
+- source keystone_admin
+- glance image-create --name centos7 --copy-from http://192.168.0.116/centos7.qcow2 --is-public True --progress
+(glance image-create --name centos7 --copy-from http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-1503.qcow2 --is-public True --progress)
+
+srv2에 centos7 image로 임의의 instance 생성
+- nova net-list
+- nova boot --poll --flavor m1.small --image centos7 --nic net-id=78918519-9d54-4578-864f-001418697c74 --key-name keypair1a --availability-zone nova new-centos7
+
+srv1에서 test7 instance 중지
+source keystone_demo
+nova stop test7
+
+srv2에서 new-centos7 instance 중지
+source keystone_demo
+nova stop new-centos7
+
+new-centos7 id확인 : a479b017-1b93-41e0-b843-827f1638bbfb
+mv /var/lib/nova/instance/a479b017-1b93-41e0-b843-827f1638bbfb /var/lib/nova/instance/a479b017-1b93-41e0-b843-827f1638bbfb.bak
+mkdir /var/lib/nova/instance/a479b017-1b93-41e0-b843-827f1638bbfb 
+chown nova:nova /var/lib/nova/instance/a479b017-1b93-41e0-b843-827f1638bbfb 
+
+rsync -ave ssh root@192.168.0.150:/var/lib/nova/instances/e25227c2-5dd6-49a8-be19-25ee94fa88dc/* /var/lib/nova/instance/a479b017-1b93-41e0-b843-827f1638bbfb/
+
+on srv2
+rsync -ave ssh root@srv1:/var/lib/nova/instance/test7_ID/* /var/lib/nova/instance/new-centos7-ID/
+
+on srv2
+nova start new-centos7
+nova floating-ip-list
+nova floating-ip-associate new-centos7 IP
