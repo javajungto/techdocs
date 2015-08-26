@@ -548,7 +548,9 @@ srv1 서버 보드 장애로, disk만 살아 있는 상태에서 srv2 서버에 
 srv1의 centos7 기반 instance test7의 disk파일을 srv2로 복사한후 srv2에서 instance를 구동한다. 
 
 미리 알아야할 내용
-- srv1 test7 instance id <== sql을 별도로 백업을 받아서, 확인을 하거나, instance생성시 별도 기록이 필요함. 
+- srv1 test7 instance id <== sql을 별도로 백업을 받아서, 확인을 하거나, instance생성시 별도 기록이 필요함.
+mysql nova database backup
+select key_name, key_data, memory_mb,vcpus,display-name,availability_zone,root_gb from instances where hostname='test7'\G;
 
 srv2에 아래 동일하게 구성
 키페어 : keypair1a
