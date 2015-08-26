@@ -460,6 +460,7 @@ nova image-create <instance name or uuid> <name of new image>
 (참고 : http://docs.openstack.org/openstack-ops/content/snapshots.html)
 
 nova image-create centos6 centos6-image <== snapshot type의 image 생성함. (nova, glance에서 보임)
+==> horizon에서 스냅샷 클릭과 동일한 파일 생성됨. 
 
 ...
 image_location snapshot
