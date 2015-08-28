@@ -1,0 +1,20 @@
+http://docs.cslabs.clarkson.edu/wiki/Install_PPTP_on_CentOS_5
+
+rpm -Uhv http://poptop.sourceforge.net/yum/stable/rhel5/pptp-release-current.noarch.rpm
+
+Create iptables_set.sh, chmod +x iptables_set.sh, and run the script. 
+
+#!/bin/bash
+/sbin/iptables -F
+/sbin/iptables -P INPUT DROP
+/sbin/iptables -P OUTPUT ACCEPT
+/sbin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+/sbin/iptables -A FORWARD -i ppp+ -o eth0 -j ACCEPT
+/sbin/iptables -A FORWARD -i eth0 -o ppp+ -j ACCEPT
+/sbin/iptables -A INPUT -i eth0 -p tcp --dport 1723 -j ACCEPT
+/sbin/iptables -A INPUT -i eth0 -p gre -j ACCEPT
+/sbin/iptables -A INPUT -p icmp -j ACCEPT
+/sbin/iptables -A INPUT -i lo -j ACCEPT
+/sbin/iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+/sbin/service iptables save
+/sbin/iptables -L -v
