@@ -1,0 +1,51 @@
+senginx는 기존 nginx에 추가 기능과 security가 포함된 버전.
+기존 nginx에서 컴파일이 필요했던 기능들(caching,ssl등)도 포함되어 있고, naxsi나 modsecurity가 통합되어 있음.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+What is SEnginx ?
+-------------------------------------------------------------------------------------------------------------------------------------------------
+SENginx open source project is launched by Network Security Division of Neusoft Corporation ( http://security.neusoft.com/ )
+
+http://www.senginx.org
+
+SEnginx (Security Enhanced NGINX) is a variant of nginx.
+
+senginx = web security features + application delivery
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+SEnginx Features = all features of original nginx + Application delivery (web server) + Web Security 
+-------------------------------------------------------------------------------------------------------------------------------------------------
+all features of original nginx
++ 
+Application delivery (web server) 
+- tcp proxy and load balancing : nginx_tcp_proxy_module 
+- Enhanced "if" Directive in Rewrite Module 
+- Dynamic DNS Resolve in Upstream (proxy_pass directive:dynamic_resolve, dynamic_fail_timeout, dynamic_fallback) : SEnginx can support resolving DNS at run time. 
+- Proxy HTTPS Client Cerificate
+- Load Balancing Algorithm
+  . Fastest Load Balancing Algorithm : shorter response time
+  . Fair Load Balancing Algorithm 
+- Session Persistence 
+- Caching Based on MIME Type 
+- Server Health Monitor : engine's check module. 
++
+Web Security
+- IP Access Behavior Module : limit_req , robot mitigation
+ . ip_behavior_zone zone=abc:10m sample_base=10 sample_cycle=2s; (This defines a 10MB size zone, sample cycle is two seconds and the miminum valid request number is 10. )
+ . server { ip_behavior zone=abc type=sensitive_url; } (Enable zone abc on a server and set the mode to sensitive url accessing behavior detecting.)
+ .ip_behavior_sensitive
+ .$insensitive_percent
+- Conditional limit_req module 
+- HTTP Robot Mitigation 
+- Dynamic IP Blacklist
+- User-Agent Whitelist with DNS Reverse Resolve.
+- Cookie Poisonig
+- Web Defacement
+- Protection of Web Vulnerabilities (Integrated Naxsi and ModSecurity)
+ .SQL Injection
+ .Cross Site Scripting
+ .Directory Traversal
+ .Remote File Inclusion
+ .Evading Tricks
+- Secure Session Mechanism 
+- NetEye Security Layer
