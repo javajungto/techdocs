@@ -49,3 +49,16 @@ Web Security
  .Evading Tricks
 - Secure Session Mechanism 
 - NetEye Security Layer
+
+installation
+
+yum groupinstall "development tools"
+yum install pcre pcre-devel
+yum install openssl-devel
+
+cd /usr/local/src
+wget http://senginx.org/download/senginx-1.6.2.tar.gz
+tar xvfz senginx-1.6.2.tar.gz
+./se-configure.sh --prefix=/usr/local/senginx-1.6.2 && make && make install
+
+
