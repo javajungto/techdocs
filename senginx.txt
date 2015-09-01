@@ -87,5 +87,35 @@ ip_behavior_zone zone=abc:10m sample_base=10 sample_cycle=2s;
 
 This defines a 10MB size zone, sample cycle is two seconds and the miminum valid request number is 10.
 
+-------------------
+Statistics
+-------------------
+Synopsis
+The ngx_http_statistics module has the functionality that collects traffic and attack statistics in SEnginx.
+Currently the following items are supported:
+
+Traffic Statistics
+- Current Request, how many requests are in progress.
+- Total Request, which means since SEnginx launches, how many request have been processed by the server.
+- Sent, which means how many bytes are sent by the server
+- Recvd, which means how many bytes are received by the server
+Traffic statistics only available on the server side, upstream side is not supported yet.
+
+Attack Statistics
+- SQL Injection
+- Cross Site Scripting
+- Remote File Inclusion
+- Dir Traversal
+- Evading Tricks
+- File Uploads Threat
+- Cookie Poisoning
+- Web Defacement
+- Robot Mitigation Challenges
+Whether the attack types above are available or not depends on whether the corresponding feature is enabled in the configuration or not.
+Currently attacks reported by ModSecurity are not suported.
+
+Directive
+statistics_zone
+Syntax : statistics_zone size
 
 
