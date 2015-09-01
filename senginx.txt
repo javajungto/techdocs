@@ -78,4 +78,14 @@ Default:
 Context:http
 
 Defining an IP behavior zone, you need to specify 3 parameters:
+ zone=name:size, name is zone's name, size means how much memory this zone will use,unit is in m,k,etc:
+ sample_base=times, specifies the number of the request for a valid sample, times must be unsigned integer:
+ sample_cycle=cycle, specifies the cyclog of the sampling, unit could be s(for second) and m(for minute)
+
+Example
+ip_behavior_zone zone=abc:10m sample_base=10 sample_cycle=2s;
+
+This defines a 10MB size zone, sample cycle is two seconds and the miminum valid request number is 10.
+
+
 
