@@ -61,4 +61,21 @@ wget http://senginx.org/download/senginx-1.6.2.tar.gz
 tar xvfz senginx-1.6.2.tar.gz
 ./se-configure.sh --prefix=/usr/local/senginx-1.6.2 && make && make install
 
+-------------------
+IP Behavior
+-------------------
+The IP behavior module is used to monitor user's access behavior to a server.
+This feature is mainly used with other security features such as conditional limit_req and robot mitigatioin, 
+thus SEnginx could detect and take actions against L7 DDoS attacks or scanning.
+At current stage, this feature only supports senetive URL access detection, other access behavior detection will be implemented in the feature.
+
+This feature is available since version1.5.10
+
+Directives
+ip_behavior_zone
+Syntax : ip_behavior_zone zone=name:size sample_base=times sample_cycle=cycle;
+Default:
+Context:http
+
+Defining an IP behavior zone, you need to specify 3 parameters:
 
