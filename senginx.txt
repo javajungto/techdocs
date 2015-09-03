@@ -360,3 +360,5 @@ Reference
 -------------------------------------------------------------------------
 
 https://wiki.deimos.fr/NAXSI:_integrate_a_WAF_for_Nginx
+
+http://www.senginx.org/en/index.php/IP_Blacklist
