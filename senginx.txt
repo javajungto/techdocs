@@ -118,4 +118,21 @@ Directive
 statistics_zone
 Syntax : statistics_zone size
 
+example)
+http://192.168.0.18/stats => Only JSON format is supported at current stage:
+
+http {
+    ...
+    statistics_zone 10m; <== add
+
+    server {
+        listen       80;
+        server_name  localhost;
+        virtual_server_name localhost; <== add
+        ...
+        
+        location /stats {        <== add
+                statistics;      <== add 
+        }
+
 
