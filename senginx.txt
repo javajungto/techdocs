@@ -135,4 +135,58 @@ http {
                 statistics;      <== add 
         }
 
+-------------------------------------------------------------------------
+example1)
+-------------------------------------------------------------------------
 
+worker_processes  4;
+
+events {
+    worker_connections  2048;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+
+    limit_req_zone $binary_remote_addr zone=cc:10m rate=10r/s;           <===
+    ip_behavior_zone zone=abc:10m sample_base=10 sample_cycle=2s;        <===
+
+    statistics_zone 10m;                                                 <===
+
+    server {
+        listen       80;
+        server_name  localhost;
+	      virtual_server_name localhost;                                   <===
+	      ip_behavior zone=abc type=sensitive_url;                         <===
+
+        location / {
+	          limit_req zone=cc burst=1 condition=$cond;                   <===
+            ip_behavior_sensitive;                                       <===
+
+            ifall ($insensitive_percent >= 0) ($insensitive_percent < 5){ <===
+		          set $cond 1;                                                <===
+	          }
+
+	          proxy_pass http://x.x.x.x;
+            proxy_read_timeout 300;
+            proxy_redirect off;
+            proxy_buffering off; 
+            proxy_set_header Host $host; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+	      location /stats {     <===
+		        statistics;       <===
+	      }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+
+    }
+}
