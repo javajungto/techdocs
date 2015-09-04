@@ -2,6 +2,12 @@ http://blog.exceliance.fr/2012/10/16/high-performance-waf-platform-with-naxsi-an
 
 naxsi, a Web Application Firewall module for nginx.
 
+NAXSI means Nginx Anti Xss & SQL Injection.
+
+XSS(크로스 사이트 스크립팅) 공격 종류 및 대응 방법
+- 크로스 사이트 스크립팅 취약점은, 취약한 웹 사이트에 악성 스크립트를 포함 할수 있는 손쉬운 방법 중 하나. 
+- 공격자는 내부 사용자의 합법적인 인터넷 사용을 악용하는 방식으로 공격방법을 변경하게 됨.
+
 ----------------------------------------------------------------------------
 haproxy-1.5-dev21
 ----------------------------------------------------------------------------
