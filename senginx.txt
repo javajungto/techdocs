@@ -428,6 +428,19 @@ Sep  4 08:10:03 centos6-1 fail2ban.filter[1794]: INFO [nginx-naxsi] Found 192.16
 Sep  4 08:10:03 centos6-1 fail2ban.actions[1794]: NOTICE [nginx-naxsi] Ban 192.168.0.100
 Sep  4 08:20:04 centos6-1 fail2ban.actions[1794]: NOTICE [nginx-naxsi] Unban 192.168.0.100
 
+수동으로 unban(풀기)
+
+[root@centos6-1 fail2ban]# fail2ban-client status
+Status
+|- Number of jail:	1
+`- Jail list:	nginx-naxsi
+
+#fail2ban-client set nginx-naxsi unbanip 192.168.0.100
+
+수동으로 ban(금지)
+#fail2ban-client set nginx-naxsi banip 192.168.0.100
+192.168.0.100
+
 -------------------------------------------------------------------------
 Reference
 -------------------------------------------------------------------------
