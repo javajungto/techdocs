@@ -275,6 +275,8 @@ naxsi reporting example
 
 python nx_util.py -c nx_util.conf -v3 -l /usr/local/senginx-1.6.2/logs/*error.log -H /usr/local/senginx-1.6.2/html/report/report.html
 
+==>
+python /usr/local/senginx-1.6.2/naxsi/nx_util/nx_util.py -c /usr/local/senginx-1.6.2/naxsi/nx_util/nx_util.conf -v3 -l /usr/local/senginx-1.6.2/logs/*error.log -H /usr/local/senginx-1.6.2/html/report/report.html
 
 worker_processes  4;
 
