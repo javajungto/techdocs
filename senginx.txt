@@ -358,6 +358,7 @@ http {
 -------------------------------------------------------------------------
 fail2ban / 참조:https://wiki.deimos.fr/NAXSI:_integrate_a_WAF_for_Nginx
 -------------------------------------------------------------------------
+naxsi는 LearningMode로 두고, 룰셋에 필터링 되는 로그만 남겨, 이 로그를 fail2ban에서 ban처리함. 
 
 #yum list "*epel*"
 #yum install epel-release
@@ -373,6 +374,16 @@ before = common.conf
 [Definition]
 failregex = NAXSI_FMT: ip=<HOST>
 ignoreregex =
+
+#view /etc/fail2ban/jail.local 
+...
+[nginx-naxsi]
+enabled = true
+port = http,https
+filter = nginx-naxsi
+logpath = /usr/local/senginx-1.6.2/logs/*error.log
+maxretry = 1
+...
 
 #/etc/init.d/fail2ban restart
 
