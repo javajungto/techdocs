@@ -356,6 +356,54 @@ http {
 }
 
 -------------------------------------------------------------------------
+fail2ban / 참조:https://wiki.deimos.fr/NAXSI:_integrate_a_WAF_for_Nginx
+-------------------------------------------------------------------------
+
+#yum list "*epel*"
+#yum install epel-release
+#yum list "*fail2ban*"
+#yum install fail2ban
+#cp -a /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+#view /etc/fail2ban/jail.local 
+#cd /etc/fail2ban/filter.d/
+#view nginx-naxsi.conf
+  
+[INCLUDES]
+before = common.conf
+[Definition]
+failregex = NAXSI_FMT: ip=<HOST>
+ignoreregex =
+
+#/etc/init.d/fail2ban restart
+
+테스트 공격
+on 192.168.0.100
+입력값에 ' having a=a-- 
+
+on 192.168.0.18에서 iptables 확인 
+
+[root@centos6-1 fail2ban]# iptables -nL
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+f2b-nginx-naxsi  tcp  --  0.0.0.0/0            0.0.0.0/0           multiport dports 80,443 
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain f2b-nginx-naxsi (1 references)
+target     prot opt source               destination         
+REJECT     all  --  192.168.0.100        0.0.0.0/0           reject-with icmp-port-unreachable 
+RETURN     all  --  0.0.0.0/0            0.0.0.0/0           
+
+아래 시간에 대한 조정 및 정확한 해석이 필요함. 
+
+* bantime = 600
+* findTime = 600 
+
+-------------------------------------------------------------------------
 Reference
 -------------------------------------------------------------------------
 
