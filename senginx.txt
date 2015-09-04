@@ -400,8 +400,22 @@ RETURN     all  --  0.0.0.0/0            0.0.0.0/0
 
 아래 시간에 대한 조정 및 정확한 해석이 필요함. 
 
-* bantime = 600
+* bantime = 600 <== 10분동안 공격ip 접근 금지(ban) 됨. 
 * findTime = 600 
+
+로그확인
+[root@centos6-1 fail2ban]# tail -f /var/log/messages 
+Sep  4 08:09:01 centos6-1 fail2ban.filter[1794]: INFO Added logfile = /usr/local/senginx-1.6.2/logs/error.log
+Sep  4 08:09:01 centos6-1 fail2ban.filter[1794]: INFO Set maxRetry = 1
+Sep  4 08:09:01 centos6-1 fail2ban.filter[1794]: INFO Set jail log file encoding to UTF-8
+Sep  4 08:09:01 centos6-1 fail2ban.actions[1794]: INFO Set banTime = 600
+Sep  4 08:09:01 centos6-1 fail2ban.filter[1794]: INFO Set findtime = 600
+Sep  4 08:09:01 centos6-1 fail2ban.jail[1794]: INFO Jail 'nginx-naxsi' started
+Sep  4 08:10:03 centos6-1 fail2ban.filter[1794]: INFO [nginx-naxsi] Found 192.168.0.100
+Sep  4 08:10:03 centos6-1 fail2ban.filter[1794]: INFO [nginx-naxsi] Found 192.168.0.100
+Sep  4 08:10:03 centos6-1 fail2ban.filter[1794]: INFO [nginx-naxsi] Found 192.168.0.100
+Sep  4 08:10:03 centos6-1 fail2ban.actions[1794]: NOTICE [nginx-naxsi] Ban 192.168.0.100
+Sep  4 08:20:04 centos6-1 fail2ban.actions[1794]: NOTICE [nginx-naxsi] Unban 192.168.0.100
 
 -------------------------------------------------------------------------
 Reference
