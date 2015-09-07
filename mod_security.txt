@@ -7,3 +7,11 @@ Known as the "Swiss Army Knife" of WAFs, it enables web application defenders to
 and provides a power rules language and API to implement advanced protections.
 
 
+ModSecurity Reference Manual
+Current as of v2.5.13 v2.6 v2.7 v2.8 v2.9
+
+ModSecurity is a web application firewall(WAF). 
+With over 70% of attacks noew carried out over the web application level, organisations need all the help they can get in making their systems secure.
+WAFs are deployed to establish an increased external security layer to detect and/or prevent attacks before they reache web applications. ModSecurity provides protection from a range of attacks against web applications and allows for HTTP traffic monitoring and real-time analysis with litthe or no changes to existing infrastructure.
+
+
