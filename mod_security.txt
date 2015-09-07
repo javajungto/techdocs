@@ -14,4 +14,15 @@ ModSecurity is a web application firewall(WAF).
 With over 70% of attacks noew carried out over the web application level, organisations need all the help they can get in making their systems secure.
 WAFs are deployed to establish an increased external security layer to detect and/or prevent attacks before they reache web applications. ModSecurity provides protection from a range of attacks against web applications and allows for HTTP traffic monitoring and real-time analysis with litthe or no changes to existing infrastructure.
 
+ModSecurity is a web application firewall engine that provides very little protection on its own.
+In order to become useful, ModSecurity must be configured with rule.
+In order to enable users to take full advantage of ModSecurity out of the box, 
+Trustwave's SpiderLabs created the OWASP ModSecurity Core Rule Set(CRS) Project.
+
+Unlike intrusion detection and prevention systems, which rely on signatures specific to knwon vulnerabilities,
+the CRS provide generic protection from unknown vulnerabilities often found in web application, which are in most cases custem coded.
+The CRS is heavily commented to allow it to be used as a step-by-step deployment guide for ModSecurity.
+
+OWASP ModSecurity CRS Project Site
+=> https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project
 
