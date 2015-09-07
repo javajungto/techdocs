@@ -28,5 +28,3 @@ OWASP ModSecurity CRS Project Site(CRS)
 
 The OWASP ModSecurity CRS Project's goal is to privide an easily "pluggable" set of generic attack detection rules that provide a base level of protection for any web application.
 
-
-
