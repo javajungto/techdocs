@@ -23,6 +23,10 @@ Unlike intrusion detection and prevention systems, which rely on signatures spec
 the CRS provide generic protection from unknown vulnerabilities often found in web application, which are in most cases custem coded.
 The CRS is heavily commented to allow it to be used as a step-by-step deployment guide for ModSecurity.
 
-OWASP ModSecurity CRS Project Site
+OWASP ModSecurity CRS Project Site(CRS)
 => https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project
+
+The OWASP ModSecurity CRS Project's goal is to privide an easily "pluggable" set of generic attack detection rules that provide a base level of protection for any web application.
+
+
 
