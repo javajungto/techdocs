@@ -18,7 +18,14 @@ WAFs are deployed to establish an increased external security layer to detect an
 
 HTTP Traffic Logging
 Web servers are typically well-equipped to log traffic in a form useful for marketing analyses,
-but fall short logging traffic to web applications. In particular, most are not capable of logging the request bodies. Your adversaries 
+but fall short logging traffic to web applications. In particular, most are not capable of logging the request bodies. Your adversaries know this, and that is why most attacks are now carried out via POST requests, rendering your systems blind.
+ModSecurity makes full HTTP transaction logging possible, allowing complete requests and responses to be logged.
+
+Real-time Monitoring and Attack Detection
+
+Attack Prevention and Virutal Patching.
+
+
 
 ModSecurity is a web application firewall engine that provides very little protection on its own.
 In order to become useful, ModSecurity must be configured with rule.
