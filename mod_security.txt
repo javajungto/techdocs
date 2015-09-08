@@ -44,5 +44,6 @@ The OWASP ModSecurity CRS provides protections if the following attack/threat ca
 - Identification of Application Defects - alerts on application misconfigurations.
 - Error Detection and Hiding - Disguising error messages sent by the server.
 
-
-
+Licensing
+OWASP ModSecurity CRS is free to use. It is licensed under the Apache Software License version 2(ASLv2).
+so you can copy, distribute and transmit the work, and you can adapt it, and use it commercially, but all provided that you attribute the work and if you after,transform,or build upon this work, you may distribute the resulting work only under the same or similar license to this on.
