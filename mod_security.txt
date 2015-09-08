@@ -12,9 +12,13 @@ and provides a power rules language and API to implement advanced protections.
 ModSecurity Reference Manual
 Current as of v2.5.13 v2.6 v2.7 v2.8 v2.9
 
-ModSecurity is a web application firewall(WAF). 
-With over 70% of attacks noew carried out over the web application level, organisations need all the help they can get in making their systems secure.
+Introduction
+ModSecurity is a web application firewall(WAF). With over 70% of attacks noew carried out over the web application level, organisations need all the help they can get in making their systems secure.
 WAFs are deployed to establish an increased external security layer to detect and/or prevent attacks before they reache web applications. ModSecurity provides protection from a range of attacks against web applications and allows for HTTP traffic monitoring and real-time analysis with litthe or no changes to existing infrastructure.
+
+HTTP Traffic Logging
+Web servers are typically well-equipped to log traffic in a form useful for marketing analyses,
+but fall short logging traffic to web applications. In particular, most are not capable of logging the request bodies. Your adversaries 
 
 ModSecurity is a web application firewall engine that provides very little protection on its own.
 In order to become useful, ModSecurity must be configured with rule.
