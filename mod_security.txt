@@ -23,7 +23,16 @@ ModSecurity makes full HTTP transaction logging possible, allowing complete requ
 
 Real-time Monitoring and Attack Detection
 
-Attack Prevention and Virutal Patching.
+Attack Prevention and Virutal Patching
+
+Flexible Rule Engine
+
+Embedded-mode Deployment
+- ModSecurity is an embeddable web application firewall, which means it can be deployed as part of your existing web server infrastructure provided your web servers are either Apache,IIS7 or Nginx.
+.No changes to existing network. It only takes a few minutes to add ModSecurity to your existing web servers.
+.No single point of failure
+.
+
 
 
 
