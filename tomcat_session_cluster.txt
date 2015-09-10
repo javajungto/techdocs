@@ -1,0 +1,2 @@
+
+http://x2framework.org/x2/handler/ForumBoard?topMenuType=0&forumId=0000000064&menuCd=53&pageNo=&x2start=Info&orderType=1&printType=0&boardId=0000000000003580&memberYn=N&listCount=20
