@@ -1,10 +1,16 @@
+-----------------------------------------------------
 issue
+-----------------------------------------------------
 - tomcat session cluster
 
+-----------------------------------------------------
 요구되는 동작
+-----------------------------------------------------
 was1과 was2 어디를 방문해도 세션이 유지되게 
 
+-----------------------------------------------------
 환경(openstack vm)
+-----------------------------------------------------
 os : centos 6.7 x64
 web  192.168.0.18 / 10.0.0.32 / httpd-2.2.15-47.el6
 was1 192.168.0.24 / 10.0.0.34 / tomcat-6.0.44 / jdk 1.8.0_60
@@ -81,9 +87,10 @@ Stopping httpd:                                            [  OK  ]
 Starting httpd:                                            [  OK  ]
 
 -------------------------------------------------------------
-was1
+was1, was2 
 -------------------------------------------------------------
-<jdk>
+<jdk> 
+- was1, was2에 동일하게 설치 
 
 #yum list "*gcj*" => 설치된 패키지가 있으면 삭제 
 #tar xvf jdk-8u60-linux-x64.tar -C /usr/local/
@@ -99,6 +106,7 @@ export PATH=$PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin
 #java -version
 
 <tomcat> 
+- was1, was2 동일하게 설치 
 
 1) tomcat 다운로드 및 압축해제 
 #wget http://mirror.apache-kr.org/tomcat/tomcat-6/v6.0.44/bin/apache-tomcat-6.0.44.tar.gz
@@ -109,7 +117,7 @@ export PATH=$PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin
 2) cluster 환경설정 conf/server.xml
 Cluster항목 찾아서 아래 내용 추가 
 <Cluser ...> ~ </Cluster> 부분은 추가하고,
-    <Engine name="Catalina" defaultHost="localhost" jvmRoute="was1"> <== jwmRoute부분에 was1은 입력해야함. 
+    <Engine name="Catalina" defaultHost="localhost" jvmRoute="was1"> <== jwmRoute부분에 was1은 입력해야함. (was2의 경우는 was2입력)
 
 #view /usr/local/tomcat/conf/server.xml
 ...
@@ -164,6 +172,12 @@ Cluster항목 찾아서 아래 내용 추가
         </Cluster>    
 ...
 
+4) #view view /usr/local/tomcat/conf/Catalina/localhost/cluster.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/" docBase="/home/centos/public_html/WebContent"
+         privileged="true" antiResourceLocking="false" antiJARLocking="false">
+</Context>
+
 3) Host 환경설정 : conf/server.xml
 - name, appBase 수정 
 view /usr/local/tomcat/conf/server.xml
@@ -182,8 +196,9 @@ view /usr/local/tomcat/conf/server.xml
   </Service>
 </Server>
 
+4)/etc/hosts , hostname 확인 (중요함) 
 
-4) /etc/hosts , hostname 확인 (중요함) 
+was1에서 
 [root@was1 conf]# cat /etc/hosts
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6 
@@ -193,7 +208,98 @@ view /usr/local/tomcat/conf/server.xml
 [root@was1 conf]# hostname 
 was1
 
+was2에서 
+[root@was2 WebContent]# cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6 
+10.0.0.33   was2
+192.168.0.23 was2
+
+[root@was2 WebContent]# hostname
+was2
+
 5) tomcat 구동 
+netstat -tnlp
+/usr/local/tomcat/bin/catalina.sh stop && /usr/local/tomcat/bin/catalina.sh start
+netstat -tnlp
+
+정상구동후 listening port 확인
+was1
+[root@was1 conf]# netstat -tnlp
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address               Foreign Address             State       PID/Program name   
+tcp        0      0 0.0.0.0:22                  0.0.0.0:*                   LISTEN      1305/sshd           
+tcp        0      0 ::ffff:10.0.0.34:4000       :::*                        LISTEN      3509/java           
+tcp        0      0 ::ffff:127.0.0.1:8005       :::*                        LISTEN      3509/java           
+tcp        0      0 :::8009                     :::*                        LISTEN      3509/java           
+tcp        0      0 :::8080                     :::*                        LISTEN      3509/java           
+tcp        0      0 :::22                       :::*                        LISTEN      1305/sshd           
+
+was2
+[root@was2 WebContent]# netstat -tnlp
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address               Foreign Address             State       PID/Program name   
+tcp        0      0 0.0.0.0:22                  0.0.0.0:*                   LISTEN      1308/sshd           
+tcp        0      0 ::ffff:10.0.0.33:4000       :::*                        LISTEN      3099/java           
+tcp        0      0 ::ffff:127.0.0.1:8005       :::*                        LISTEN      3099/java           
+tcp        0      0 :::8009                     :::*                        LISTEN      3099/java           
+tcp        0      0 :::8080                     :::*                        LISTEN      3099/java           
+tcp        0      0 :::22                       :::*                        LISTEN      1308/sshd           
+
+-------------------------------------------------------------
+was1, was2에 테스트 jsp 생성
+-------------------------------------------------------------
+/home/centos/public_html/WebContent/index.jsp
+/home/centos/public_html/WebContent/j.jsp
+/home/centos/public_html/WebContent/WEB-INF/web.xml
+
+#view /home/centos/public_html/WebContent/index.jsp
+<%@ page contentType="text/html; charset=euc-kr" %>
+
+<HTML>
+<HEAD>
+    <TITLE>Session Clustering Test</TITLE>
+</HEAD>
+<BODY>
+<h1>Session Clustering Test</h1>
+<%
+    Integer ival = (Integer)session.getAttribute("_session_counter");
+
+    if(ival==null) {
+        ival = new Integer(1);
+    }
+    else {
+        ival = new Integer(ival.intValue() + 1);
+    }
+    session.setAttribute("_session_counter", ival);
+    System.out.println("here~~~~");
+%>
+Session Counter = [<b> <%= ival %> </b>]<p>
+<a href="./index.jsp">[Reload]</a>
+<p>
+Current Session ID : <%= request.getRequestedSessionId() %><br />
+</BODY>
+</HTML>
+
+#view /home/centos/public_html/WebContent/j.jsp
+<% out.println("was2"); %>
+
+#view /home/centos/public_html/WebContent/WEB-INF/web.xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+         version="2.4">
+
+    <display-name>Clustering Test</display-name>
+
+    <distributable/>
+
+</web-app>
+
+
+
 -------------------------------------------------------------
 tomcat Clustering/Session Replication 시 아래 항목이 설정되어야함. 
 -------------------------------------------------------------
