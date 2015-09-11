@@ -39,7 +39,7 @@ JkMount  /*.jsp worker1          <== *.jsp파일만 worker1를 통해서 처리�
 ...
 
 3) worker 파일 생성 
-- 파일 내용의 worker1, was1, was2는 임의의 이름을 사용가능함. 
+- worker1, was1, was2 이름은 임의의 값으로 변경가능함. 
 - reference : http://tomcat.apache.org/connectors-doc/common_howto/loadbalancers.html
 
 #view /etc/httpd/conf/workers.properties
@@ -60,6 +60,21 @@ worker.was2.host=192.168.0.24
 worker.was2.port=8009
 worker.was2.lbfactor=1
 
+4) /etc/hosts, hostname 확인 
+[root@centos6-1 conf]# cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.0.18	centos6-1.novalocal
+
+[root@centos6-1 conf]# hostname
+centos6-1.novalocal
+
+5) httpd구동
+[root@centos6-1 conf]# apachectl configtest
+Syntax OK
+[root@centos6-1 conf]# /etc/init.d/httpd restart
+Stopping httpd:                                            [  OK  ]
+Starting httpd:                                            [  OK  ]
 
 -------------------------------------------------------------
 was1
