@@ -96,12 +96,93 @@ export PATH=$PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin
 
 <tomcat> 
 
+1) tomcat 다운로드 및 압축해제 
 #wget http://mirror.apache-kr.org/tomcat/tomcat-6/v6.0.44/bin/apache-tomcat-6.0.44.tar.gz
 #tar xvfz apache-tomcat-6.0.44.tar.gz -C /usr/local/
 #cd /usr/local/
 #ln -s apache-tomcat-6.0.44/ tomcat
 
+2) cluster 환경설정 conf/server.xml
+Cluster항목 찾아서 아래 내용 추가 
+<Cluser ...> ~ </Cluster> 부분은 추가하고,
+    <Engine name="Catalina" defaultHost="localhost" jvmRoute="was1"> <== jwmRoute은 입력해야함. 
 
+#view /usr/local/tomcat/conf/server.xml
+...
+    <Engine name="Catalina" defaultHost="localhost" jvmRoute="was1">
+
+      <!--For clustering, please take a look at documentation at:
+          /docs/cluster-howto.html  (simple how to)
+          /docs/config/cluster.html (reference documentation) -->
+      <!--
+      <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"/>
+      -->        
+
+<Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"
+                 channelSendOptions="8">
+
+          <Manager className="org.apache.catalina.ha.session.DeltaManager"
+                   expireSessionsOnShutdown="false"
+                   notifyListenersOnReplication="true"/>
+
+          <Channel className="org.apache.catalina.tribes.group.GroupChannel">
+            <Membership className="org.apache.catalina.tribes.membership.McastService"
+                        address="228.0.0.4"
+                        port="45564"
+                        frequency="500"
+                        dropTime="3000"/>
+            <Receiver className="org.apache.catalina.tribes.transport.nio.NioReceiver"
+                      address="auto"
+                      port="4000"
+                      autoBind="100"
+                      selectorTimeout="5000"
+                      maxThreads="6"/>
+
+            <Sender className="org.apache.catalina.tribes.transport.ReplicationTransmitter">
+              <Transport className="org.apache.catalina.tribes.transport.nio.PooledParallelSender"/>
+            </Sender>
+            <Interceptor className="org.apache.catalina.tribes.group.interceptors.TcpFailureDetector"/>
+            <Interceptor className="org.apache.catalina.tribes.group.interceptors.MessageDispatch15Interceptor"/>
+          </Channel>
+
+          <Valve className="org.apache.catalina.ha.tcp.ReplicationValve"
+                 filter=""/>
+          <Valve className="org.apache.catalina.ha.session.JvmRouteBinderValve"/>
+
+          <Deployer className="org.apache.catalina.ha.deploy.FarmWarDeployer"
+                    tempDir="/tmp/war-temp/"
+                    deployDir="/tmp/war-deploy/"
+                    watchDir="/tmp/war-listen/"
+                    watchEnabled="false"/>
+
+          <ClusterListener className="org.apache.catalina.ha.session.JvmRouteSessionIDBinderListener"/>
+          <ClusterListener className="org.apache.catalina.ha.session.ClusterSessionListener"/>
+        </Cluster>    
+...
+
+
+
+3) /etc/hosts , hostname 확인 (중요함) 
+[root@was1 conf]# cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6 
+10.0.0.34   was1
+192.168.0.24 was1
+
+[root@was1 conf]# hostname 
+was1
+
+-------------------------------------------------------------
+tomcat Clustering/Session Replication 시 아래 항목이 설정되어야함. 
+-------------------------------------------------------------
+-All your session attributes must implement java.io.Serializable
+-Uncomment the Cluster element in server.xml
+-If you have defined custom cluster valves, make sure you have the ReplicationValve defined as well under the Cluster element in server.xml
+-If your Tomcat instances are running on the same machine, make sure the tcpListenPort attribute is unique for each instance, in most cases Tomcat is smart enough to resolve this on it's own by autodetecting available ports in the range 4000-4100
+-Make sure your web.xml has the <distributable/> element
+-If you are using mod_jk, make sure that jvmRoute attribute is set at your Engine <Engine name="Catalina" jvmRoute="node01" > and that the jvmRoute attribute value matches your worker name in workers.properties
+-Make sure that all nodes have the same time and sync with NTP service!
+-Make sure that your loadbalancer is configured for sticky session mode.
 
 
 -------------------------------------------------------------
