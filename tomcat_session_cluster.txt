@@ -4,11 +4,15 @@ issue
 요구되는 동작
 was1과 was2 어디를 방문해도 세션이 유지되게 
 
-환경
+환경(openstack vm)
 os : centos 6.7 x64
 web  192.168.0.18 / 10.0.0.32 / httpd-2.2.15-47.el6
 was1 192.168.0.24 / 10.0.0.34 / tomcat-6.0.44 / jdk 1.8.0_60
 was2 192.168.0.23 / 10.0.0.33 / tomcat-6.0.44 / jdk 1.8.0_60
+
+* cluster는 multicast로 통신을 하기 때문에 방화벽에서 열어줘야 함. 
+(openstack경우 securitygroup 규칙추가에서 "다른프토토콜" 포트2 를 추가 해줘야 함. 
+* 각 vm에서 iptables 비활성화함 ( /etc/init.d/iptables stop && chkconfig --level 345 iptables off)
 
 설정
 -------------------------------------------------------------
@@ -105,7 +109,7 @@ export PATH=$PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin
 2) cluster 환경설정 conf/server.xml
 Cluster항목 찾아서 아래 내용 추가 
 <Cluser ...> ~ </Cluster> 부분은 추가하고,
-    <Engine name="Catalina" defaultHost="localhost" jvmRoute="was1"> <== jwmRoute은 입력해야함. 
+    <Engine name="Catalina" defaultHost="localhost" jvmRoute="was1"> <== jwmRoute부분에 was1은 입력해야함. 
 
 #view /usr/local/tomcat/conf/server.xml
 ...
@@ -160,9 +164,26 @@ Cluster항목 찾아서 아래 내용 추가
         </Cluster>    
 ...
 
+3) Host 환경설정 : conf/server.xml
+- name, appBase 수정 
+view /usr/local/tomcat/conf/server.xml
+...
+     <Host name="192.168.0.18" appBase="/home/centos/public_html/WebContent" unpackWARs="true" autoDeploy="true"
+       xmlValidation="false" xmlNamespaceAware="false">
+
+        <Valve className="org.apache.catalina.valves.AccessLogValve"
+         directory="logs" prefix="192.168.0.18_access_log." suffix=".txt" pattern="common" resolveHosts="false"/>
+
+         <Context path="" docBase="" debug="0" reloadable="true"/>
+      </Host>
 
 
-3) /etc/hosts , hostname 확인 (중요함) 
+    </Engine>
+  </Service>
+</Server>
+
+
+4) /etc/hosts , hostname 확인 (중요함) 
 [root@was1 conf]# cat /etc/hosts
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6 
@@ -172,6 +193,7 @@ Cluster항목 찾아서 아래 내용 추가
 [root@was1 conf]# hostname 
 was1
 
+5) tomcat 구동 
 -------------------------------------------------------------
 tomcat Clustering/Session Replication 시 아래 항목이 설정되어야함. 
 -------------------------------------------------------------
