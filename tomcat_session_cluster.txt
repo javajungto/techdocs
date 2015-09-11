@@ -12,8 +12,18 @@ was2 192.168.0.23 / 10.0.0.33 / tomcat-6.0.44 / jdk 1.8.0_60
 
 설정
 -------------------------------------------------------------
-web
+web server 
+- 필요한 설정은 2가지 : mod_jk, worker 설정 
 -------------------------------------------------------------
+1)tomcat connector 소스 다운로드
+#wget http://mirror.apache-kr.org/tomcat/tomcat-connectors/jk/tomcat-connectors-1.2.41-src.tar.gz
+#tar xvfz tomcat-connectors-1.2.41-src.tar.gz 
+#cd tomcat-connectors-1.2.41-src
+#cd native/
+#./configure --with-apxs=/usr/sbin/apxs && make && make install
+#ls -lhtd /etc/httpd/modules/mod_jk.so 
+
+2) httpd.conf 수정 
 view /etc/httpd/conf/httpd.conf
 ...
 DocumentRoot "/home/centos/public_html/WebContent"
@@ -27,6 +37,27 @@ JkLogLevel    debug
 JkLogStampFormat "[%a %b %d %H:%M:%S %Y] "
 JkMount  /*.jsp worker1
 ...
+
+3) worker 파일 생성 
+
+#view /etc/httpd/conf/workers.properties
+
+worker.list=worker1
+worker.worker1.type=lb
+worker.worker1.balance_workers=was1,was2
+#worker.worker1.sticky_session=true
+worker.worker1.sticky_session=1
+
+worker.was1.type=ajp13
+worker.was1.host=192.168.0.23
+worker.was1.port=8009
+worker.was1.lbfactor=1
+
+worker.was2.type=ajp13
+worker.was2.host=192.168.0.24
+worker.was2.port=8009
+worker.was2.lbfactor=1
+
 
 -------------------------------------------------------------
 was1
