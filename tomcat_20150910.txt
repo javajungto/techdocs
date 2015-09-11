@@ -1,0 +1,31 @@
+---------------------------------------------------
+/etc/httpd/conf/httpd.conf
+---------------------------------------------------
+
+LoadModule    jk_module  modules/mod_jk.so
+JkWorkersFile /etc/httpd/conf/workers.properties
+JkShmFile     /var/log/httpd/mod_jk.shm
+JkLogFile     /var/log/httpd/mod_jk.log
+JkLogFile logs/jk.log
+JkLogLevel    debug
+JkLogStampFormat "[%a %b %d %H:%M:%S %Y] "
+JkMount  /*.jsp worker1
+
+---------------------------------------------------
+/etc/httpd/conf/workers.properties
+---------------------------------------------------
+
+worker.list=worker1
+worker.worker1.type=lb
+worker.worker1.balance_workers=was1,was2
+worker.worker1.sticky_session=true
+
+worker.was1.type=ajp13
+worker.was1.host=192.168.0.23
+worker.was1.port=8009
+worker.was1.lbfactor=1
+
+worker.was2.type=ajp13
+worker.was2.host=192.168.0.24
+worker.was2.port=8009
+worker.was2.lbfactor=1
