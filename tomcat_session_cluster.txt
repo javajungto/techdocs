@@ -6,9 +6,28 @@ was1과 was2 어디를 방문해도 세션이 유지되게
 
 환경
 os : centos 6.7 x64
-web  192.168.0.18 / 10.0.0.32 / httpd
-was1 192.168.0.24 / 10.0.0.34
-was2 192.168.0.23 / 10.0.0.33
+web  192.168.0.18 / 10.0.0.32 / httpd-2.2.15-47.el6
+was1 192.168.0.24 / 10.0.0.34 / tomcat-6.0.44 / jdk 1.8.0_60
+was2 192.168.0.23 / 10.0.0.33 / tomcat-6.0.44 / jdk 1.8.0_60
+
+설정
+-------------------------------------------------------------
+web
+-------------------------------------------------------------
+view /etc/httpd/conf/httpd.conf
+...
+DocumentRoot "/home/centos/public_html/WebContent"
+...
+LoadModule    jk_module  modules/mod_jk.so
+JkWorkersFile /etc/httpd/conf/workers.properties
+JkShmFile     /var/log/httpd/mod_jk.shm
+JkLogFile     /var/log/httpd/mod_jk.log
+JkLogFile logs/jk.log
+JkLogLevel    debug
+JkLogStampFormat "[%a %b %d %H:%M:%S %Y] "
+JkMount  /*.jsp worker1
+...
+
 
 
 
