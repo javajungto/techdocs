@@ -298,7 +298,28 @@ Current Session ID : <%= request.getRequestedSessionId() %><br />
 
 </web-app>
 
-
+-------------------------------------------------------------
+테스트 시나리오
+-------------------------------------------------------------
+1. web1 httpd구동
+2. was1 tomcat구동
+   => tail -f /usr/local/tomcat/logs/catalina.out 해서 메세지 확인 
+   => netstat -tnlp해서 포트 확인 (10.0.0.x:4000, 127.0.0.1:8005, 8009, 8080 확인) 
+3. 웹브라우저에서 http://192.168.0.18/index.jsp방문 
+   => reload 클릭하여 Session Counter 증가되는지 확인. 
+4. was2 tomcat 구동
+   => tail -f /usr/local/tomcat/logs/catalina.out 해서 메세지 확인 
+      was2가 cluster member added되었다고 메세지 나옴.
+      session state가 was2 전송됨. session state가 was2로 replicate가 완료되면 8009포트 정상 listenig 됨. 
+   => netstat -tnlp해서 포트 확인 (10.0.0.x:4000, 127.0.0.1:8005, 8009, 8080 확인) 
+5. 웹브라우저에서 http://192.168.0.18/index.jsp방문 
+   => reload 클릭하여 3)의 Session Counter 수치가 계속적으로 증가되는지 확인. 
+6. was1 stop 
+   => was2로그에서 was1가 member에서 disappeared되었다고 나옴.
+   => 웹브라우저 방문하여 reload시 계속 수치가 증가되는지 확인 
+7. was1 up
+   => was2로그에서 was1가 member에서 added 되었다고 나옴.
+   => 웹브라우저 방문하여 reload시 계속 수치가 증가되는지 확인 
 
 -------------------------------------------------------------
 tomcat Clustering/Session Replication 시 아래 항목이 설정되어야함. 
