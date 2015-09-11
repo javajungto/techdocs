@@ -1,2 +1,19 @@
+issue
+- tomcat session cluster
+
+요구되는 동작
+was1과 was2 어디를 방문해도 세션이 유지되게 
+
+환경
+os : centos 6.7 x64
+web  192.168.0.18 / 10.0.0.32 / httpd
+was1 192.168.0.24 / 10.0.0.34
+was2 192.168.0.23 / 10.0.0.33
+
+
+
+
+
+
 
 http://x2framework.org/x2/handler/ForumBoard?topMenuType=0&forumId=0000000064&menuCd=53&pageNo=&x2start=Info&orderType=1&printType=0&boardId=0000000000003580&memberYn=N&listCount=20
