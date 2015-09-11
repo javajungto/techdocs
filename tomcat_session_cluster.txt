@@ -28,11 +28,37 @@ JkLogStampFormat "[%a %b %d %H:%M:%S %Y] "
 JkMount  /*.jsp worker1
 ...
 
+-------------------------------------------------------------
+was1
+-------------------------------------------------------------
+<jdk>
+
+#yum list "*gcj*" => 설치된 패키지가 있으면 삭제 
+#tar xvf jdk-8u60-linux-x64.tar -C /usr/local/
+#cd /usr/local
+#ln -s jdk1.8.0_60/ java
+#view /etc/profile
+...
+export JAVA_HOME=/usr/local/java
+export CATALINA_HOME=/usr/local/tomcat
+export PATH=$PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin
+
+#source /etc/profile
+#java -version
+
+<tomcat> 
+
+#wget http://mirror.apache-kr.org/tomcat/tomcat-6/v6.0.44/bin/apache-tomcat-6.0.44.tar.gz
+#tar xvfz apache-tomcat-6.0.44.tar.gz -C /usr/local/
+#cd /usr/local/
+#ln -s apache-tomcat-6.0.44/ tomcat
 
 
 
 
-
-
+-------------------------------------------------------------
+Reference
+-------------------------------------------------------------
+http://tomcat.apache.org/tomcat-6.0-doc/cluster-howto.html
 
 http://x2framework.org/x2/handler/ForumBoard?topMenuType=0&forumId=0000000064&menuCd=53&pageNo=&x2start=Info&orderType=1&printType=0&boardId=0000000000003580&memberYn=N&listCount=20
