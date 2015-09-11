@@ -35,10 +35,12 @@ JkLogFile     /var/log/httpd/mod_jk.log
 JkLogFile logs/jk.log
 JkLogLevel    debug
 JkLogStampFormat "[%a %b %d %H:%M:%S %Y] "
-JkMount  /*.jsp worker1
+JkMount  /*.jsp worker1          <== *.jsp파일만 worker1를 통해서 처리됨. html은 webserver에서 처리됨.
 ...
 
 3) worker 파일 생성 
+- 파일 내용의 worker1, was1, was2는 임의의 이름을 사용가능함. 
+- reference : http://tomcat.apache.org/connectors-doc/common_howto/loadbalancers.html
 
 #view /etc/httpd/conf/workers.properties
 
