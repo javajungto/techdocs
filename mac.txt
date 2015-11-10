@@ -72,5 +72,14 @@ http://www.fantageek.com/318/install-pkg-config-for-mac-osx/
 
 https://rkjun.wordpress.com/2013/07/14/os-x-%EC%97%90%EC%84%9C-ntfs-%EC%93%B0%EA%B8%B0-fuse-for-os-x-%EA%B7%B8%EB%A6%AC%EA%B3%A0-ntfs-3g/
 
+캡쳐 파일 위치 변경하기
+=> http://info.sogooday.com/2013/08/apps-mac.html
 
+첫번째는 Command를 이용한 변경 방법
+1. 맥(Mac) 기본 터미널을 실행 시킨다.
+-. 기본 권한 변경 없이(sudo, su 이런 권한 변경 없이) 아래 명령어를 타이핑 하면 된다.
+1). Defaults write com.apple.screencapture location 저장장소
+2). ex) Defaults write com.apple.screencapture location /Volumes/Testing/Down_Mac 
+위 명령 후 맥(Mac)을 재시작 해주거나, 아래 명령어를 실행하여 줍니다.
+1. killall SystemUIServer
 
