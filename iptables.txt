@@ -29,3 +29,15 @@ iptables -A INPUT -p icmp -m limit --limit 1/s --limit-burst 1 -j LOG --log-pref
 iptables -A INPUT -p icmp -j DROP
 iptables -A OUTPUT -p icmp -j ACCEPT
 
+First rule will accept ping connections to 1 per second, with an initial burst of 1. If this level crossed it will log the packet with PING-DROP in /var/log/message file. Third rule will drop packet if it tries to cross this limit. Fourth and final rule will allow you to use the continue established ping request of existing connection.
+Where,
+--limit rate: Maximum average matching rate : specified as a number, with an optional '/second', '/minute', '/hour', or '/day' suffix; the default is 3/hour.
+--limit-burst number : Maximum initial number of packets to match: this number gets recharged by one every time the limit specified above is not reached, up to this number;the default is 5.
+
+You need to adjust the --limit-rate and --limit-burst according to your network traffic and requirements.
+
+Let us assume that you need to limit incoming connection to ssh server(port 22) no more than 10 connections in a 10 minute.
+
+iptables -I INPUT -p tcp -s 0/0 -d $SERVER_IP --sport 513:65535 --dport 22 -m state --state NEW,ESTABLISHED -m recent --set -j ACCEPT
+iptables -I INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 600 --hitcount 11 -j DROP
+iptables -A OUTPUT -p tcp -s $SERVER_IP -d 0/0 --sport 22 --dport 513:65535 -m state --state ESTABLISHED -j ACCEPT
