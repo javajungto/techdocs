@@ -2,3 +2,20 @@ connlimit
 
 http://onionmixer.net/onionmixer_9th.php5?pname=iptables_tip
 
+Linux iptables Limit the number of incoming tcp connection / syn-flood attacks
+=>http://www.cyberciti.biz/tips/howto-limit-linux-syn-attacks.html
+
+A SYN flood is a form of denial-of-service attack in which an attacker sends a succession of SYN requests to a target's system. This is a well known type of attack and is generally not effective against modern networks.
+It works if a server allocate resources after receiving a SYN, but before it has received the ACK.
+if Half-open connections bind resources on the server, it may be possible to take up all these resources by flooding the server with SYN messages. Syn flood is common attack and it can be block with following iptables rules:
+
+iptables -A INPUT -p tcp --syn -m limit --limit 1/s --limit-burst 3 -j RETURN
+
+All incoming connection are allowed till limit is reached:
+--limit 1/s : Maximum average matching rate in seconds
+--limit-burst 3 : Maximum initial number of packets to match
+
+Open our iptables script, add the rules as follows:
+
+#Limit the number of in
+
