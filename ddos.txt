@@ -25,3 +25,15 @@ ip route get 61.102.59.143
 del route
 
 # route delete x.x.x.x
+
+---------------------------------------------------------------
+DDOS 공격 대응 
+---------------------------------------------------------------
+
+출처 : http://www.krcert.or.kr/data/secNoticeView.do?bulletin_writing_sequence=21616&queryString=cGFnZT0xJnNvcnRfY29kZT0mc2VhcmNoX3NvcnQ9dGl0bGVfbmFtZSZzZWFyY2hfd29yZD1kZG9zJng9MCZ5PTA=
+
+DDoS 공격 대응 개요
+- DDos 공격 대응은 공격자와 방어자간의 가용성 확보 싸움임.
+- 방어자는 자신이 관리하고 있는 웹 서버 및 방어 시스템의 자원의 한계점을 명확히 알고 있어야 함.
+- 운영장비의 자원 현황 모니터링 및 끊임없는 차단정책 개선 없이 단순히 장비에만 의존하여 공격을 대응하는 것에는 한계가 존재
+
