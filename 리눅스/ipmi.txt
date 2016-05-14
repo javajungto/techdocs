@@ -1,3 +1,23 @@
+for debian or proxmox
+
+#apt-get install openipmi ipmitool
+
+error
+Could not open device at /dev/ipmi0 or /dev/ipmi/0 or /dev/ipmidev/0: No such file or directory
+=> 
+#modprobe ipmi_devintf
+#modprobe ipmi_si
+
+or
+#view /etc/modules
+ipmi_devintf
+ipmi_si
+
+Reference
+http://www.openfusion.net/linux/ipmi_on_centos
+http://serverfault.com/questions/480371/ipmitool-cant-find-dev-ipmi0-or-dev-ipmidev-0
+
+-----------------------------------------------------------------------------------------
 open ipmi 를 이용한 서버관리
 
 http://www.linux.co.kr/home2/board/subbs/board.php?bo_table=lecture&wr_id=1678
