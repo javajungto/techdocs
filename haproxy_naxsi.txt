@@ -105,8 +105,9 @@ nginx-1.4.6 / naxsi-0.53-2
 #yum install pcre pcre-devel zlib zlib-devel
 #cd /usr/local/src/
 #wget https://github.com/nbs-system/naxsi/archive/0.53-2.tar.gz
-(wget https://github.com/nbs-system/naxsi/archive/0.55rc2.tar.gz )
+(wget https://github.com/nbs-system/naxsi/archive/0.55rc2.tar.gz)
 #wget http://nginx.org/download/nginx-1.4.6.tar.gz
+(wget http://nginx.org/download/nginx-1.9.9.tar.gz)
 
 #tar xvfz nginx-1.4.6.tar.gz
 #mv 0.53-2.tar.gz naxsi-core-0.53-2.tar.gz
