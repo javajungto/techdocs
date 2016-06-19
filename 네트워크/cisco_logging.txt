@@ -211,3 +211,13 @@ show logging
 ntp clock-period 36028987
 ntp server 203.248.240.103
 
+<banner>
+
+banner login ^C
+!============================================================================!
+!                                                                            !
+!          Access is restricted to AUTHORIZED PERSONNEL ONLY!!               !
+!  UNAUTHORIZED ACCESS WILL BE PROSECUTED TO THE FULLEST EXTENT OF THE LAW!! !
+!                                                                            !
+!============================================================================!
+^C
