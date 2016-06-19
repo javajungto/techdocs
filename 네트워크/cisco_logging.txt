@@ -207,3 +207,7 @@ clock set 11:12:00 26 June 2013
 show clock 
 show logging
 
+<ntp>
+ntp clock-period 36028987
+ntp server 203.248.240.103
+
