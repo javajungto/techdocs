@@ -119,4 +119,14 @@ qm shutdown 109 -forceStop
 --------------
 
 apt-get update && apt-get install ntfs-3g
+
+
+--------------
+proxmox cluster not ready no quorum
+--------------
+to gain quorum, you can set the expected votes to 1.
+> pvecm e 1
+
+Reference : https://forum.proxmox.com/threads/create-vm-error-cluster-not-ready-no-quorum.9776/
+
  
