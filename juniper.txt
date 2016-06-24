@@ -1,0 +1,14 @@
+
+> show log
+
+> show chassis routing-engine 
+
+> ping x.x.x.x count 5
+
+
+Reference
+- http://www.juniper.net/techpubs/en_US/junos12.1/topics/task/operational/security-ping-command-using.html
+- http://www.juniper.net/documentation/en_US/junos15.1/topics/reference/command-summary/show-log.html
+- http://kb.juniper.net/InfoCenter/index?page=content&id=KB26261&actp=search
+
+
