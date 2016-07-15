@@ -116,6 +116,10 @@ nginx-1.4.6 / naxsi-0.53-2
 #ln -s naxsi-0.53-2 naxsi
 #cd nginx
 #./configure --conf-path=/etc/nginx/nginx.conf --add-module=../naxsi/naxsi_src/ --error-log-path=/var/log/nginx/err --prefix=/opt/nginx --without-mail_pop3_module --without-mail_imap_module --without-mail_smtp_module
+
+(
+#./configure --conf-path=/usr/local/nginx/nginx.conf --add-module=../naxsi/naxsi_src/ --error-log-path=/var/log/nginx/err --prefix=/usr/local/nginx --without-mail_pop3_module --without-mail_imap_module --without-mail_smtp_module
+)
 #make && make install
 #cd /etc/nginx/
 #cp /usr/local/src/naxsi/naxsi_config/naxsi_core.rules .
