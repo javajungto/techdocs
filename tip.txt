@@ -1,0 +1,11 @@
+------
+lsof
+------
+http://blog.pages.kr/292
+
+
+-----------------------------------
+net.ipv4.ip_nonlocal_bind = 1
+-----------------------------------
+$ sysctl -p /etc/sysctl.conf
+http://stackoverflow.com/questions/3191509/nginx-error-99-cannot-assign-requested-address
