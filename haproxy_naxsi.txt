@@ -194,7 +194,7 @@ http {
 }
 
 --------------------------
-cat naxsi.rules 
+cat /etc/nginx/naxsi.rules 
 --------------------------
 #LearningMode; #Enables learning mode
 SecRulesEnabled;
@@ -216,12 +216,12 @@ CheckRule "$EVADE >= 4" BLOCK;
 CheckRule "$XSS >= 8" BLOCK;
 
 --------------------------
-cat wl.conf 
+cat /etc/nginx/wl.conf 
 --------------------------
 #BasicRule negative "rx:^$" "msg:empty" "mz:$HEADERS_VAR:cookie" "s:BLOCK";
 
 --------------------------
-cat naxsi_core.rules 
+cat /etc/nginx/naxsi_core.rules 
 --------------------------
 ##################################
 ## INTERNAL RULES IDS:1-999     ##
@@ -303,7 +303,7 @@ MainRule negative "rx:multipart/form-data|application/x-www-form-urlencoded" "ms
 MainRule "rx:.ph|.asp|.ht" "msg:asp/php file upload!" "mz:FILE_EXT" "s:$UPLOAD:8" id:1500;
 
 --------------------------
- cat proxyip_x.x.x.x.conf 
+ cat /etc/nginx/sites-enabled/proxyip_x.x.x.x.conf 
 --------------------------
 
 server {
