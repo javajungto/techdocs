@@ -352,4 +352,16 @@ server {
    }
 }
 
+--------------------------
+/usr/local/nginx 설치 
+--------------------------
+#cd /usr/local/src
+#tar xvfz nginx-x.x.x.tar.gz
+#tar xvfz naxsi-core-0.x.x.tar.gz
+#ln -s nginx-x.x.x nginx
+#ln -s naxsi-x.x.x naxsi
+
+#cd nginx
+#./configure --conf-path=/usr/local/nginx/nginx.conf --add-module=../naxsi/naxsi_src/ --error-log-path=/var/log/nginx/err --prefix=/usr/local/nginx --without-mail_pop3_module --without-mail_imap_module --without-mail_smtp_module
+#make && make install
 
