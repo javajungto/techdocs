@@ -1,0 +1,4 @@
+
+dd if=/dev/zero of=10M bs=1M count=10
+dd if=/dev/zero of=20M bs=1m count=20
+
