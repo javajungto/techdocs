@@ -144,3 +144,14 @@ defaults
 
 방문 
 http://..../haproxy?stats
+
+=> https://www.digitalocean.com/community/tutorials/an-introduction-to-haproxy-and-load-balancing-concepts
+
+The balance directive specifies the load balancing algorithm to use. Options available are Round Robin (roundrobin), Static Round Robin (static-rr), Least Connections (leastconn), Source (source), URI (uri) and URL parameter (url_param).
+
+-load balancing algorithm
+roundrobin
+static-rr
+leastconn
+source
+
