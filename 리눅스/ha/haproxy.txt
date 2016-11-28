@@ -155,3 +155,39 @@ static-rr
 leastconn
 source
 
+----------
+
+global
+    log         127.0.0.1 local2
+
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     8000
+    user        haproxy
+    group       haproxy
+    daemon
+
+    stats socket /var/lib/haproxy/stats
+
+defaults
+
+
+    mode                    tcp
+    log                     global
+    option                  tcplog
+
+    option tcp-smart-accept
+    option tcp-smart-connect
+
+    timeout connect 2s
+    timeout server 5s
+    timeout client 5s
+
+listen stats :1128
+	mode http
+        stats enable
+        stats hide-version
+        stats refresh 2s
+        stats show-node
+        stats auth admin:password
+        stats uri  /haproxy?statskci
