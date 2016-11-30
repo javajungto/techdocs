@@ -121,6 +121,8 @@ tail -f /var/log/haproxy.lg
 위와 같이 했을때, app1으로만 접속되다가, app1이 다운되면 app2로 접속이 된다. 
 
 
+------
+http://coffeenix.net/board_print.php?bd_code=1771
 
 
 
