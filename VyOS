@@ -1,0 +1,10 @@
+
+
+conf
+set interfaces ethernet eth0 address x.x.x.x/25
+set interfaces ethernet eth0 description OUTSIDE
+set interfaces ethernet eth0 duplex auto
+set interfaces ethernet eth0 spped auto
+
+
+
