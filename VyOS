@@ -1,4 +1,6 @@
+- install image
 
+<VyOS>
 
 conf
 set interfaces ethernet eth0 address x.x.x.x/25
@@ -13,7 +15,16 @@ set service ssh port 22
 set system login user USER01 authentication plaintext-password XXXX
 set system login user USER01 level admin
 
+- gre
+set interfaces tunnel tun1 address 10.1.12.2/24
+set interfaces tunnel tun1 encapsulation gre
+set interfaces tunnel tun1 local-ip LOCAL_PUBLIC_IP
+set interfaces tunnel tun1 multicast enable
+set interfaces tunnel tun1 remote-ip REMOTE_PUBLIC_IP
+
+
 commit
 save
 
 run show configuration
+
