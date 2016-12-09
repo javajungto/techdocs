@@ -1,5 +1,11 @@
-Linux IPSec site to site VPN(Virtual Private Network) configuration using openswan
 
+IPSEC L2TP VPN on CentOS 6 / Red Hat Enterprise Linux 6 / Scientific Linux 6
+=> https://raymii.org/s/tutorials/IPSEC_L2TP_vpn_on_CentOS_-_Red_Hat_Enterprise_Linux_or_Scientific_-_Linux_6.html
+
+
+----------------------------------------------------------------------------------------------------------------------
+Linux IPSec site to site VPN(Virtual Private Network) configuration using openswan
+----------------------------------------------------------------------------------------------------------------------
 =>
 http://www.slashroot.in/linux-ipsec-site-site-vpnvirtual-private-network-configuration-using-openswan
 
