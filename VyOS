@@ -28,3 +28,12 @@ save
 
 run show configuration
 
+<vm>
+- gre
+ip link set tun1 down
+ip tunnel del tun1
+
+ip tunnel add tun1 mode gre remote REMOTE_PUBLIC_IP local LOCAL_PUBLIC_IP  ttl 255
+ip link set tun1 up
+ip addr add 10.1.12.1/24 dev tun1
+
