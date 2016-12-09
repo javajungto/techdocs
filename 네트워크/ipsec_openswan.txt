@@ -1,7 +1,5 @@
-
 IPSEC L2TP VPN on CentOS 6 / Red Hat Enterprise Linux 6 / Scientific Linux 6
 => https://raymii.org/s/tutorials/IPSEC_L2TP_vpn_on_CentOS_-_Red_Hat_Enterprise_Linux_or_Scientific_-_Linux_6.html
-
 
 ----------------------------------------------------------------------------------------------------------------------
 Linux IPSec site to site VPN(Virtual Private Network) configuration using openswan
@@ -36,3 +34,66 @@ net.ipv4.ip_forward = 1
 => http://blog.jameskyle.org/2012/07/configuring-openswan-ipsec-server/
 
 http://guni.tistory.com/326
+
+---------------------
+2016.12.09
+---------------------
+
+- gre
+
+#!/bin/bash
+
+#--------------------------------
+# tun1 / 10.1.12.1
+#--------------------------------
+ip link set tun1 down
+ip tunnel del tun1
+
+ip tunnel add tun1 mode gre remote 1.x.x.x local 110.x.x.x  ttl 255
+ip link set tun1 up
+ip addr add 10.1.12.1/24 dev tun1
+
+[root@localhost bin]# cat gre.sh 
+#!/bin/bash
+
+#--------------------------------
+# tun1 / 10.1.12.2
+#--------------------------------
+ip link set tun1 down
+ip tunnel del tun1
+
+ip tunnel add tun1 mode gre remote 110.x.x.x local 1.x.x.x  ttl 255
+ip link set tun1 up
+ip addr add 10.1.12.2/24 dev tun1
+
+- ipip
+
+#--------------------------------
+# mytun / 10.1.1.1
+#--------------------------------
+
+[root@localhost bin]# cat ipip.sh 
+#!/bin/bash
+ifconfig mytun down
+iptunnel del mytun
+iptunnel add mytun mode ipip remote 1.x.x.x local 110.x.x.x dev eth0
+
+ifconfig mytun 10.1.1.1
+route add -net 10.1.2.0/24 dev mytun
+ifconfig mytun mtu 1500 up
+
+#--------------------------------
+# mytun / 10.1.2.2
+#--------------------------------
+
+[root@localhost bin]# cat ipip.sh 
+#!/bin/bash
+ifconfig mytun down
+iptunnel del mytun
+iptunnel add mytun mode ipip remote 110.x.x.x local 1.x.x.x dev eth0
+
+ifconfig mytun 10.1.2.2
+route add -net 10.1.1.0/24 dev mytun
+ifconfig mytun mtu 1500 up
+
+
