@@ -1,6 +1,12 @@
+1. resize 오류시 
+VBoxManage: error: Resize hard disk operation for this format is not implemented yet! 
+
+아래와 같이 format 변경 
 VBoxManage clonehd win7.vdi win7_2.vdi --format vdi
 
+2.resize
 VBoxManage modifyhd win7.vdi --resize 60000
 
-gparted iso 
+3. gparted로 부팅하여 resize 
+gparted iso로 부팅  => resize
 
