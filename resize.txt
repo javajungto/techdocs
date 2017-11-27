@@ -1,0 +1,6 @@
+VBoxManage clonehd win7.vdi win7_2.vdi --format vdi
+
+VBoxManage modifyhd win7.vdi --resize 60000
+
+gparted iso 
+
