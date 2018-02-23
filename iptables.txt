@@ -1,3 +1,36 @@
+
+#iptables -L --line-numbers
+#iptables -D INPUT 1
+
+ex)
+# iptables -A INPUT -s x.x.x.x -j DROP
+
+# iptables -L --line-numbers
+
+Chain INPUT (policy ACCEPT)
+num  target     prot opt source               destination         
+1    DROP       all  --  x.x.x.x       anywhere            
+
+Chain FORWARD (policy ACCEPT)
+num  target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+num  target     prot opt source               destination         
+
+root@pmktn101:~# iptables -D INPUT 1
+
+root@pmktn101:~# iptables -L --line-numbers
+Chain INPUT (policy ACCEPT)
+num  target     prot opt source               destination         
+
+Chain FORWARD (policy ACCEPT)
+num  target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+num  target     prot opt source               destination        
+
+---------------
+
 connlimit 
 
 http://onionmixer.net/onionmixer_9th.php5?pname=iptables_tip
