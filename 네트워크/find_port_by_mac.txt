@@ -7,3 +7,8 @@ Internet  10.10.100.51           28   aaaa.xxxx.yyyy  ARPA   Vlan1
 #show mac address-table | include aaaa.xxxx.yyyy 
 
 1    aaaa.xxxx.yyyy    DYNAMIC     Gi1/0/2
+
+----------
+l2 스위치에서 mac drop
+
+#  mac address-table static xxx.xxx.xxx.xxx vlan 1 drop
