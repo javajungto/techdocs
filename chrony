@@ -1,0 +1,11 @@
+#yum install chrony
+
+#view /etc/chrony.conf 
+
+#/etc/init.d/chronyd restart
+
+#chkconfig --level 345 chronyd on
+
+#date
+
+#chronyc sources
