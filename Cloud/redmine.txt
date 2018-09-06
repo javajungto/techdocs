@@ -1,6 +1,7 @@
 centos 7
 https://www.redmine.org/projects/redmine/wiki/Install_Redmine_25x_on_Centos_65_complete
 
+https://www.rosehosting.com/blog/how-to-install-redmine-on-centos-7/
 
 install ruby
 #\curl -L https://get.rvm.io | bash
