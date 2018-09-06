@@ -1,4 +1,14 @@
-    1  sudo apt-get -y update && sudo apt-get -y upgrade
+centos 7
+
+install ruby
+#\curl -L https://get.rvm.io | bash
+#source /etc/profile.d/rvm.sh
+#rvm list known
+#rvm install 1.9.3
+
+
+
+1  sudo apt-get -y update && sudo apt-get -y upgrade
     2  ls -l
     3  chmod 700 bitnami-redmine-2.1.4-0-*
     4  ls -l
