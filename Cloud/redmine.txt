@@ -4,7 +4,7 @@ install ruby
 #\curl -L https://get.rvm.io | bash
 #source /etc/profile.d/rvm.sh
 #rvm list known
-#rvm install 1.9.3
+#rvm install 2.5.1
 
 
 
