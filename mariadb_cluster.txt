@@ -1,3 +1,23 @@
+----------------------------------------------------------------------------------------------
+centos 7 install mariadb
+----------------------------------------------------------------------------------------------
+https://www.rosehosting.com/blog/how-to-install-mariadb-on-centos-7/
+
+#yum update
+#yum install mariadb-server
+#systemctl start mariadb
+#systemctl stop mariadb
+#systemctl restart mariadb
+#systemctl status mariadb
+
+Enable MariaDB on system boot
+#systemctl enable mariadb
+#systemctl disable mariadb
+
+Secure MariaSB on CentOS 7
+mysql_secure_installation
+
+
 -------------------------------------------------------
 References
 -------------------------------------------------------
@@ -308,8 +328,6 @@ Starting MySQL....SST in progress, setting sleep higher.
 
 이때 1에서 start하지 않고 bootstrap으로 구동하면,
 멈췄던 1의 db내용을 그대로 가지고 온다. 즉, 최신정보인 2의 데이타를 동기화 시키지 않는다. 
-
-
 
 
 
