@@ -17,6 +17,26 @@ Enable MariaDB on system boot
 Secure MariaSB on CentOS 7
 mysql_secure_installation
 
+----------------------------------------------------------------------------------------------
+centos 7 utf8
+----------------------------------------------------------------------------------------------
+
+#view /etc/my.cnf.d/client.cnf
+[client]
+default-character-set=utf8
+
+#view /etc/my.cnf.d/mysql-clients.cnf
+[mysql]
+default-character-set=utf8
+[mysqldump]
+default-character-set=utf8
+
+#view /etc/my.cnf.d/server.cnf
+[mysqld]
+collation-server = utf8_unicode_ci
+init-connect='SET NAMES utf8'
+character-set-server = utf8
+
 
 -------------------------------------------------------
 References
