@@ -5,3 +5,11 @@ $(function(){ <== 익명함수
     $('#typo').css('color','#ebc000');
   });
 });
+
+익명함수
+var add = function(num1, num2){
+  return num1 + num2;
+}
+
+var added1 = add(1,2); 
+
