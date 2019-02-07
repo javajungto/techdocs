@@ -1,0 +1,7 @@
+df not updating
+
+find pid
+
+lsof +L1
+
+kill -9 PID
