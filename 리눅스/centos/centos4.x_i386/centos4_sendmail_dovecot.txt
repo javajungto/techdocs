@@ -16,12 +16,17 @@ os install시 선택 패키지
    -. /etc/mail/local-host-names
       도메인
    -. /etc/mail/sendmail.mc
+          
       127.0.0.1 제거 
-	<==JW우
 	DAEMON_OPTIONS(`Port=smtp,Addr=127.0.0.1, Name=MTA')dnl
+        => 
 	DAEMON_OPTIONS(`Port=smtp, Name=MTA')dnl
 
       PLAIN방식 주석 제거
+       dnl TRUST_AUTH_MECH(`EXTERNAL DIGEST-MD5 CRAM-MD5 LOGIN PLAIN')dnl
+       =>
+       TRUST_AUTH_MECH(`EXTERNAL DIGEST-MD5 CRAM-MD5 LOGIN PLAIN')dnl
+      
       # m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 
 2. dovecot(110,143)
