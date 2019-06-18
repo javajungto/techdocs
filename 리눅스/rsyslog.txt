@@ -1,4 +1,11 @@
 
+
+
+https://www.thegeekdiary.com/rsyslog-how-to-send-log-files-to-remote-server-in-centos-rhel-67/
+
+
+
+
 How to configure remote logging on RHEL6/CentOS6
 
 http://linuxsysconfig.com/2013/04/how-to-configure-remote-logging-on-rhel6-centos6/
