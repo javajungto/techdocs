@@ -10,3 +10,24 @@ VBoxManage modifyhd win7.vdi --resize 60000
 3. gparted로 부팅하여 resize 
 gparted iso로 부팅  => resize
 
+------
+
+디스크에 공간이 부족한 경우
+1. VirtualBox > 파일 > 가상 미디어 관리자
+해당 이미지를 공간이 있는 디스크로 이동 
+
+2. vdi 포맷 변경
+$ VBoxManage clonehd win10_20G.vdi win10_25G.vdi --format vdi
+0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+Clone medium created in format 'vdi'. UUID: a1fe83e5-40eb-4519-8ba6-27db10c4ea21
+You have new mail in /var/mail/jwpark
+
+3. resize
+(base) jwparks-MacBook-Pro:backup jwpark$ VBoxManage modifyhd win10_25G.vdi --resize 25600
+0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+You have new mail in /var/mail/jwpark
+
+4. gparted iso 다운로드, 부팅해서 resize
+https://sourceforge.net/projects/gparted/
+
+
