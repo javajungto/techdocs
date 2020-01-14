@@ -30,4 +30,10 @@ You have new mail in /var/mail/jwpark
 4. gparted iso 다운로드, 부팅해서 resize
 https://sourceforge.net/projects/gparted/
 
+-----
+
+VBoxManage clonehd win10_usb-disk1.vdi --format vdi
+VBoxManage clonemedium win10_usb-disk1.vdi --format vdi
+VBoxManage clonemedium disk win10_usb-disk1.vdi --format vdi
+VBoxManage modifymedium disk win10_usb-disk1.vdi --resize 40000
 
