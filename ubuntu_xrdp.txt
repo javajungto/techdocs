@@ -1,0 +1,104 @@
+출처 : https://jangjy.tistory.com/293
+
+PC를 원격으로 제어 해야 할 경우가 있는데 이럴경우 teamviewer나 크롬 원격 데스크탑을 이용하면 좋을텐데.
+
+
+
+위와 같은 프로그램을 사용하지 못할 경우 windows의 기본 내장 프로그램인 원격 데스크톱을 이용하여 접속하는 방법을 정리
+
+
+
+1. Ubuntu -> Windows
+
+이 경우는 ubuntu에서 제공하는 프로그램을 이용하여 간단하게 사용 가능하다.
+
+remote로 검색하면 뜨는 '리미너 원격데스크톱클라이언트' 프로그램을 이용하여 윈도우의 원격데스크톱처럼 이용 가능
+
+
+
+
+
+2.  Windows -> Ubuntu
+
+이 경우는 반대의 경우에 비해 귀찮은 점이 좀...
+
+순서는 아래와 같다.
+
+
+
+xrdp 설치
+(공유기이용시) 포트포워딩
+방화벽규칙추가
+windows에서 접속
+
+
+2.1 xrdp 설치
+
+# xrdp 설치
+
+$ sudo apt-get install xrdp
+
+$ sudo apt-get update
+
+# desktop environment 설치
+
+$ sudo apt-get install mate-core mate-desktop-environment mate-notification-daemon
+
+# xrdp에서 desktop environment 사용하도록 설정
+
+$ sudo sed -i.bak '/fi/a #xrdp multiple users configuration \n mate-session \n' /etc/xrdp/startwm.sh
+
+
+
+2.2 (공유기 사용시) 포트포워딩
+
+(정리는 iptime 공유기 기준. 타사 공유기도 동일한 기능을 찾아 적용하면 됨.)
+
+
+
+2.2.1 우선 내부 ip가 변하지 않도록 고정. 
+
+고급설정 - 내부네트워크설정 - 수동 IP 할당설정 에서 현재 사용중인 IP를 추가하여 고정.
+
+
+
+2.2.2 tcp 포트 추가
+
+NAT/라우터관리 - 포트포워드설정 에서 포트포워드 규칙을 추가 해 준다.
+
+ssh를 위해 프로토콜은 tcp, 내외부 포트는 22, 내부IP는 현재 접속중인IP로 추가
+
+원격접속을 위해 프로토콜은 tcp, 내외부 포트는 임의의값(기본은 3389), 내부IP는 현재 접속중인IP로 추가
+
+
+2.2.3 (2.2.2에서 원격접속 포트를 3389외 다른 값을 이용한 경우) xrdp 설정변경
+
+$ sudo vim /etc/xrdp/xrdp.ini 
+
+[globals]의 port=3389 이 부분을 2.2.2에서 설정한 포트 값으로 변경후 저장
+
+$ service xrdp restart
+
+
+
+2.3 방화벽 규칙 추가
+
+$ sudo ufw allow (2.2.2에서 설정한 포트번호)/tcp
+
+(예 : sudo ufw allow 3008/tcp )
+
+
+
+2.4 windows에서 접속
+
+원격데스크톱 앱을 열고 IP 및 포트를 입력 
+
+이 경우 IP는 공유기로 입력되는 실제 IP. 유동IP라면 DDNS 필요.
+
+( 예 : 128.XXX.XXX.XXX:3008 )
+
+접속 후 Ubuntu에서 사용하는 username과 password 입력하면 접속 성공.
+
+
+
+출처: https://jangjy.tistory.com/293 [살다보니..]
