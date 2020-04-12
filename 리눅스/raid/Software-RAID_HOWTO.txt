@@ -6,6 +6,8 @@ https://www.thegeekdiary.com/redhat-centos-managing-software-raid-with-mdadm/
 # mkdir /data01
 # mount /dev/md0 /data01
 
+https://wiki.archlinux.org/index.php/Software_RAID_and_LVM
+
 
 
 
