@@ -10,3 +10,14 @@ yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce
 yum install docker-ce docker-ce-cli containerd.io -y &&
 systemctl start docker &&
 docker run hello-world
+
+#---------------------------------------------------------------------------
+# example
+#---------------------------------------------------------------------------
+docker images
+docker search centos
+docker search --filter "is-official=true" centos
+docker pull centos
+docker pull centos:7
+docker run --name centos7 -it centos:7
+
