@@ -117,6 +117,10 @@ docker run --privileged -d --name centos7_nginx_cdn  centos7_nginx_cdn:v0.2 init
 
 docker exec -it centos7_nginx_cdn bash
 
+docker run --privileged -d -p 80:80 --name centos7_nginx_cdn centos7_nginx_cdn:v0.2 init
+docker exec centos7_nginx_cdn bash
+
+웹브라우저 http://localhost 방문 
 
 #---------------------------------------------------------------------------
 # ref
