@@ -113,6 +113,10 @@ See 'docker run --help'.
 % docker rm centos7_nginx_cdn
 centos7_nginx_cdn
 
+docker run --privileged -d --name centos7_nginx_cdn  centos7_nginx_cdn:v0.2 init
+
+docker exec -it centos7_nginx_cdn bash
+
 
 #---------------------------------------------------------------------------
 # ref
