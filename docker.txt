@@ -106,6 +106,13 @@ centos7_nginx_cdn                    v0.2                                       
 
 docker run --name centos7_nginx_cdn -it centos7_nginx_cdn:v0.2
 
+docker run --name centos7_nginx_cdn -it centos7_nginx_cdn:v0.2
+docker: Error response from daemon: Conflict. The container name "/centos7_nginx_cdn" is already in use by container "3609d329c0c06ee4e73cc59a7bfc5cd5e1ffbe3a100d105d466783a5cbf884b8". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+
+% docker rm centos7_nginx_cdn
+centos7_nginx_cdn
+
 
 #---------------------------------------------------------------------------
 # ref
