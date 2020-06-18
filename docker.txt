@@ -21,3 +21,8 @@ docker pull centos
 docker pull centos:7
 docker run --name centos7 -it centos:7
 
+#---------------------------------------------------------------------------
+# ref
+#---------------------------------------------------------------------------
+
+https://youngmind.tistory.com/entry/Docker-%EA%B0%95%EC%A2%8C-4-%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%801
