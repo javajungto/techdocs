@@ -96,6 +96,8 @@ sha256:86aff080e5fee24efebff748ffcb2c66a024ac5d277a085cb0cc9fc062c60a18
 
 docker save -o centos7_nginx_cdn.tar centos7_nginx_cdn:v0.2
 
+docker load -i centos7_nginx_cdn.tar
+
 
 
 #---------------------------------------------------------------------------
