@@ -127,6 +127,28 @@ centos7_nginx_cdn
 #docker run --privileged -d -p 80:80 -v /root/bin/nginx.conf:/usr/local/nginx-1.18.0/conf/nginx.conf --name centos7_nginx_cdn centos7_nginx_cdn:v0.5 init
 #docker start centos7_nginx_cdn
 
+#---------------------------------------------------------------------------
+# 생성
+#---------------------------------------------------------------------------
+view Dockerfile
+FROM centos:7
+RUN yum groupinstall "Development tools" -y 
+RUN yum install pcre pcre-devel openssl openssl-devel gd gd-devel perl perl-devel perl-ExtUtils-Embed GeoIP-devel git wget net-tools -y 
+RUN yum -y update 
+
+#docker build -t centos7_nginx_cdn:v0.1 .
+#docker ps -a
+#docker images
+#docker run --privileged --name centos7_nginx_cdn centos:7 init
+#docker exec -it centos7_nginx_cdn bash
+nginx 컴파일 설치 
+#docker commit -a "by jwp" 540ff1176c6f centos7_nginx_cdn:v0.1
+#docker stop centos7_nginx_cdn && docker rm centos7_nginx_cdn
+#docker run --privileged -d -p 80:80 --name centos7_nginx_cdn centos7_nginx_cdn:v0.1 init
+#docker stop centos7_nginx_cdn && docker rm centos7_nginx_cdn
+view nginx.conf <== on host, for real service
+#docker run --privileged -d -p 80:80 -v /root/bin/nginx.conf:/usr/local/nginx-1.18.0/conf/nginx.conf --name centos7_nginx_cdn centos7_nginx_cdn:v0.1 init
+#docker exec -it centos7_nginx_cdn bash <=== confirm
 
 #---------------------------------------------------------------------------
 # ref
