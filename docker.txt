@@ -157,6 +157,8 @@ view nginx.conf <== on host, for real service
 #docker push javajungto/centos7_nginx_cdn:v0.1 
 #docker search javajungto
 
+on the other machine
+#docker pull javajungto/centos7_nginx_cdn:v0.1
 #default nginx.conf
 #docker run --privileged -d -p 80:80 --name centos7_nginx_cdn javajungto/centos7_nginx_cdn:v0.1 init
 #docker stop centos7_nginx_cdn && docker rm centos7_nginx_cdn
