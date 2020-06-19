@@ -150,6 +150,20 @@ view nginx.conf <== on host, for real service
 #docker run --privileged -d -p 80:80 -v /root/bin/nginx.conf:/usr/local/nginx-1.18.0/conf/nginx.conf --name centos7_nginx_cdn centos7_nginx_cdn:v0.1 init
 #docker exec -it centos7_nginx_cdn bash <=== confirm
 
+#docker login
+#docker run --privileged -d -p 80:80 --name centos7_nginx_cdn centos7_nginx_cdn:v0.1
+#docker ps -a
+#docker commit -a "by jwp" 1529484617fd javajungto/centos7_nginx_cdn:v0.1
+#docker push javajungto/centos7_nginx_cdn:v0.1 
+#docker search javajungto
+
+#default nginx.conf
+#docker run --privileged -d -p 80:80 --name centos7_nginx_cdn javajungto/centos7_nginx_cdn:v0.1 init
+#docker stop centos7_nginx_cdn && docker rm centos7_nginx_cdn
+
+#real nginx.conf
+#docker run --privileged -d -p 80:80 -v /Users/jwpark/docker/nginx.conf:/usr/local/nginx-1.18.0/conf/nginx.conf --name centos7_nginx_cdn javajungto/centos7_nginx_cdn:v0.1 init
+
 #---------------------------------------------------------------------------
 # ref
 #---------------------------------------------------------------------------
