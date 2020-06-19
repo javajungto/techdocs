@@ -124,6 +124,10 @@ centos7_nginx_cdn
 
 웹브라우저 http://localhost 방문 
 
+#docker run --privileged -d -p 80:80 -v /root/bin/nginx.conf:/usr/local/nginx-1.18.0/conf/nginx.conf --name centos7_nginx_cdn centos7_nginx_cdn:v0.5 init
+#docker start centos7_nginx_cdn
+
+
 #---------------------------------------------------------------------------
 # ref
 #---------------------------------------------------------------------------
