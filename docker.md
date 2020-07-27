@@ -50,8 +50,8 @@ cd /usr/local/src/nginx-1.18.0
 make && make install
 ```
 
-#view /etc/systemd/system/nginx.service
-
+# view /etc/systemd/system/nginx.service
+```
 [Unit]
 Description=The NGINX HTTP and reverse proxy server
 After=syslog.target network.target remote-fs.target nss-lookup.target
@@ -68,8 +68,9 @@ PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target
+```
 
-
+```
 useradd nginx
 cp /usr/local/src/nginx.conf.ex /usr/local/nginx-1.18.0/conf/nginx.conf
 #view /usr/local/nginx-1.18.0/conf/nginx.conf
@@ -78,10 +79,12 @@ mkdir -p /data/nginx/cache && chown -R nginx:nginx /data
 /usr/local/nginx-1.18.0/sbin/nginx -t
 systemctl enable nginx.service
 systemctl start nginx.service
+```
 
-...
 
 # docker ps -a
+> output
+```
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS               NAMES
 3d2e1dcdc667        centos:7            "/bin/bash"              13 minutes ago      Exited (1) 3 seconds ago                       centos7_nginx_cdn
 73faad47c40a        49e61650d7ce        "/bin/bash"              2 hours ago         Exited (0) 2 hours ago                         centos02
@@ -90,6 +93,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 619705ab2386        e316a2e4139d        "/bin/bash -C /usr/l…"   2 hours ago         Exited (1) 2 hours ago                         c7
 94185165939d        hello-world         "/hello"                 2 hours ago         Exited (0) 2 hours ago                         elastic_mendel
 d414f7662c02        hello-world         "/hello"                 2 hours ago         Exited (0) 2 hours ago                         eloquent_payne
+```
 
 [root@vb-c7 nginx_cdn]# docker
 docker        docker-init   docker-proxy  dockerd   
