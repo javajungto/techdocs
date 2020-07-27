@@ -12,9 +12,8 @@ systemctl start docker &&
 docker run hello-world
 ```
 
-#---------------------------------------------------------------------------
 # example
-#---------------------------------------------------------------------------
+```
 docker images
 docker search centos
 docker search --filter "is-official=true" centos
@@ -49,6 +48,7 @@ cd /usr/local/src/nginx-1.18.0
 --add-module=/usr/local/src/ngx_cache_purge
 
 make && make install
+```
 
 #view /etc/systemd/system/nginx.service
 
