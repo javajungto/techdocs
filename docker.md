@@ -95,15 +95,20 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 d414f7662c02        hello-world         "/hello"                 2 hours ago         Exited (0) 2 hours ago                         eloquent_payne
 ```
 
-[root@vb-c7 nginx_cdn]# docker
+# docker
+```
 docker        docker-init   docker-proxy  dockerd   
+```
 
-[root@vb-c7 nginx_cdn]# docker commit -a "by jwp" 1050c1559104 centos7_nginx_cdn:v0.2
+# docker commit -a "by jwp" 1050c1559104 centos7_nginx_cdn:v0.2
+```
 sha256:86aff080e5fee24efebff748ffcb2c66a024ac5d277a085cb0cc9fc062c60a18
+```
 
-docker save -o centos7_nginx_cdn.tar centos7_nginx_cdn:v0.2
+# docker save -o centos7_nginx_cdn.tar centos7_nginx_cdn:v0.2
 
-on) the other machine
+# on) the other machine
+```
 #docker load -i centos7_nginx_cdn.tar
 
 #docker images
@@ -131,6 +136,7 @@ centos7_nginx_cdn
 
 #docker run --privileged -d -p 80:80 -v /root/bin/nginx.conf:/usr/local/nginx-1.18.0/conf/nginx.conf --name centos7_nginx_cdn centos7_nginx_cdn:v0.5 init
 #docker start centos7_nginx_cdn
+```
 
 #---------------------------------------------------------------------------
 # 생성
