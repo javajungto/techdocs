@@ -117,18 +117,22 @@ yum install docker-ce docker-ce-cli containerd.io -y &&
 systemctl start docker 
 ```
 
-#sudo ./install_docker_centos7.sh ( c1,c2,c3 모두 )
-
+```console
+$ sudo ./install_docker_centos7.sh ( c1,c2,c3 모두 )
+```
 
 docker swarm cluster 생성
 
-#vagrant ssh c1 (c1를 manager 노드로 설정) 
-```
-sudo docker swarm init --advertise-addr x.x.x.74
+```console
+$ vagrant ssh c1 (c1를 manager 노드로 설정) 
 ```
 
-#결과
+```console
+$ sudo docker swarm init --advertise-addr x.x.x.74
 ```
+
+결과
+```console
 Swarm initialized: current node (lk4w2l0r....wc6g4s) is now a manager.
 
 To add a worker to this swarm, run the following command:
