@@ -142,7 +142,7 @@ To add a worker to this swarm, run the following command:
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
 
-c2, c3에 위 결과 실행
+c2, c3 노드를 worker로 join 
 ```
 $ vagrant ssh c2
 $ sudo docker swarm join --token SWMTKN-1-525uw127lu............iolrhd5fxhhl9i1uzf x.x.x.74:2377
