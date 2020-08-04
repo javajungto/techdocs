@@ -1,4 +1,4 @@
-### virtualbox에 vm 3개 구동 
+### virtualbox에 vagrant로 vm 3개 구동 
 
 Vagrantfile
 
