@@ -113,3 +113,21 @@ yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce
 yum install docker-ce docker-ce-cli containerd.io -y &&
 systemctl start docker 
 ```
+
+docker swarm cluster 생성
+
+#vagrant ssh c1
+```
+sudo docker swarm init --advertise-addr x.x.x.74
+```
+
+#결과
+```
+Swarm initialized: current node (lk4w2l0r....wc6g4s) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-525uw127lu............iolrhd5fxhhl9i1uzf x.x.x.74:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+```
