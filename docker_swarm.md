@@ -146,6 +146,9 @@ c2, c3에 위 결과 실행
 ```
 $ vagrant ssh c2
 $ sudo docker swarm join --token SWMTKN-1-525uw127lu............iolrhd5fxhhl9i1uzf x.x.x.74:2377
+$ vagrant ssh c3
+$ sudo docker swarm join --token SWMTKN-1-525uw127lu............iolrhd5fxhhl9i1uzf x.x.x.74:2377
+
 ```
 
 결과
