@@ -171,3 +171,25 @@ mjlov67f93b1        nginx.1             nginx:latest        c1                  
 > docker swarm은 서비스를 외부에 쉽게 노출하기 위해 모든 노드가 `ingress`라는 가상 네트워크에 속해 있다. \
 > 서비스가 포트를 오픈할 경우 모든 노드에 포트가 오픈되고, 어떤 노드에 요청을 보내도 실행중인 컨테이너에 자동으로 전달 . \
 > [참조](https://subicura.com/2017/02/25/container-orchestration-with-docker-swarm.html)
+
+서비스 개수 늘리기 
+```
+[vagrant@c1 ~]$ sudo docker service scale nginx=5
+nginx scaled to 5
+overall progress: 5 out of 5 tasks 
+1/5: running   [==================================================>] 
+2/5: running   [==================================================>] 
+3/5: running   [==================================================>] 
+4/5: running   [==================================================>] 
+5/5: running   [==================================================>] 
+verify: Service converged 
+```
+```
+[vagrant@c1 ~]$ sudo docker service ps nginx
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE            ERROR               PORTS
+mjlov67f93b1        nginx.1             nginx:latest        c1                  Running             Running 13 minutes ago                       
+txad7dxefix3        nginx.2             nginx:latest        c1                  Running             Running 35 seconds ago                       
+tjfrcohd0t5s        nginx.3             nginx:latest        c2                  Running             Running 18 seconds ago                       
+ub2plqe3p39u        nginx.4             nginx:latest        c3                  Running             Running 16 seconds ago                       
+j81zv90kcpz1        nginx.5             nginx:latest        c3                  Running             Running 16 seconds ago                       
+```
