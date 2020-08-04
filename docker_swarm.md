@@ -155,3 +155,13 @@ $ sudo docker swarm join --token SWMTKN-1-525uw127lu............iolrhd5fxhhl9i1u
 ```
 This node joined a swarm as a worker.
 ```
+
+manger 노트에서 노드 확인
+```
+[vagrant@c1 ~]$ sudo docker node ls
+ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
+lk4w2l0rns71u6j3yjgwc6g4s *   c1                  Ready               Active              Leader              19.03.12
+ywlwbk2bav4yg7oe43jeapvej     c2                  Ready               Active                                  19.03.12
+2filxu80bw94hfbb9xl2fchsk     c3                  Ready               Active                                  19.03.12
+
+```
