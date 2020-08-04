@@ -149,3 +149,16 @@ lk4w2l0rns71u6j3yjgwc6g4s *   c1                  Ready               Active    
 ywlwbk2bav4yg7oe43jeapvej     c2                  Ready               Active                                  19.03.12
 2filxu80bw94hfbb9xl2fchsk     c3                  Ready               Active                                  19.03.12
 ```
+
+기본 웹 애플리케이션 작성
+```
+sudo docker service create --name nginx -p 80:80 nginx:latest
+```
+
+```
+[vagrant@c1 ~]$ sudo docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+whge9jbjb9kl        nginx               replicated          1/1                 nginx:latest        *:80->80/tcp
+```
+
+
