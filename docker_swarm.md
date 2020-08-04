@@ -22,11 +22,6 @@ Vagrant.configure("2") do |config|
 		sudo mkdir /root/bin
 	SHELL
 
-  	# default router
-#  	c1.vm.provision "shell",
-#    		run: "always",
-#    		inline: "route add default gw x.x.x.254"
-
 	c1.vm.provider "virtualbox" do |v|
 		v.name = "c1"
 		v.memory = 512
@@ -51,11 +46,6 @@ Vagrant.configure("2") do |config|
 		sudo mkdir /root/bin
 	SHELL
 
-  	# default router
-#  	c2.vm.provision "shell",
-#    		run: "always",
-#    		inline: "route add default gw x.x.x.254"
-
 	c2.vm.provider "virtualbox" do |v|
 		v.name = "c2"
 		v.memory = 512
@@ -79,11 +69,6 @@ Vagrant.configure("2") do |config|
 		sudo yum -y install net-tools git
 		sudo mkdir /root/bin
 	SHELL
-
-  	# default router
- # 	c3.vm.provision "shell",
- #   		run: "always",
- #   		inline: "route add default gw x.x.x.254"
 
 	c3.vm.provider "virtualbox" do |v|
 		v.name = "c3"
