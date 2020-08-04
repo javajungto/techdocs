@@ -167,6 +167,7 @@ ID                  NAME                IMAGE               NODE                
 mjlov67f93b1        nginx.1             nginx:latest        c1                  Running             Running 2 minutes ago                       
 ```
 
-> c1 node에서 nginx가 실행중이나, http://c2, http://c3로 해도 정상적으로 80으로 접속된다. \
-> docker swarm은 서비스를 외부에 쉽게 노출하기 위해 모든 노드가 `ingress`라는 가상 네트워크에 속해 있다. 
-
+> c1 node에서 nginx가 실행중이나, http://c2, http://c3로 해도 정상적으로 80으로 접속됨. \
+> docker swarm은 서비스를 외부에 쉽게 노출하기 위해 모든 노드가 `ingress`라는 가상 네트워크에 속해 있다. \
+> 서비스가 포트를 오픈할 경우 모든 노드에 포트가 오픈되고, 어떤 노드에 요청을 보내도 실행중인 컨테이너에 자동으로 전달 .
+> 참조 (https://subicura.com/2017/02/25/container-orchestration-with-docker-swarm.html)
