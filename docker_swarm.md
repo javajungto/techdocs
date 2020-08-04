@@ -161,4 +161,10 @@ ID                  NAME                MODE                REPLICAS            
 whge9jbjb9kl        nginx               replicated          1/1                 nginx:latest        *:80->80/tcp
 ```
 
+```
+[vagrant@c1 ~]$ sudo docker service ps nginx
+ID                  NAME                IMAGE               NODE                DESIRED STATE       CURRENT STATE           ERROR               PORTS
+mjlov67f93b1        nginx.1             nginx:latest        c1                  Running             Running 2 minutes ago                       
+```
+
 
