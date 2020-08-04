@@ -121,7 +121,7 @@ systemctl start docker
 $ sudo ./install_docker_centos7.sh ( c1,c2,c3 모두 )
 ```
 
-docker swarm cluster 생성
+### docker swarm cluster 생성
 
 ```console
 $ vagrant ssh c1 (c1를 manager 노드로 설정) 
