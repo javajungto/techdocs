@@ -132,7 +132,7 @@ $ sudo docker swarm init --advertise-addr x.x.x.74
 ```
 
 결과
-```console
+```
 Swarm initialized: current node (lk4w2l0r....wc6g4s) is now a manager.
 
 To add a worker to this swarm, run the following command:
