@@ -97,3 +97,17 @@ Vagrant.configure("2") do |config|
 end
 
 ```
+
+각 vm에 docker 설치
+#vagrant ssh ci (c2,c3도 동일하게)
+#view install_docker_centos7.sh
+```
+#!/bin/bash
+#https://docs.docker.com/engine/install/centos/
+yum clean all &&
+yum remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine &&
+yum install -y yum-utils &&
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo &&
+yum install docker-ce docker-ce-cli containerd.io -y &&
+systemctl start docker 
+```
