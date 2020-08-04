@@ -149,6 +149,6 @@ $ sudo docker swarm join --token SWMTKN-1-525uw127lu............iolrhd5fxhhl9i1u
 ```
 
 결과
-₩₩₩
+```
 This node joined a swarm as a worker.
-₩₩₩
+```
