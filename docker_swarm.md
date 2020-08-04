@@ -163,5 +163,4 @@ ID                            HOSTNAME            STATUS              AVAILABILI
 lk4w2l0rns71u6j3yjgwc6g4s *   c1                  Ready               Active              Leader              19.03.12
 ywlwbk2bav4yg7oe43jeapvej     c2                  Ready               Active                                  19.03.12
 2filxu80bw94hfbb9xl2fchsk     c3                  Ready               Active                                  19.03.12
-
 ```
