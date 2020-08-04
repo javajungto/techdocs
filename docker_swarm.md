@@ -101,9 +101,11 @@ end
 
 ### 각 vm에 docker 설치
 
+```
 vagrant ssh c1 (c2,c3도 동일하게)
+```
 
-view install_docker_centos7.sh
+install_docker_centos7.sh
 ```
 #!/bin/bash
 #https://docs.docker.com/engine/install/centos/
