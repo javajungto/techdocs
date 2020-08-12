@@ -47,6 +47,7 @@ $ pip --version
 $ git clone https://github.com/kubernetes-sigs/kubespray
 $ git checkout -b v2.11.0
 $ cat requirements.txt 
+$ sudo pip install --upgrade pip
 $ sudo pip install -r requirements.txt 
 
 ```
