@@ -11,7 +11,8 @@ c5 x.x.78
 vagrant ssh c1
 ```
 [vagrant@c1 ~]$ ssh-keygen -t rsa
-
+enter
+enter
 
 [vagrant@c1 ~]$ ls -la .ssh/
 total 12
