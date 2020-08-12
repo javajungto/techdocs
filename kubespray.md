@@ -41,9 +41,12 @@ c2
 
 install kubesray on c1
 ```
-$sudo yum -y install epel-release
-$sudo yum -y install python-pip
-$pip --version
-$git clone https://github.com/kubernetes-sigs/kubespray
+$ sudo yum -y install epel-release
+$ sudo yum -y install python-pip
+$ pip --version
+$ git clone https://github.com/kubernetes-sigs/kubespray
+$ git checkout -b v2.11.0
+$ cat requirements.txt 
+$ sudo pip install -r requirements.txt 
 
 ```
