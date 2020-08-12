@@ -49,5 +49,6 @@ $ git checkout -b v2.11.0
 $ cat requirements.txt 
 $ sudo pip install --upgrade pip
 $ sudo pip install -r requirements.txt 
+$ sudo yum -y install tree
 
 ```
