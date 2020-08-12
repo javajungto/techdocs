@@ -1,3 +1,10 @@
+```
+on server
+cd /home/
+git clone --bare docker docker.git
+
+```
+
 <Reference>
 svn능력자를 위한 git개념가이드 
 => http://www.slideshare.net/einsub/svn-git-17386752
