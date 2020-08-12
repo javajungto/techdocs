@@ -1,11 +1,11 @@
 vagrant up 
 ```
 virtualbox vm 5개 실행
-c1 x.x.74
-c2 x.x.75
-c3 x.x.76
-c4 x.x.77
-c5 x.x.78
+c1 x.x.x.74
+c2 x.x.x.75
+c3 x.x.x.76
+c4 x.x.x.77
+c5 x.x.x.78
 ```
 
 vagrant ssh c1
@@ -31,4 +31,10 @@ vagrant ssh c2(~c5)
 ```
 [vagrant@c2 ~]$ view .ssh/authorized_keys
 <== paste
+```
+
+vagrant ssh c1
+```
+[vagrant@c1 ~]$ ssh x.x.x.75 hostname
+c2
 ```
