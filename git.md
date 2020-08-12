@@ -2,7 +2,6 @@
 on server
 cd /home/
 git clone --bare docker docker.git
-
 ```
 
 <Reference>
