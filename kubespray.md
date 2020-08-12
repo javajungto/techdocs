@@ -38,3 +38,12 @@ vagrant ssh c1
 [vagrant@c1 ~]$ ssh x.x.x.75 hostname
 c2
 ```
+
+install kubesray on c1
+```
+$sudo yum -y install epel-release
+$sudo yum -y install python-pip
+$pip --version
+$git clone https://github.com/kubernetes-sigs/kubespray
+
+```
