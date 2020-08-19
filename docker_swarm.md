@@ -197,4 +197,6 @@ j81zv90kcpz1        nginx.5             nginx:latest        c3                  
 Set up a Docker registry
 ```
 docker service create --name registry --publish published=5000,target=5000 registry:2
+[root@localhost ~]# curl http://127.0.0.1:5000/v2/
+{}
 ```
