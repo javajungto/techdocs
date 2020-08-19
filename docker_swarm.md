@@ -193,3 +193,8 @@ tjfrcohd0t5s        nginx.3             nginx:latest        c2                  
 ub2plqe3p39u        nginx.4             nginx:latest        c3                  Running             Running 16 seconds ago                       
 j81zv90kcpz1        nginx.5             nginx:latest        c3                  Running             Running 16 seconds ago                       
 ```
+
+Set up a Docker registry
+```
+docker service create --name registry --publish published=5000,target=5000 registry:2
+```
