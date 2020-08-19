@@ -203,6 +203,11 @@ docker service create --name registry --publish published=5000,target=5000 regis
 
 ```
 docker swarm join-token manger
-
 docker swarm join-token worker
+docker service scale registry=3
+docker node ls
+docker service ls
+docker service ps registry
 ```
+
+
