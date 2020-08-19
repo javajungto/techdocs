@@ -200,3 +200,9 @@ docker service create --name registry --publish published=5000,target=5000 regis
 [root@localhost ~]# curl http://127.0.0.1:5000/v2/
 {}
 ```
+
+```
+docker swarm join-token manger
+
+docker swarm join-token worker
+```
