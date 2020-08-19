@@ -186,3 +186,7 @@ on the other machine
 
 https://youngmind.tistory.com/entry/Docker-%EA%B0%95%EC%A2%8C-4-%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%801
 https://www.snoopybox.co.kr/1756
+
+```
+docker service create --name registry --publish published=5000,target=5000 registry:2
+```
