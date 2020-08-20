@@ -116,7 +116,7 @@ $ vagrant ssh c1 (c1를 manager 노드로 설정)
 $ sudo docker swarm init --advertise-addr x.x.x.74
 ```
 
-결과
+### 결과
 ```
 Swarm initialized: current node (lk4w2l0r....wc6g4s) is now a manager.
 
@@ -127,7 +127,7 @@ To add a worker to this swarm, run the following command:
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
 
-c2, c3 노드를 worker로 join 
+### c2, c3 노드를 worker로 join 
 ```
 $ vagrant ssh c2
 $ sudo docker swarm join --token SWMTKN-1-525uw127lu............iolrhd5fxhhl9i1uzf x.x.x.74:2377
@@ -136,12 +136,12 @@ $ sudo docker swarm join --token SWMTKN-1-525uw127lu............iolrhd5fxhhl9i1u
 
 ```
 
-결과
+#### 결과
 ```
 This node joined a swarm as a worker.
 ```
 
-manger 노트에서 노드 확인
+### manger 노트에서 노드 확인
 ```
 [vagrant@c1 ~]$ sudo docker node ls
 ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
@@ -150,7 +150,7 @@ ywlwbk2bav4yg7oe43jeapvej     c2                  Ready               Active    
 2filxu80bw94hfbb9xl2fchsk     c3                  Ready               Active                                  19.03.12
 ```
 
-기본 웹 애플리케이션 작성
+### 기본 웹 애플리케이션 작성
 ```
 sudo docker service create --name nginx -p 80:80 nginx:latest
 ```
@@ -172,7 +172,7 @@ mjlov67f93b1        nginx.1             nginx:latest        c1                  
 > 서비스가 포트를 오픈할 경우 모든 노드에 포트가 오픈되고, 어떤 노드에 요청을 보내도 실행중인 컨테이너에 자동으로 전달 . \
 > [참조](https://subicura.com/2017/02/25/container-orchestration-with-docker-swarm.html)
 
-서비스 개수 늘리기 
+### 서비스 개수 늘리기 
 ```
 [vagrant@c1 ~]$ sudo docker service scale nginx=5
 nginx scaled to 5
@@ -194,7 +194,7 @@ ub2plqe3p39u        nginx.4             nginx:latest        c3                  
 j81zv90kcpz1        nginx.5             nginx:latest        c3                  Running             Running 16 seconds ago                       
 ```
 
-Set up a Docker registry
+### Set up a Docker registry
 ```
 docker service create --name registry --publish published=5000,target=5000 registry:2
 [root@localhost ~]# curl http://127.0.0.1:5000/v2/
