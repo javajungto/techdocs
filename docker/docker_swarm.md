@@ -210,5 +210,12 @@ docker service ls
 docker service ps registry
 ```
 
+###
+
 ```
+docker system prune
+docker system prune -a
+docker image prune
+docker volume ls
+docker volume prune
 ```
