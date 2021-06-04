@@ -1,0 +1,7 @@
+virtualbox
+
+- reboot 
+- command + R 복구모드
+- 메뉴 > terminal
+- csrutil disable; reboot
+- Virtualbox 재설치 
