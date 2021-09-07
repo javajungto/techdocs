@@ -175,3 +175,5 @@ on the other machine
 
 https://youngmind.tistory.com/entry/Docker-%EA%B0%95%EC%A2%8C-4-%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%801
 https://www.snoopybox.co.kr/1756
+
+yum install -y yum-utils && yum-config-manager  --add-repo https://download.docker.com/linux/centos/docker-ce.repo && yum -y install docker-ce docker-ce-cli containerd.io && systemctl start docker && systemctl enable docker
