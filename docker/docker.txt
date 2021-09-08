@@ -179,3 +179,41 @@ https://www.snoopybox.co.kr/1756
 yum install -y yum-utils && yum-config-manager  --add-repo https://download.docker.com/linux/centos/docker-ce.repo && yum -y install docker-ce docker-ce-cli containerd.io && systemctl start docker && systemctl enable docker
 
 iptables -A INPUT -i enp0s3 -p tcp --dport 2377 -j ACCEPT
+
+
+# cat yum.yml
+---
+- name: yum update on cdn
+  hosts: cdn
+  tasks:
+   - name : yum update
+     yum: name=* state=latest
+
+- name: yum update on nfs
+  hosts: nfs
+  tasks:
+   - name : yum update
+     yum: name=* state=latest
+     
+# cat docker.yml
+---
+- name: yum update on cdn
+  hosts: cdn
+  tasks:
+   - name: install yum-utils
+     yum: name={{ item }} state=present
+     loop: ['yum-utils']
+   - name: add docker repo
+     get_url:
+       url: https://download.docker.com/linux/centos/docker-ce.repo
+       dest: /etc/yum.repos.d/docker-ce.repo
+     become: yes
+   - name: install docker-ce docker-ce-cli containerd.io
+     yum: name={{ item }} state=present
+     loop: ['docker-ce','docker-ce-cli','containerd.io']
+   - name: start docker service
+     service:
+       name: docker
+       state: started
+       enabled: yes
+     become: yes     
