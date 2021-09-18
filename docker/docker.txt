@@ -178,6 +178,8 @@ https://www.snoopybox.co.kr/1756
 
 yum install -y yum-utils && yum-config-manager  --add-repo https://download.docker.com/linux/centos/docker-ce.repo && yum -y install docker-ce docker-ce-cli containerd.io && systemctl start docker && systemctl enable docker
 
+firewall-cmd --permanent --zone=public --add-port=6443/tcp
+
 iptables -A INPUT -i enp0s3 -p tcp --dport 2377 -j ACCEPT
 
 
