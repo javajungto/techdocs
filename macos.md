@@ -42,4 +42,12 @@ Matching Java Virtual Machines (3):
 export "JAVA_HOME=/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 ```
 
+% IntelliJ IDEA validation.properties 한글 깨짐 
+```
+MacOS
+상단 메뉴 > preferences > Editor > File Encodings  
+    Global Encoding : UTF-8
+    Project Encoding : UTF-8
+    Properties Files > Default encoding for properties files : UTF-8, [checked] Tranparent native-to-ascii conversion
+```
 
