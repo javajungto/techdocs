@@ -42,7 +42,7 @@ Matching Java Virtual Machines (3):
 export "JAVA_HOME=/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 ```
 
-% IntelliJ IDEA validation.properties 한글 깨짐 
+# IntelliJ IDEA validation.properties 한글 깨짐 
 ```
 MacOS
 상단 메뉴 > preferences > Editor > File Encodings  
@@ -51,7 +51,7 @@ MacOS
     Properties Files > Default encoding for properties files : UTF-8, [checked] Tranparent native-to-ascii conversion
 ```
 
-% 창 조절
+# 창 조절
 ```
 https://rectangleapp.com/
 ```
