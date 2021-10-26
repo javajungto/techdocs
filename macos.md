@@ -20,3 +20,9 @@ sudo lsof -i :<port>
 ```
 iTerm2 > Preferences > Profile > Text > Unicode : Unicode normalization : none -> NFC로 변경
 ```
+
+# macos java_home
+```
+% /usr/libexec/java_home
+/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home
+```
