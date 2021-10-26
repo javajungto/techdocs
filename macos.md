@@ -51,3 +51,7 @@ MacOS
     Properties Files > Default encoding for properties files : UTF-8, [checked] Tranparent native-to-ascii conversion
 ```
 
+% 창 조절
+```
+https://rectangleapp.com/
+```
