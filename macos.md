@@ -22,11 +22,14 @@ iTerm2 > Preferences > Profile > Text > Unicode : Unicode normalization : none -
 ```
 
 # macos java_home
-```
+
 % /usr/libexec/java_home
+```
 /Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home
+```
 
 % /usr/libexec/java_home -V
+```
 Matching Java Virtual Machines (3):
     14.0.1 (x86_64) "Oracle Corporation" - "Java SE 14.0.1" /Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home
     1.8.202.08 (x86_64) "Oracle Corporation" - "Java" /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home
