@@ -87,5 +87,7 @@ https://github.com/ohmyzsh/ohmyzsh
     cd fonts
     ./install.sh
 
+iTerm2 폰트 변경
+    iTerms2 > Preferences > Profiles > Text > Font : Inconsolata-dz for Powerline dz 선택 
 
 ```
