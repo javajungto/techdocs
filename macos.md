@@ -61,23 +61,31 @@ https://rectangleapp.com/
 https://github.com/ohmyzsh/ohmyzsh
 
 설치 
-sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh --no-check-certificate)"
+    sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh --no-check-certificate)"
 
-Plugins
-view ~/.zshrc
-...
-plugins=(
-  git
-  bundler
-  dotenv
-  osx
-  rake
-  rbenv
-  ruby
-)
-...
+플러그인 설정
+    view ~/.zshrc
+    ...
+    plugins=(
+      git
+      bundler
+      dotenv
+      osx
+      rake
+      rbenv
+      ruby
+    )
+    ...
 
-Theme
+테마 변경 
+    ...
+    ZSH_THEME="robbyrussell" => ZSH_THEME="agnoster"로 변경 
+    ...
 
-ZSH_THEME="robbyrussell" => ZSH_THEME="agnoster"로 변경 
+폰트 설치(Powerline Fonts)
+    git clone https://github.com/powerline/fonts.git
+    cd fonts
+    ./install.sh
+
+
 ```
