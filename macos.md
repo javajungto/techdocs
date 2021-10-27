@@ -60,7 +60,24 @@ https://rectangleapp.com/
 ```
 https://github.com/ohmyzsh/ohmyzsh
 
+설치 
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh --no-check-certificate)"
 
+Plugins
+view ~/.zshrc
+...
+plugins=(
+  git
+  bundler
+  dotenv
+  osx
+  rake
+  rbenv
+  ruby
+)
+...
 
+Theme
+
+ZSH_THEME="robbyrussell" => ZSH_THEME="agnoster"로 변경 
 ```
