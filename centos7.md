@@ -63,7 +63,7 @@ $ cd idea-IC-212.5457.46/bin/
 $ ./idea.sh
 ```
 
-$ cat ~/.bash_profile
+# cat ~/.bash_profile
 ```
 # .bash_profile
 
@@ -82,3 +82,16 @@ PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 export PATH
 ```
+
+# git upgrade 
+```
+yum install \
+https://repo.ius.io/ius-release-el7.rpm \
+https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+```
+
+```
+yum -y remove git
+yum -y install git224
+```
+
