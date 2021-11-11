@@ -91,3 +91,9 @@ iTerm2 폰트 변경
     iTerms2 > Preferences > Profiles > Text > Font : Inconsolata-dz for Powerline dz 선택 
 
 ```
+
+# icloud 절대 경로
+
+```
+/Users/사용자/Library/Mobile Documents/com~apple~CloudDoc
+```
