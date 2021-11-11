@@ -50,7 +50,8 @@
 # vscode 설치 
 
 ```
-https://code.visualstudio.com/Download 다운로드 
+https://code.visualstudio.com/Download 다운로드 (code-1.62.1-1636111127.el7.x86_64.rpm)
 yum install -y libXScrnSaver
+rpm -Uvh code-1.62.1-1636111127.el7.x86_64.rpm
 ```
 
