@@ -55,3 +55,11 @@ yum install -y libXScrnSaver
 rpm -Uvh code-1.62.1-1636111127.el7.x86_64.rpm
 ```
 
+# Intellij IDEA 설치 
+
+```
+https://www.jetbrains.com/ko-kr/idea/download/download-thanks.html?platform=linux&code=IIC
+$ cd idea-IC-212.5457.46/bin/
+$ ./idea.sh
+```
+
