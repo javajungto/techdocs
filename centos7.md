@@ -63,3 +63,22 @@ $ cd idea-IC-212.5457.46/bin/
 $ ./idea.sh
 ```
 
+$ cat ~/.bash_profile
+```
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+
+# User specific environment and startup programs
+
+export JAVA_HOME=/usr/local/jdk8u312-b07
+export PATH=$PATH:$JAVA_HOME/bin
+
+PATH=$PATH:$HOME/.local/bin:$HOME/bin
+
+export PATH
+```
