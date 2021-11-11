@@ -35,3 +35,22 @@
 
 ```
 
+# firewalld 설치, 구동
+
+```
+# yum install firewalld
+# systemctl start firewalld
+# systemctl enable firewalld
+
+# firewall-cmd --state
+# firewall-cmd --reload
+
+```
+
+# vscode 설치 
+
+```
+https://code.visualstudio.com/Download 다운로드 
+yum install -y libXScrnSaver
+```
+
