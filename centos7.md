@@ -10,16 +10,28 @@
 # systemctl set-default graphical.target
 ```
 
-
 # 원격 접속 설정 
 
 ```
-yum -y update
-yum -y install epel-release
-yum -y install xrdp tigervnc-server
-systemctl start tigervnc-server
-systemctl start xrdp.service
-systemctl enable xrdp.service
-firewall-cmd --permanent --zone=public --add-port=3389/tcp
-/sbin/shutdown -r now
+# yum -y update
+# yum -y install epel-release
+# yum -y install xrdp tigervnc-server
+# systemctl start tigervnc-server
+# systemctl start xrdp.service
+# systemctl enable xrdp.service
+# firewall-cmd --permanent --zone=public --add-port=3389/tcp
+# /sbin/shutdown -r now
 ```
+
+# firewalld 설치, 구동
+
+```
+# yum install firewalld
+# systemctl start firewalld
+# systemctl enable firewalld
+
+# firewall-cmd --state
+# firewall-cmd --reload
+
+```
+
