@@ -104,3 +104,9 @@ iTerm2 폰트 변경
 ```
 /Users/사용자/Library/Mobile Documents/com~apple~CloudDoc
 ```
+
+# openjdk
+
+```
+https://adoptopenjdk.net/releases.html?variant=openjdk16&jvmVariant=hotspot
+```
