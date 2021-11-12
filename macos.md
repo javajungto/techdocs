@@ -108,5 +108,6 @@ iTerm2 폰트 변경
 # openjdk
 
 ```
+https://adoptopenjdk.net
 https://adoptopenjdk.net/releases.html?variant=openjdk16&jvmVariant=hotspot
 ```
