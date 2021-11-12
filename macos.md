@@ -42,6 +42,13 @@ Matching Java Virtual Machines (3):
 export "JAVA_HOME=/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 ```
 
+# view ~/.zshrc
+```
+cat ~/.zshrc
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export PATH=${PATH}:$JAVA_HOME/bin
+```
+
 # IntelliJ IDEA validation.properties 한글 깨짐 
 ```
 MacOS
