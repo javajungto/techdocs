@@ -23,6 +23,15 @@ iTerm2 > Preferences > Profile > Text > Unicode : Unicode normalization : none -
 
 # macos java_home
 
+% download openjdk
+```
+https://openjdk.java.net/
+> Installing
+> jdk.java.net
+> Ready for use : JDK17
+> Builds > macOS/x64 tar.gz
+```
+
 % /usr/libexec/java_home
 ```
 /Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home
