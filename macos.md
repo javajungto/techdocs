@@ -30,6 +30,15 @@ https://openjdk.java.net/
 > jdk.java.net
 > Ready for use : JDK17
 > Builds > macOS/x64 tar.gz
+...
+tar xvfz openjdk-17.0.1_macos-x64_bin.tar.gz
+...
+% cat ~/.zshrc
+export JAVA_HOME=/Users/j.../Desktop/jdk-17.0.1.jdk/Contents/Home
+export PATH=${PATH}:$JAVA_HOME/bin:
+
+source ~/.zshrc
+java -version
 ```
 
 % /usr/libexec/java_home
