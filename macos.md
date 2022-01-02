@@ -132,5 +132,10 @@ https://adoptopenjdk.net/releases.html?variant=openjdk16&jvmVariant=hotspot
 
 # android-studio
 ```
-실행 > More Actions > SDK Manager > Appearance & Behavior > System Settings > Android SDK | SDK Tools > Android SDK Command-line Tools(latest) 체크 
+실행 > More Actions 
+> SDK Manager 
+> Appearance & Behavior 
+> System Settings 
+> Android SDK | SDK Tools 
+> Android SDK Command-line Tools(latest) 체크 
 ```
