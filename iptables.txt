@@ -74,3 +74,44 @@ Let us assume that you need to limit incoming connection to ssh server(port 22) 
 iptables -I INPUT -p tcp -s 0/0 -d $SERVER_IP --sport 513:65535 --dport 22 -m state --state NEW,ESTABLISHED -m recent --set -j ACCEPT
 iptables -I INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 600 --hitcount 11 -j DROP
 iptables -A OUTPUT -p tcp -s $SERVER_IP -d 0/0 --sport 22 --dport 513:65535 -m state --state ESTABLISHED -j ACCEPT
+
+#-----------------------------
+# Centos 7
+#-----------------------------
+
+systemctl stop firewalld
+systemctl disable firewalld
+
+yum -y install iptables-services
+systemctl start iptables
+systemctl enable iptables
+systemctl status iptables
+iptables -nL
+
+#-----------------------------
+# nofirewall.sh
+#-----------------------------
+
+#!/bin/sh
+
+# http://killyridols.net/firewall.rules.html
+# the initial setup for this firewall was setup by levy.pl
+# check it out to create a skeleton for your firewall
+
+# route packets between interfaces
+# echo "1" > /proc/sys/net/ipv4/ip_forward
+
+# chain policies
+# set default policies
+/sbin/iptables -P INPUT ACCEPT
+/sbin/iptables -P OUTPUT ACCEPT
+/sbin/iptables -P FORWARD ACCEPT  # Set to DROP if you're NOT doing NAT'ing!
+
+# flush tables
+/sbin/iptables -F
+/sbin/iptables -F INPUT
+/sbin/iptables -F OUTPUT
+/sbin/iptables -F FORWARD
+/sbin/iptables -F -t mangle
+/sbin/iptables -X
+/sbin/iptables -F -t nat
