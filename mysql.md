@@ -53,4 +53,6 @@ view /etc/my.cnf
 [mysqld]
 max_connections = 500
 ...
+
+참조 : https://zetawiki.com/wiki/MySQL_max_connections_%EC%84%A4%EC%A0%95
 ```
