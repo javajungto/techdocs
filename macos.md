@@ -155,3 +155,25 @@ php -v
 brew services list
 brew services start php
 ```
+
+# apache, php
+```
+httpd -v
+php -v
+sudo apachectl start
+view /etc/apache2/httpd.conf
+...
+DocumentRoot "/Library/WebServer/Documents"
+<Directory "/Library/WebServer/Documents">
+...
+#User _www
+#Group _www
+User root
+Group root
+...
+LoadModule php7_module libexec/apache2/libphp7.so
+...
+
+sudo apachectl graceful
+```
+           
