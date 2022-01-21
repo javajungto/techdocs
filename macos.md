@@ -147,3 +147,11 @@ xcode-select --install
 ```
 $ lsof -iTCP -sTCP:LISTEN -n -P
 ```
+
+# php
+```
+brew install php
+php -v
+brew services list
+brew services start php
+```
