@@ -143,3 +143,7 @@ https://adoptopenjdk.net/releases.html?variant=openjdk16&jvmVariant=hotspot
 ```
 xcode-select --install
 ```
+# listen port
+```
+$ lsof -iTCP -sTCP:LISTEN -n -P
+```
