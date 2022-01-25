@@ -122,10 +122,13 @@ on node1, node2
 	...
 
 node1
-	galera_new_cluster
+	구동 galera_new_cluster
 node2
-	systemctl start mariadb.service
-	
+	구동 systemctl start mariadb.service
+중지
+	on node1, node2
+		systemctl stop mariadb
+
 연동 확인
 	MariaDB [mysql]> show global status like 'wsrep_cluster_size';
 	+--------------------+-------+
@@ -135,7 +138,12 @@ node2
 	+--------------------+-------+
 	1 row in set (0.001 sec)
 	
-cat /var/lib/mysql/grastate.dat
-
+node1, node2 db 데몬이 모두 다운됐을때
+	아래 값을 보고 값이 1인 서버에서 galera_new_cluster 실행, node에서는 systemctl start mariadb
+	cat /var/lib/mysql/grastate.dat
+	...
+	safe_to_bootstrap: 1
+	...
+	
 참조 : https://bamdule.tistory.com/66
 ```
