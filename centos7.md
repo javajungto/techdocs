@@ -136,4 +136,6 @@ node2
 	1 row in set (0.001 sec)
 	
 cat /var/lib/mysql/grastate.dat
+
+참조 : https://bamdule.tistory.com/66
 ```
