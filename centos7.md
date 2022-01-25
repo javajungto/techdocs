@@ -103,33 +103,37 @@ hostnamectl set-hostname devsrv
 # centos 7 Galera cluster 
 ```
 환경
-node1 x.x.x.x.14
-node2 x.x.x.x.15
+	node1 x.x.x.x.14
+	node2 x.x.x.x.15
+
 on node1, node2
-curl -LsS https://r.mariadb.com/downloads/mariadb_repo_setup | sudo bash
-yum install -y mariadb-server galera
-view /etc/my.cnf.d/server.cnf
-...
-[galera]
-# Mandatory settings
-wsrep_on=ON
-wsrep_provider=/usr/lib64/galera-4/libgalera_smm.so
-wsrep_cluster_address=gcomm://x.x.x.x.14,x.x.x.x.15
-binlog_format=row
-default_storage_engine=InnoDB
-innodb_autoinc_lock_mode=2
-...
+	curl -LsS https://r.mariadb.com/downloads/mariadb_repo_setup | sudo bash
+	yum install -y mariadb-server galera
+	view /etc/my.cnf.d/server.cnf
+	...
+	[galera]
+	# Mandatory settings
+	wsrep_on=ON
+	wsrep_provider=/usr/lib64/galera-4/libgalera_smm.so
+	wsrep_cluster_address=gcomm://x.x.x.x.14,x.x.x.x.15
+	binlog_format=row
+	default_storage_engine=InnoDB
+	innodb_autoinc_lock_mode=2
+	...
+
 node1
-galera_new_cluster
+	galera_new_cluster
 node2
-systemctl start mariadb.service
+	systemctl start mariadb.service
+	
 연동 확인
-MariaDB [mysql]> show global status like 'wsrep_cluster_size';
-+--------------------+-------+
-| Variable_name      | Value |
-+--------------------+-------+
-| wsrep_cluster_size | 2     |
-+--------------------+-------+
-1 row in set (0.001 sec)
+	MariaDB [mysql]> show global status like 'wsrep_cluster_size';
+	+--------------------+-------+
+	| Variable_name      | Value |
+	+--------------------+-------+
+	| wsrep_cluster_size | 2     |
+	+--------------------+-------+
+	1 row in set (0.001 sec)
+	
 cat /var/lib/mysql/grastate.dat
 ```
