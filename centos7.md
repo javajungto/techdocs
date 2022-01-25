@@ -95,3 +95,7 @@ yum -y remove git
 yum -y install git224
 ```
 
+# hostname
+```
+hostnamectl set-hostname devsrv
+```
