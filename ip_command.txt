@@ -37,3 +37,17 @@ ip link ls
 -
 
 https://github.com/firecracker-microvm/firecracker/blob/main/docs/rootfs-and-kernel-setup.md
+
+-
+host
+ip link add name br0 type bridge
+ip link set dev tap0 master br0
+ip address add 192.168.204.150/24 dev br0
+iptables -t nat -A POSTROUTING -o br0 -j MASQUERADE
+  
+-
+guest
+ip addr add 192.168.204.160/24 dev eth0
+ip link set eth0 up
+ip r add 192.168.204.1 via 192.168.204.150 dev eth0
+ip r add default via 192.168.204.150 dev eth0
