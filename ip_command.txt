@@ -187,3 +187,12 @@ VBoxManage modifyvm rocky --natdnshostresolver1 on
 [root@localhost debug]# ls -lhtr hello-*
 -rw-r--r--. 1 root root 30M  6월  5 16:54 hello-rootfs.ext4
 -rw-r--r--. 1 root root 21M  6월  5 16:54 hello-vmlinux.bin
+
+--
+[root@localhost ~]# cat r.sh
+#!/bin/bash
+
+iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
+iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i enp0s8 -o enp0s3 -j ACCEPT
+iptables -A FORWARD -i enp0s8 -o enp0s3 -j ACCEPT
