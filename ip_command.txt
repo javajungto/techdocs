@@ -21,6 +21,7 @@ sudo iptables -A FORWARD -i tap0 -o $WIRELESS_DEVICE_NAME -j ACCEPT
 -
 
 ip addr add 172.17.100.10/24 dev eth0
+ip link set eth0 up
 ip route add default via 172.17.100.1 dev eth0
 
 -
