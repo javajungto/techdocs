@@ -100,3 +100,90 @@ ip route add default via 10.0.0.1 dev eth0
 
 ip route add 192.168.204.1 via 10.0.0.1 dev eth0
 ip route add 8.8.8.8 via 10.0.0.1 dev eth0
+
+-----
+
+host
+
+ip tuntap add tap0 mode tap 
+ip addr add 172.17.100.1/24 dev tap0
+ip link set tap0 up
+sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
+iptables -t nat -A POSTROUTING -o enp0s3  -j MASQUERADE
+iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i tap0 -o enp0s3 -j ACCEPT
+
+guest
+
+ip addr add 172.17.100.10/24 dev eth0
+ip link set eth0 up
+ip route add default via 172.17.100.1 dev eth0
+ip r add 192.168.204.1 via 172.17.100.1 dev eth0
+ip r add 8.8.8.8 via 172.17.100.1 dev eth0
+
+start
+
+rm -f /tmp/firecracker.socket && ./firecracker --api-sock /tmp/firecracker.socket
+
+./set_guest_kernel.sh && ./set_guest_rootfs.sh && ./set_guest_network.sh && ./start_guest.sh
+
+rm -f /tmp/firecracker.socket && ./firecracker --api-sock /tmp/firecracker.socket --config-file vm_config_network.json
+
+--
+# create a tap device
+sudo ip tuntap add tapA mode tap
+sudo ip tuntap add tapB mode tap
+# set up tap device ip address
+sudo ip addr add 10.0.0.29/30 dev tapA
+sudo ip addr add 10.0.0.33/30 dev tapB
+# set up tap device
+sudo ip link set tapA up
+sudo ip link set tapB up
+# enable forwarding
+sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
+# add iptables config
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i tapA -o eth0 -j ACCEPT
+sudo iptables -A FORWARD -i tapB -o eth0 -j ACCEPT
+
+-
+
+host
+
+sudo ip tuntap add tapA mode tap
+sudo ip addr add 10.0.0.1/24 dev tapA
+sudo ip link set tapA up
+
+sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
+iptables -t nat -A POSTROUTING -o enp0s3  -j MASQUERADE
+iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i tapA -o enp0s3 -j ACCEPT
+
+guest
+
+ip addr add 10.0.0.2/24 dev eth0
+ip link set eth0 up
+ip route add default via 10.0.0.1 dev eth0
+
+ip route add 192.168.204.1 via 10.0.0.1 dev eth0
+ip route add 8.8.8.8 via 10.0.0.1 dev eth0
+
+- 
+ifconfig eth0 10.0.0.2 netmask 255.255.255.0 up
+ip route add default via 10.0.0.1
+
+
+https://s8sg.medium.com/quick-start-with-firecracker-and-firectl-in-ubuntu-f58aeedae04b
+
+
+VBoxManage modifyvm rocky --natdnsproxy1 on
+VBoxManage modifyvm rocky --natdnshostresolver1 on
+
+
+[root@localhost ~]# source ./c.sh
+[root@localhost debug]# rm -rf hello-*
+[root@localhost debug]# cp bak/hello-* .
+[root@localhost debug]# ls -lhtr hello-*
+-rw-r--r--. 1 root root 30M  6월  5 16:54 hello-rootfs.ext4
+-rw-r--r--. 1 root root 21M  6월  5 16:54 hello-vmlinux.bin
