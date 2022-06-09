@@ -35,10 +35,7 @@ tools/devtool build
 toolchain="$(uname -m)-unknown-linux-musl" 
 ```
 
-# view get_kernel_rootfs.sh 
-<== ubuntu 이미지 apt update시 오류 발생
-https://s3.amazonaws.com/spec.ccfc.min/img/quickstart_guide/kernels/vmlinux.bin
-https://s3.amazonaws.com/spec.ccfc.min/img/quickstart_guide/rootfs/bionic.rootfs.ext4
+# view get_kernel_rootfs.sh <== ubuntu 이미지 apt update시 오류 발생
 ```
 arch=`uname -m`
 dest_kernel="hello-vmlinux.bin" 
