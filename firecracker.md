@@ -75,6 +75,12 @@ curl -fsSL -o hello-vmlinux.bin https://s3.amazonaws.com/spec.ccfc.min/img/hello
 curl -fsSL -o hello-rootfs.ext4 https://s3.amazonaws.com/spec.ccfc.min/img/hello/fsfiles/hello-rootfs.ext4
 ```
 
+# view get_kernel_rootfs_ok.sh
+```
+curl -fsSL -o hello-vmlinux.bin https://s3.amazonaws.com/spec.ccfc.min/img/hello/kernel/hello-vmlinux.bin
+curl -fsSL -o hello-rootfs.ext4 https://s3.amazonaws.com/spec.ccfc.min/img/hello/fsfiles/hello-rootfs.ext4
+```
+
 # view set_guest_kernel.sh
 ```
 arch=`uname -m`
@@ -187,6 +193,18 @@ chmod 700 start_guest.sh
 }
 ```
 
+# host에서 network 설정
+host에서 인터넷 네트워크가 eth0일 경우
+```
+ip tuntap add tap0 mode tap
+sudo ip addr add 172.16.0.1/24 dev tap0
+sudo ip link set tap0 up
+sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i tap0 -o eth0 -j ACCEPT
+```
+
 # guest 구동 (API 호출)
 first shell prompt
 ```
@@ -196,8 +214,20 @@ rm -f /tmp/firecracker.socket && ./firecracker --api-sock /tmp/firecracker.socke
 
 second shell prompt
 ```
-./get_kernel_rootfs.sh && ./set_guest_kernel.sh && ./set_guest_rootfs.sh ./set_network.sh && ./start_guest.sh
+./get_kernel_rootfs_ok.sh && ./set_guest_kernel.sh && ./set_guest_rootfs.sh ./set_network.sh && ./start_guest.sh
 ```
 
-
 # guest 구동 (json config file)
+```
+rm -f /tmp/firecracker.socket && ./firecracker --api-sock /tmp/firecracker.socket --config-file vm_config_network.json
+```
+
+# guest (Alpine linux)
+id/pwd : root / root
+guest network 설정
+```
+ip addr add 172.16.0.2/24 dev eth0
+ip link set eth0 up
+ip route add default via 172.16.0.1 dev eth0
+echo 'nameserver 8.8.8.8' > /etc/resolv.conf
+```
