@@ -41,7 +41,7 @@ cd /root/firecracker/build/cargo_target/x86_64-unknown-linux-musl/debug
 rm -f /tmp/firecracker.socket && ./firecracker --api-sock /tmp/firecracker.socket
 ```
 
-# view get_kernel_rootfs.sh
+# view get_kernel_rootfs.sh 
 ```
 arch=`uname -m`
 dest_kernel="hello-vmlinux.bin" 
@@ -67,5 +67,5 @@ curl -fsSL -o $dest_rootfs $rootfs
 
 echo "Saved kernel file to $dest_kernel and root block device to $dest_rootfs." 
 ```
-
+chmod 700 get_kernel_rootfs.sh
 
