@@ -277,6 +277,23 @@ cp bak/hello* .
 ip link del br0
 ```
 
+# neofetch
+```
+        #####           root@fc
+       #######          -------
+       ##O#O##          OS: Rocky Linux 8.6 (Green Obsidian) x86_64
+       #######          Host: PowerEdge R620
+     ###########        Kernel: 4.18.0-372.9.1.el8.x86_64
+    #############       Uptime: 21 hours, 25 mins
+   ###############      Packages: 747 (rpm)
+   ################     Shell: bash 4.4.20
+  #################     Resolution: 1280x1024
+#####################   Terminal: /dev/pts/1
+#####################   CPU: Intel Xeon E5-2670 0 (32) @ 3.300GHz
+  #################     GPU: 0b:00.0 Matrox Electronics Systems Ltd. G200eR2
+                        Memory: 599MiB / 15964MiB
+```
+
 # 참조
 ```
 https://github.com/firecracker-microvm/firecracker/blob/main/docs/network-setup.md
