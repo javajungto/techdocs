@@ -266,6 +266,7 @@ apk add nginx
 
 # cleaning up
 ```
+ip link ls
 ip link del tap0
 iptables -F
 ./nofirewall.sh
