@@ -63,6 +63,18 @@ echo "Saved kernel file to $dest_kernel and root block device to $dest_rootfs."
 ```
 chmod 700 get_kernel_rootfs.sh
 
+# 공식 문서의 이미지는 ubuntu 인데, apt update 시 오류가 발생함 
+오류 발생
+```
+https://s3.amazonaws.com/spec.ccfc.min/img/quickstart_guide/kernels/vmlinux.bin
+https://s3.amazonaws.com/spec.ccfc.min/img/quickstart_guide/rootfs/bionic.rootfs.ext4
+```
+정상 작동(Alpine linux)
+```
+curl -fsSL -o hello-vmlinux.bin https://s3.amazonaws.com/spec.ccfc.min/img/hello/kernel/hello-vmlinux.bin
+curl -fsSL -o hello-rootfs.ext4 https://s3.amazonaws.com/spec.ccfc.min/img/hello/fsfiles/hello-rootfs.ext4
+```
+
 # view set_guest_kernel.sh
 ```
 arch=`uname -m`
