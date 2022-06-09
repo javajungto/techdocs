@@ -299,3 +299,52 @@ ip link del br0
 https://github.com/firecracker-microvm/firecracker/blob/main/docs/network-setup.md
 https://s8sg.medium.com/quick-start-with-firecracker-and-firectl-in-ubuntu-f58aeedae04b
 ```
+
+# 오류
+```
+{"fault_message":"Internal error while starting microVM: Failed to validate KVM support: Missing KVM capabilities:Xcrs"}
+```
+```
+root@ubuntu:~# neofetch
+            .-/+oossssoo+/-.               root@ubuntu
+        `:+ssssssssssssssssss+:`           -----------
+      -+ssssssssssssssssssyyssss+-         OS: Ubuntu 18.04.4 LTS x86_64
+    .ossssssssssssssssssdMMMNysssso.       Host: PowerEdge R410
+   /ssssssssssshdmmNNmmyNMMMMhssssss/      Kernel: 4.15.0-76-generic
+  +ssssssssshmydMMMMMMMNddddyssssssss+     Uptime: 3 hours, 11 mins
+ /sssssssshNMMMyhhyyyyhmNMMMNhssssssss/    Packages: 745
+.ssssssssdMMMNhsssssssssshNMMMdssssssss.   Shell: bash 4.4.20
++sssshhhyNMMNyssssssssssssyNMMMysssssss+   Terminal: /dev/pts/0
+ossyNMMMNyMMhsssssssssssssshmmmhssssssso   CPU: Intel Xeon E5606 (4) @ 1.196GHz
+ossyNMMMNyMMhsssssssssssssshmmmhssssssso   GPU: Matrox Electronics Systems Ltd. MGA G200eW WPCM450
++sssshhhyNMMNyssssssssssssyNMMMysssssss+   Memory: 215MiB / 16028MiB
+.ssssssssdMMMNhsssssssssshNMMMdssssssss.
+ /sssssssshNMMMyhhyyyyhdNMMMNhssssssss/
+  +sssssssssdmydMMMMMMMMddddyssssssss+
+   /ssssssssssshdmNNNNmyNMMMMhssssss/
+    .ossssssssssssssssssdMMMNysssso.
+      -+sssssssssssssssssyyyssss+-
+        `:+ssssssssssssssssss+:`
+            .-/+oossssoo+/-.
+```
+```
+[root@localhost ~]# neofetch
+        #####           root@localhost.localdomain
+       #######          --------------------------
+       ##O#O##          OS: Rocky Linux 8.6 (Green Obsidian) x86_64
+       #######          Host: 3249R99 ThinkPad X201
+     ###########        Kernel: 4.18.0-372.9.1.el8.x86_64
+    #############       Uptime: 5 mins
+   ###############      Packages: 809 (rpm)
+   ################     Shell: bash 4.4.20
+  #################     Resolution: 1280x800
+#####################   Terminal: /dev/pts/0
+#####################   CPU: Intel i5 M 540 (4) @ 1.199GHz
+  #################     GPU: Intel Core Processor
+                        Memory: 303MiB / 3561MiB
+```
+
+
+
+
+
