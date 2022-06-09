@@ -35,12 +35,6 @@ tools/devtool build
 toolchain="$(uname -m)-unknown-linux-musl" 
 ```
 
-# first shell prompt
-```
-cd /root/firecracker/build/cargo_target/x86_64-unknown-linux-musl/debug
-rm -f /tmp/firecracker.socket && ./firecracker --api-sock /tmp/firecracker.socket
-```
-
 # view get_kernel_rootfs.sh 
 ```
 arch=`uname -m`
@@ -128,7 +122,6 @@ curl --unix-socket /tmp/firecracker.socket -i \
     }'
 ```
 
-# second shell prompt
 # view start_guest.sh
 ```
 curl --unix-socket /tmp/firecracker.socket -i \
@@ -183,14 +176,16 @@ chmod 700 start_guest.sh
 ```
 
 # guest 구동 (API 호출)
-```
 first shell prompt
-
+```
 cd /root/firecracker/build/cargo_target/x86_64-unknown-linux-musl/debug
 rm -f /tmp/firecracker.socket && ./firecracker --api-sock /tmp/firecracker.socket
+```
 
 second shell prompt
-
 ```
+./get_kernel_rootfs.sh && ./set_guest_kernel.sh && ./set_guest_rootfs.sh ./set_network.sh && ./start_guest.sh
+```
+
 
 # guest 구동 (json config file)
