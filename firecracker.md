@@ -127,3 +127,51 @@ curl --unix-socket /tmp/firecracker.socket -i \
    }'
 ```
 chmod 700 start_guest.sh
+
+# view vm_config_network.json
+```
+{
+  "boot-source": {
+    "kernel_image_path": "hello-vmlinux.bin",
+    "boot_args": "console=ttyS0 reboot=k panic=1 pci=off",
+    "initrd_path": null
+  },
+  "drives": [
+    {
+      "drive_id": "rootfs",
+      "path_on_host": "hello-rootfs.ext4",
+      "is_root_device": true,
+      "partuuid": null,
+      "is_read_only": false,
+      "cache_type": "Unsafe",
+      "io_engine": "Sync",
+      "rate_limiter": null
+    }
+  ],
+  "machine-config": {
+    "vcpu_count": 1,
+    "mem_size_mib": 512,
+    "smt": false,
+    "track_dirty_pages": false
+  },
+  "network-interfaces": [
+    {
+      "iface_id": "eth0",
+      "guest_mac": "AA:FC:00:00:00:01",
+      "host_dev_name": "tap0" 
+    }
+  ],
+  "balloon": null,
+  "vsock": null,
+  "logger": null,
+  "metrics": null,
+  "mmds-config": null
+}
+```
+
+# guest 구동 (API 호출)
+
+cd /root/firecracker/build/cargo_target/x86_64-unknown-linux-musl/debug
+rm -f /tmp/firecracker.socket && ./firecracker --api-sock /tmp/firecracker.socket
+
+# guest 구동 (json config file)
