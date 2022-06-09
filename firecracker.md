@@ -277,3 +277,8 @@ cp bak/hello* .
 ip link del br0
 ```
 
+# 참조
+```
+https://github.com/firecracker-microvm/firecracker/blob/main/docs/network-setup.md
+https://s8sg.medium.com/quick-start-with-firecracker-and-firectl-in-ubuntu-f58aeedae04b
+```
