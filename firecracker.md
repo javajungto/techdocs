@@ -25,3 +25,13 @@ yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce
 dnf -y install docker-ce docker-ce-cli containerd.io
 systemctl enable --now docker
 ```
+
+# install firecracker
+```
+dnf install git -y
+git clone https://github.com/firecracker-microvm/firecracker
+cd firecracker
+tools/devtool build
+toolchain="$(uname -m)-unknown-linux-musl" 
+```
+
