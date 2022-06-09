@@ -115,6 +115,19 @@ curl --unix-socket /tmp/firecracker.socket -i \
 ```
 chmod 700 set_guest_rootfs.sh
 
+# view set_network.sh
+```
+curl --unix-socket /tmp/firecracker.socket -i \
+  -X PUT 'http://localhost/network-interfaces/eth0' \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+      "iface_id": "eth0",
+      "guest_mac": "AA:FC:00:00:00:01",
+      "host_dev_name": "tap0"
+    }'
+```
+
 # second shell prompt
 # view start_guest.sh
 ```
@@ -170,8 +183,14 @@ chmod 700 start_guest.sh
 ```
 
 # guest 구동 (API 호출)
+```
+first shell prompt
 
 cd /root/firecracker/build/cargo_target/x86_64-unknown-linux-musl/debug
 rm -f /tmp/firecracker.socket && ./firecracker --api-sock /tmp/firecracker.socket
+
+second shell prompt
+
+```
 
 # guest 구동 (json config file)
