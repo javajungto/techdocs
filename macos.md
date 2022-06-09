@@ -177,3 +177,8 @@ LoadModule php7_module libexec/apache2/libphp7.so
 sudo apachectl graceful
 ```
            
+# diskutil
+```
+sudo diskutil list
+sudo diskutil eraseDisk ExFAT test /dev/disk2
+```
