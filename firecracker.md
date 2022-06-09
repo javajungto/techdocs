@@ -237,6 +237,12 @@ apk update
 apk add nginx
 ```
 
+# shutdown guest
+on guest
+```
+reboot
+```
+
 # nofirewall.sh
 ```
 #!/bin/bash
