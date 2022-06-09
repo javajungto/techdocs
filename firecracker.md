@@ -272,6 +272,8 @@ iptables -F
 ./nofirewall.sh
 sh -c "echo 0 > /proc/sys/net/ipv4/ip_forward"
 
+rm hello*
+cp bak/hello* .
 ip link del br0
 ```
 
