@@ -35,6 +35,11 @@ tools/devtool build
 toolchain="$(uname -m)-unknown-linux-musl" 
 ```
 
+# firecracker 설치된 디렉토리로 이동
+```
+cd /root/firecracker/build/cargo_target/x86_64-unknown-linux-musl/debug
+```
+
 # view get_kernel_rootfs.sh <== ubuntu 이미지 apt update시 오류 발생
 ```
 arch=`uname -m`
