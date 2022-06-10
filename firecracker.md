@@ -350,6 +350,111 @@ ossyNMMMNyMMhsssssssssssssshmmmhssssssso   GPU: Matrox Electronics Systems Ltd. 
                         Memory: 303MiB / 3561MiB
 ```
 
+# 다중 guest 구동
+# view start_1.sh
+```
+#!/bin/bash
+
+rm -f /tmp/firecracker.socket && ./firecracker --api-sock /tmp/firecracker.socket --config-file vm_config_network.json
+```
+# view start_2.sh
+```
+#!/bin/bash
+
+rm -f /tmp/firecracker2.socket && ./firecracker --api-sock /tmp/firecracker2.socket --config-file vm_config_network_2.json
+```
+
+# kernel, rootfs
+```
+rm -rf hello*
+cp bak.h/hello* .
+cp hello-vmlinux.bin hello-vmlinux-2.bin
+cp hello-rootfs.ext4 hello-rootfs-2.ext4
+```
+# view vm_config_network_2.json
+```
+{
+  "boot-source": {
+    "kernel_image_path": "hello-vmlinux-2.bin",
+    "boot_args": "console=ttyS0 reboot=k panic=1 pci=off",
+    "initrd_path": null
+  },
+  "drives": [
+    {
+      "drive_id": "rootfs",
+      "path_on_host": "hello-rootfs-2.ext4",
+      "is_root_device": true,
+      "partuuid": null,
+      "is_read_only": false,
+      "cache_type": "Unsafe",
+      "io_engine": "Sync",
+      "rate_limiter": null
+    }
+  ],
+  "machine-config": {
+    "vcpu_count": 1,
+    "mem_size_mib": 512,
+    "smt": false,
+    "track_dirty_pages": false
+  },
+  "network-interfaces": [
+    {
+      "iface_id": "eth0",
+      "guest_mac": "AA:FC:00:00:00:02",
+      "host_dev_name": "tap2" 
+    }
+  ],
+  "balloon": null,
+  "vsock": null,
+  "logger": null,
+  "metrics": null,
+  "mmds-config": null
+}
+```
+
+# guest1
+# host
+```
+ip tuntap add tap0 mode tap
+sudo ip addr add 172.16.0.1/24 dev tap0
+sudo ip link set tap0 up
+sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward" 
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i tap0 -o eth0 -j ACCEPT
+```
+
+# ./start_1.sh
+# guest1
+```
+ip addr add 172.16.0.2/24 dev eth0
+ip link set eth0 up
+ip route add default via 172.16.0.1 dev eth0
+echo 'nameserver 8.8.8.8' > /etc/resolv.conf
+apk update
+apk add nginx
+```
+
+# guest2
+# host
+```
+ip tuntap add tap2 mode tap
+sudo ip addr add 172.16.2.1/24 dev tap2
+sudo ip link set tap2 up
+sudo iptables -A FORWARD -i tap2 -o eth0 -j ACCEPT
+```
+
+# ./start_2.sh
+# guest2
+```
+ip addr add 172.16.2.2/24 dev eth0
+ip link set eth0 up
+ip route add default via 172.16.2.1 dev eth0
+echo 'nameserver 8.8.8.8' > /etc/resolv.conf
+apk update
+apk add nginx
+```
+
 
 
 
