@@ -87,6 +87,12 @@ curl -fsSL -o hello-rootfs.ext4 https://s3.amazonaws.com/spec.ccfc.min/img/hello
 ```
 chmod 700 get_kernel_rootfs_ok.sh
 
+# 이미지 백업
+```
+mkdir bak.h
+cp hello-* bak.h
+```
+
 # view set_guest_kernel.sh
 ```
 arch=`uname -m`
