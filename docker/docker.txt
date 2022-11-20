@@ -332,3 +332,32 @@ print "Hello World from Python %s !" % os.environ['NAME']
 
 [root@localhost dockerfile3]# docker run -e NAME=Test hello_world_python_name
 Hello World from Python Test !
+
+----
+
+[root@localhost dockerfile3]# docker run -d -t ubuntu:20.04
+d2e9d8c67a3fde0c3684512d168d132f74e905085b136ac5b054f540123f0d31
+
+[root@localhost dockerfile3]# docker ps
+CONTAINER ID   IMAGE          COMMAND   CREATED          STATUS          PORTS     NAMES
+d2e9d8c67a3f   ubuntu:20.04   "bash"    13 seconds ago   Up 13 seconds             gracious_carver
+
+[root@localhost dockerfile3]# docker ps -a
+CONTAINER ID   IMAGE                     COMMAND             CREATED              STATUS                          PORTS     NAMES
+d2e9d8c67a3f   ubuntu:20.04              "bash"              4 seconds ago        Up 4 seconds                              gracious_carver
+7615a90625c7   hello_world_python_name   "python hello.py"   About a minute ago   Exited (0) About a minute ago             relaxed_hermann
+4d8294a0bf67   hello_world_python_name   "python hello.py"   About a minute ago   Exited (0) About a minute ago             nervous_solomon
+0017a46d0271   5d1ac36e5088              "python hello.py"   2 minutes ago        Exited (0) 2 minutes ago                  vigilant_carver
+11b68fd636ca   5d1ac36e5088              "python hello.py"   3 minutes ago        Exited (0) 3 minutes ago                  clever_hodgkin
+40c9186f98d1   hello_world_python_name   "python hello.py"   4 minutes ago        Exited (0) 4 minutes ago                  laughing_chebyshev
+7e85f948907a   727d240d39ea              "python hello.py"   4 minutes ago        Exited (1) 4 minutes ago                  elastic_sutherland
+8728bc95b189   727d240d39ea              "python hello.py"   5 minutes ago        Exited (1) 5 minutes ago                  frosty_ptolemy
+59a005a9493c   fce95ab6da2d              "python hello.py"   6 minutes ago        Exited (1) 6 minutes ago                  dazzling_greider
+df6364b2948a   77cf36a9eb5e              "python hello.py"   6 minutes ago        Exited (1) 6 minutes ago                  elated_feynman
+31838a6af99e   hello_world_python        "python hello.py"   24 minutes ago       Exited (0) 24 minutes ago                 amazing_nightingale
+404fc0725d31   hello_world_python        "python hello.py"   26 minutes ago       Exited (0) 26 minutes ago                 recursing_meitner
+97d37b8fcda1   ubuntu_with_git           "/bin/bash"         42 minutes ago       Exited (0) 37 minutes ago                 sweet_visvesvaraya
+6ec2c6890024   ubuntu:20.04              "/bin/bash"         47 minutes ago       Exited (0) 46 minutes ago                 romantic_curran
+65a85c7bba54   hello-world               "/hello"            48 minutes ago       Exited (0) 48 minutes ago                 adoring_mirzakhani
+
+[root@localhost dockerfile3]# docker stop d2e9d8c67a3f
