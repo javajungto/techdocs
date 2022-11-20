@@ -225,3 +225,41 @@ curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compo
 chmod +x /usr/local/bin/docker-compose
 ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 docker-compose --version
+
+#---------------------------------------------------------------------------
+# 2022.11.20
+#---------------------------------------------------------------------------
+docker 설치
+
+view install_docker.sh
+
+#!/bin/bash
+#https://docs.docker.com/engine/install/centos/
+yum clean all &&
+yum remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine &&
+yum install -y yum-utils &&
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo &&
+yum install docker-ce docker-ce-cli containerd.io -y &&
+systemctl enable docker &&
+systemctl start docker &&
+docker run hello-world
+
+# docker run -i -t ubuntu:20.04 /bin/bash
+root@6ec2c6890024:/# apt-get update
+root@6ec2c6890024:/# apt-get install -y git
+root@6ec2c6890024:/# exit
+# docker diff 6ec2c6890024
+# docker commit 6ec2c6890024 ubuntu_with_git
+
+# docker run -i -t ubuntu_with_git /bin/bash
+root@97d37b8fcda1:/# apt-get install -y openjdk-8-jdk
+root@97d37b8fcda1:/# exit
+# docker commit 97d37b8fcda1 ubuntu_with_git_and_jdk
+
+[root@localhost ~]# docker images
+REPOSITORY                TAG       IMAGE ID       CREATED              SIZE
+ubuntu_with_git_and_jdk   latest    2d9c685c5466   About a minute ago   678MB
+ubuntu_with_git           latest    9849fd4ad6e2   8 minutes ago        214MB
+ubuntu                    20.04     680e5dfb52c7   3 weeks ago          72.8MB
+hello-world               latest    feb5d9fea6a5   14 months ago        13.3kB
+
