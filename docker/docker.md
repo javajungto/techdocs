@@ -190,3 +190,12 @@ https://www.snoopybox.co.kr/1756
 ```
 docker service create --name registry --publish published=5000,target=5000 registry:2
 ```
+
+docker images
+docker rmi hello-world:latest
+docker ps -a
+
+$ docker run -i -t ubuntu:20.04 /bin/bash
+# apt-get update
+# apt-get install -y git
+# exit
