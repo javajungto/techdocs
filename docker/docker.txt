@@ -263,3 +263,18 @@ ubuntu_with_git           latest    9849fd4ad6e2   8 minutes ago        214MB
 ubuntu                    20.04     680e5dfb52c7   3 weeks ago          72.8MB
 hello-world               latest    feb5d9fea6a5   14 months ago        13.3kB
 
+[root@localhost dockerfile1]# view Dockerfile
+
+FROM ubuntu:20.04
+RUN apt-get update && \
+    apt-get install -y python
+    
+[root@localhost dockerfile1]# docker build -t ubuntu_with_python    
+
+[root@localhost dockerfile1]# docker images
+REPOSITORY                TAG       IMAGE ID       CREATED              SIZE
+ubuntu_with_python        latest    7fc511dbe352   About a minute ago   149MB
+ubuntu_with_git_and_jdk   latest    2d9c685c5466   5 minutes ago        678MB
+ubuntu_with_git           latest    9849fd4ad6e2   11 minutes ago       214MB
+ubuntu                    20.04     680e5dfb52c7   3 weeks ago          72.8MB
+hello-world               latest    feb5d9fea6a5   14 months ago        13.3kB
