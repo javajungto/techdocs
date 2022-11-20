@@ -375,3 +375,61 @@ CONTAINER ID   IMAGE     COMMAND             CREATED         STATUS         PORT
 [root@localhost ~]# docker stop 7dfd7bfce0af
 
 [root@localhost ~]# docker run -d -p 8080:8080 tomcat
+
+[root@localhost ~]# docker run -d -p 192.168.0.21:8080:8080 tomcat
+
+on host
+
+[root@localhost ~]# ifconfig docker0
+docker0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        inet6 fe80::42:7eff:fe25:4324  prefixlen 64  scopeid 0x20<link>
+        ether 02:42:7e:25:43:24  txqueuelen 0  (Ethernet)
+        RX packets 47500  bytes 2573186 (2.4 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 106555  bytes 192363733 (183.4 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@localhost ~]# docker inspect 2a2481274f0e
+
+[root@localhost ~]# docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+cd179853933f   bridge    bridge    local
+c7f028db8f66   host      host      local
+d2936bfed8dc   none      null      local
+
+bind: address already in use
+[root@localhost ~]# docker run -d -P tomcat
+
+볼륨
+
+-v <호스트경로>:<컨테이너_경로>
+[root@localhost ~]# docker run -i -t -v ~/docker_ubuntu:/host_directory ubuntu:20.04 /bin/bash
+root@777abece705c:/# touch /host_directory/file.txt
+root@777abece705c:/# exit
+exit
+[root@localhost ~]# ls -lhtr ~/docker_ubuntu/
+total 0
+-rw-r--r-- 1 root root 0 Nov 20 17:02 file.txt
+
+[root@localhost dockerfile4]# docker run -d --name tomcat tomcat
+[root@localhost dockerfile4]# docker logs tomcat
+
+삭제 
+컨테이너 클린업
+[root@localhost dockerfile4]# docker rm 8822229462a5
+[root@localhost dockerfile4]# docker container prune (정지된 컨테이너 모두 삭제)
+[root@localhost dockerfile4]# docker run --rm hello-world (컨테이너 종료되면 자동으로 삭제)
+
+이미지 클린업
+[root@localhost dockerfile4]# docker images
+[root@localhost dockerfile4]# docker rmi aa78955cdb73
+[root@localhost dockerfile4]# docker image prune
+
+[root@localhost dockerfile4]# docker volume ls
+[root@localhost dockerfile4]# docker volume prune
+[root@localhost dockerfile4]# docker system prune
+
+
+
+
