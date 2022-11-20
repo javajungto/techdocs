@@ -361,3 +361,17 @@ df6364b2948a   77cf36a9eb5e              "python hello.py"   6 minutes ago      
 65a85c7bba54   hello-world               "/hello"            48 minutes ago       Exited (0) 48 minutes ago                 adoring_mirzakhani
 
 [root@localhost dockerfile3]# docker stop d2e9d8c67a3f
+
+---
+
+[root@localhost ~]# docker run -d tomcat
+
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE     COMMAND             CREATED         STATUS         PORTS      NAMES
+7dfd7bfce0af   tomcat    "catalina.sh run"   8 seconds ago   Up 6 seconds   8080/tcp   kind_chaum
+
+[root@localhost ~]# docker logs 7dfd7bfce0af
+
+[root@localhost ~]# docker stop 7dfd7bfce0af
+
+[root@localhost ~]# docker run -d -p 8080:8080 tomcat
