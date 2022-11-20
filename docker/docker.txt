@@ -293,3 +293,42 @@ print "Hello World from Python !!"
 [root@localhost dockerfile2]# docker build -t hello_world_python .
 [root@localhost dockerfile2]# docker run hello_world_python
 Hello World from Python !!
+
+
+----
+
+[root@localhost dockerfile3]# cat Dockerfile
+FROM ubuntu:20.04
+RUN apt-get update && \
+    apt-get install -y python
+COPY hello.py .
+
+ENTRYPOINT ["python","hello.py"]
+
+[root@localhost dockerfile3]# cat hello.py
+import os
+print "Hello World from Python %s !" % os.environ['NAME']
+
+[root@localhost dockerfile3]# docker build -t hello_world_python_name .
+
+[root@localhost dockerfile3]# docker run -e NAME=Test hello_world_python_name
+Hello World from Python Test !
+
+----
+
+[root@localhost dockerfile3]# cat Dockerfile
+FROM ubuntu:20.04
+RUN apt-get update && \
+    apt-get install -y python
+COPY hello.py .
+ENV NAME Test
+ENTRYPOINT ["python","hello.py"]
+
+[root@localhost dockerfile3]# cat hello.py
+import os
+print "Hello World from Python %s !" % os.environ['NAME']
+
+[root@localhost dockerfile3]# docker build -t hello_world_python_name .
+
+[root@localhost dockerfile3]# docker run -e NAME=Test hello_world_python_name
+Hello World from Python Test !
