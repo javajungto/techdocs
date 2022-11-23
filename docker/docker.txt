@@ -20,7 +20,7 @@ docker search --filter "is-official=true" centos
 docker pull centos
 docker pull centos:7
 docker run --name centos7_nginx_cdn -it centos:7
-[root@3d2e1dcdc667 ~]#  
+[root@3d2e1dcdc667 ~]#
 yum groupinstall "Development tools" -y &&
 yum install pcre pcre-devel openssl openssl-devel gd gd-devel perl perl-devel perl-ExtUtils-Embed GeoIP-devel git wget net-tools -y &&
 yum -y update &&
@@ -91,7 +91,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 d414f7662c02        hello-world         "/hello"                 2 hours ago         Exited (0) 2 hours ago                         eloquent_payne
 
 [root@vb-c7 nginx_cdn]# docker
-docker        docker-init   docker-proxy  dockerd   
+docker        docker-init   docker-proxy  dockerd
 
 [root@vb-c7 nginx_cdn]# docker commit -a "by jwp" 1050c1559104 centos7_nginx_cdn:v0.2
 sha256:86aff080e5fee24efebff748ffcb2c66a024ac5d277a085cb0cc9fc062c60a18
@@ -122,7 +122,7 @@ centos7_nginx_cdn
 #docker run --privileged -d -p 80:80 --name centos7_nginx_cdn centos7_nginx_cdn:v0.2 init
 #docker exec centos7_nginx_cdn bash
 
-웹브라우저 http://localhost 방문 
+웹브라우저 http://localhost 방문
 
 #docker run --privileged -d -p 80:80 -v /root/bin/nginx.conf:/usr/local/nginx-1.18.0/conf/nginx.conf --name centos7_nginx_cdn centos7_nginx_cdn:v0.5 init
 #docker start centos7_nginx_cdn
@@ -132,16 +132,16 @@ centos7_nginx_cdn
 #---------------------------------------------------------------------------
 view Dockerfile
 FROM centos:7
-RUN yum groupinstall "Development tools" -y 
-RUN yum install pcre pcre-devel openssl openssl-devel gd gd-devel perl perl-devel perl-ExtUtils-Embed GeoIP-devel git wget net-tools -y 
-RUN yum -y update 
+RUN yum groupinstall "Development tools" -y
+RUN yum install pcre pcre-devel openssl openssl-devel gd gd-devel perl perl-devel perl-ExtUtils-Embed GeoIP-devel git wget net-tools -y
+RUN yum -y update
 
 #docker build -t centos7_nginx_cdn:v0.1 .
 #docker ps -a
 #docker images
 #docker run --privileged --name centos7_nginx_cdn centos:7 init
 #docker exec -it centos7_nginx_cdn bash
-nginx 컴파일 설치 
+nginx 컴파일 설치
 #docker commit -a "by jwp" 540ff1176c6f centos7_nginx_cdn:v0.1
 #docker stop centos7_nginx_cdn && docker rm centos7_nginx_cdn
 #docker run --privileged -d -p 80:80 --name centos7_nginx_cdn centos7_nginx_cdn:v0.1 init
@@ -154,7 +154,7 @@ view nginx.conf <== on host, for real service
 #docker run --privileged -d -p 80:80 --name centos7_nginx_cdn centos7_nginx_cdn:v0.1
 #docker ps -a
 #docker commit -a "by jwp" 1529484617fd javajungto/centos7_nginx_cdn:v0.1
-#docker push javajungto/centos7_nginx_cdn:v0.1 
+#docker push javajungto/centos7_nginx_cdn:v0.1
 #docker search javajungto
 
 on the other machine
@@ -196,7 +196,7 @@ iptables -A INPUT -i enp0s3 -p tcp --dport 2377 -j ACCEPT
   tasks:
    - name : yum update
      yum: name=* state=latest
-     
+
 # cat docker.yml
 ---
 - name: yum update on cdn
@@ -218,9 +218,9 @@ iptables -A INPUT -i enp0s3 -p tcp --dport 2377 -j ACCEPT
        name: docker
        state: started
        enabled: yes
-     become: yes     
+     become: yes
 
-Install Compose on Linux systems 
+Install Compose on Linux systems
 curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
@@ -268,8 +268,8 @@ hello-world               latest    feb5d9fea6a5   14 months ago        13.3kB
 FROM ubuntu:20.04
 RUN apt-get update && \
     apt-get install -y python
-    
-[root@localhost dockerfile1]# docker build -t ubuntu_with_python    
+
+[root@localhost dockerfile1]# docker build -t ubuntu_with_python
 
 [root@localhost dockerfile1]# docker images
 REPOSITORY                TAG       IMAGE ID       CREATED              SIZE
@@ -415,7 +415,7 @@ total 0
 [root@localhost dockerfile4]# docker run -d --name tomcat tomcat
 [root@localhost dockerfile4]# docker logs tomcat
 
-삭제 
+삭제
 컨테이너 클린업
 [root@localhost dockerfile4]# docker rm 8822229462a5
 [root@localhost dockerfile4]# docker container prune (정지된 컨테이너 모두 삭제)
@@ -430,6 +430,23 @@ total 0
 [root@localhost dockerfile4]# docker volume prune
 [root@localhost dockerfile4]# docker system prune
 
+#---------------------------------------------------------------------------
+# rocky linux 9
+#---------------------------------------------------------------------------
+
+docker run -i -t --name rocky rockylinux:9.0 /bin/bash
+
+docker run -i -t rockylinux /bin/bash
+
+# cat Dockerfile
+FROM rockylinux:9.0
+RUN yum -y update && \
+    yum -y install npm && \
+    cd /home/streamon &&
+
+
+
+docker build -t rockylinux .
 
 
 
