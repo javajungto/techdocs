@@ -153,15 +153,6 @@ Build Steps
 
 저장
 ```
-
-# etc
-
-```
-ssh-keygen -t rsa -b 2048 -C "j....." 빈암호
-ssh-copy-id root@x.x.x.x 
-접속 확인 : ssh root@x.x.x.x <==== 암호 없이 ssh 접속 
-```
-
 ```
 pipeline {
     agent any
@@ -174,3 +165,53 @@ pipeline {
     }
 }
 ```
+
+# compile stage
+```
+pipeline {
+    agent any
+    stages {
+        stage('compile') {
+            steps {
+                sh "npm run build"
+            }
+        }
+    }
+}
+```
+
+# nodejs plugin 설치 
+# checkout, compile  
+
+```
+pipeline {
+    agent any
+    tools {nodejs "nodejs"}
+
+    stages {
+        stage('checkout') {
+            steps {
+                git url : 'ssh://git@x.x.x.x:2225/root/....._front.git', branch: 'main'
+            }
+        }
+        stage('compile') {
+            steps {
+                sh 'cd /var/jenkins_home/workspace/checkout'
+                sh 'npm run build'
+            }
+        }
+    }
+}
+```
+
+
+
+
+# etc
+
+```
+ssh-keygen -t rsa -b 2048 -C "j....." 빈암호
+ssh-copy-id root@x.x.x.x 
+접속 확인 : ssh root@x.x.x.x <==== 암호 없이 ssh 접속 
+```
+
