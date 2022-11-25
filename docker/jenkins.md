@@ -157,6 +157,12 @@ Build Steps
 # etc
 
 ```
+ssh-keygen -t rsa -b 2048 -C "j....." 빈암호
+ssh-copy-id root@x.x.x.x 
+접속 확인 : ssh root@x.x.x.x <==== 암호 없이 ssh 접속 
+```
+
+```
 pipeline {
     agent any
     stages {
