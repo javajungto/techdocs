@@ -204,6 +204,29 @@ pipeline {
 }
 ```
 
+# checkout_compile
+
+```
+pipeline {
+    agent any
+    tools {nodejs "nodejs"}
+
+    stages {
+        stage('checkout') {
+            steps {
+                git url : 'ssh://git@x.x.x.x:2225/root/s...._front.git', branch: 'main'
+            }
+        }
+        stage('compile') {
+            steps {
+                sh 'cd /var/jenkins_home/workspace/checkout_compile'
+                sh 'npm install chalk'
+                sh 'npm run build'
+            }
+        }
+    }
+}
+```
 
 
 
