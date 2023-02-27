@@ -182,3 +182,9 @@ sudo apachectl graceful
 sudo diskutil list
 sudo diskutil eraseDisk ExFAT test /dev/disk2
 ```
+
+# homebrew
+```
+site : https://brew.sh/
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
