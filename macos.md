@@ -187,4 +187,11 @@ sudo diskutil eraseDisk ExFAT test /dev/disk2
 ```
 site : https://brew.sh/
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brew install php@8.1
+sudo brew services start php@8.1
+sudo brew services restart php@8.1
+terminal exit, 다시 open
+php -v
+
 ```
