@@ -8,7 +8,9 @@ fi
 echo "url: $1"
 
 # download video using yt-dlp
-downloadFile=$(yt-dlp $1 | grep Destination | sed 's/.*Destination: \(.*\)/\1/')
+#downloadFile=$(yt-dlp $1 | grep Destination | sed 's/.*Destination: \(.*\)/\1/')
+#downloadFile=$(yt-dlp $1 | grep Destination | sed 's/.*Destination: \(.*\)/\1/')
+downloadFile=$(yt-dlp $1 | grep Merging | sed 's/.*into "\(.*\)/\1/' | tr -d '"')
 
 echo "1. downloaded ... : ${downloadFile}"
 
