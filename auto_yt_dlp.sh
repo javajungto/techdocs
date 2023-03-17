@@ -1,4 +1,5 @@
 #!/bin/bash
+#setopt NO_NOMATCH
 
 if [ $# -eq 0 ]; then
   echo "Usage: $0 youtube_url"
