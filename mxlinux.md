@@ -54,3 +54,9 @@ https://unix.stackexchange.com/questions/590221/pairing-logitech-k380-in-ubuntu-
 
 https://unix.stackexchange.com/questions/96693/connect-to-a-bluetooth-device-via-terminal
 ```
+
+# realtek wifi
+```
+sudo apt list "*rtl88*"
+sudo apt install "rtl88*"
+```
