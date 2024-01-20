@@ -60,3 +60,12 @@ https://unix.stackexchange.com/questions/96693/connect-to-a-bluetooth-device-via
 sudo apt list "*rtl88*"
 sudo apt install "rtl88*"
 ```
+
+# font
+```
+$ fc-list
+$ sudo fc-cache -f -v
+
+$ sudo unzip -d /usr/share/fonts/nanum nanum-all.zip
+$ sudo fc-cache -f -v
+```
