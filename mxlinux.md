@@ -9,7 +9,13 @@
 - Virtualbox 재설치 
 ```
 
-- 관련 패키지 설치 
-```
+- 관련 패키지 설치
+``` 
 sudo apt install fcitx fcitx-hangul fcitx-frontend-* fcitx-config-gtk fcitx-ui-classic fcitx-tools
 ```
+
+- fcitx 등록
+```
+Settings > Session & Startup > Application Autostart에서 +Add를 클릭하고 Name: fcitx, Command: fcitx를 입력하고 OK를 클릭하여 등록
+```
+  
