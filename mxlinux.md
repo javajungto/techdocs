@@ -29,6 +29,6 @@ Settings > Session & Startup > Application Autostart에서 +Add를 클릭하고 
 ```
 
 - Global Config 탭을 클릭하고 한영 전환 입력방법 선택
-  ```
+```
 바꾸려면 클릭하고 입력 전환에 사용할 키 조합을 누릅니다
-  ```
+```
