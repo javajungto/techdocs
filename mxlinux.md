@@ -1,13 +1,7 @@
 
 # MX Linux fcitx 한글 입력기 설치 및 설정
 
-```
 - 참조 : https://m.blog.naver.com/callofgis/221993585745
-- command + R 복구모드
-- 메뉴 > terminal
-- csrutil disable; reboot
-- Virtualbox 재설치 
-```
 
 - 관련 패키지 설치
 ``` 
@@ -31,4 +25,29 @@ Settings > Session & Startup > Application Autostart에서 +Add를 클릭하고 
 - Global Config 탭을 클릭하고 한영 전환 입력방법 선택
 ```
 바꾸려면 클릭하고 입력 전환에 사용할 키 조합을 누릅니다
+```
+
+# bluetooth 수동으로 추가
+```
+$ bluetoothctl
+[  ] agent on
+[ ] scan on 
+...
+34:88:5D:4A:33:05
+...
+[ ] scan off
+[ ] trust 34:88:5D:4A:33:05
+[ ] pair 34:88:5D:4A:33:05
+[ ] connect 34:88:5D:4A:33:05
+
+typing the words with enter key 
+
+[ ] exit
+```
+
+- 참조
+```
+https://unix.stackexchange.com/questions/590221/pairing-logitech-k380-in-ubuntu-20-04#
+
+https://unix.stackexchange.com/questions/96693/connect-to-a-bluetooth-device-via-terminal
 ```
