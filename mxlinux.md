@@ -27,3 +27,8 @@ Settings > Session & Startup > Application Autostart에서 +Add를 클릭하고 
 - "Only show current language"의 체크박스 클릭을 해제하고 'Search'에서 "Hangul"을 입력하고 선택하여 OK
 - 기본 입력기('Keyboard - English (US)') 아래에 Hangul이 추가 됩니다. 주의: 입력기 리스트의 첫번째 입력기가 기본 입력기임을 나타낸다.
 ```
+
+- Global Config 탭을 클릭하고 한영 전환 입력방법 선택
+  ```
+바꾸려면 클릭하고 입력 전환에 사용할 키 조합을 누릅니다
+  ```
