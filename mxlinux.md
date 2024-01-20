@@ -8,3 +8,8 @@
 - csrutil disable; reboot
 - Virtualbox 재설치 
 ```
+
+- 관련 패키지 설치 
+```
+sudo apt install fcitx fcitx-hangul fcitx-frontend-* fcitx-config-gtk fcitx-ui-classic fcitx-tools
+```
