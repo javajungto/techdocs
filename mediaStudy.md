@@ -22,3 +22,22 @@ The process
 - encoding = the process of compressor
 - Codec = the means for doing so
 ```
+
+# What is Codec ?
+```
+Codec 
+
+- a video compression technology
+    
+    Videos - - - - - -> a streamable size
+    
+
+                         Shrink 수축
+
+- Tightly compress bulky streams for delivery storage
+- H.264
+- AVC
+- AAC (audio)
+```
+
+# Streamin Protocols
