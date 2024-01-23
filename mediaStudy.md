@@ -50,7 +50,7 @@ Codec
 - 트랜스 코딩이 완료되면 원본 스트림의 여러 변환이 전달되기 위해 출발한다.
 ```
 
-# Transmuxing, Transcoding, Transizing, Transrating
+# Transmuxing, Transcoding, Transrating, Transizing
 ```
 다양한 장치 및 연결 속도에 걸쳐 시청 경험을 최적화하기 위해 방송사는 종종 스트림이 미디어 서버를 통과할 때 스트림을 트랜스먹싱, 트랜스 코딩, 트랜사이지으 트랜스 레이팅 하도록 선택합니다.
 
@@ -64,7 +64,7 @@ Transcoding
 Transrating
     - 다양한 연결 속도를 수용하기 위해 압축 해제된 파일의 비트 전송률을 변경한다.
     - 여기에는 프레임 속도, 해상도 변경이 포함 될 수 있다.
-Transrating
+Transizing
     - 다양한 화면에 맞게 비디오 프레임 크기 또는 해상도를 조정한다.
 
 → 하나의 비트 전송률로 하나의 라이브 스트림을 생성하는 대신 트랜스코딩을 사용하면 서로 다른 비트 전송률과 해상도로 여러 스트림을 생성할 수 있다.
