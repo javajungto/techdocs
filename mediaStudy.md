@@ -41,3 +41,4 @@ Codec
 ```
 
 # Streamin Protocols
+![Alt text](streaming_protocols02.png)
