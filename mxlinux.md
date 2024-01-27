@@ -41,6 +41,7 @@ $ bluetoothctl
 [ ] scan off
 [ ] trust 34:88:5D:4A:33:05
 [ ] pair 34:88:5D:4A:33:05
+주어진 숫자 입력 + Enter
 [ ] connect 34:88:5D:4A:33:05
 
 typing the words with enter key 
