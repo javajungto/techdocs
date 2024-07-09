@@ -37,6 +37,7 @@
 
 # lvresize -L +80G /dev/rl/root
 ```
+# lvresize -L +80G /dev/rl/root
   Size of logical volume rl/root changed from <17.00 GiB (4351 extents) to <97.00 GiB (24831 extents).
   Logical volume rl/root successfully resized.
 ```
