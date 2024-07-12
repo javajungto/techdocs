@@ -22,3 +22,15 @@ service nfs start
 mount x.x.x.x:/home /mnt/nfs/home
 
 
+----
+on rockylinux 9.4
+# dnf -y install nfs-utils
+# vim /etc/exports
+/home/a/b	192.x.x.15/32(rw,no_root_squash)
+systemctl restart nfs-server
+systemctl enable nfs-server
+# exportfs -ra
+
+on macos
+% showmount -e 192.x.x.3
+sudo mount -t nfs -o resvport 192.x.x.3:/home/a/b /Volumes/nfs
