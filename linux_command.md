@@ -33,4 +33,5 @@ none                     : ignored
 dump 설정 : 파일 시스템의 덤프 가능 여부를 설정한다.
 
 0: dump 되지 않는 파일 시스템
-1 : 백업 등의 목적으로 덤프 가능한 filesystem```
+1 : 백업 등의 목적으로 덤프 가능한 filesystem
+```
