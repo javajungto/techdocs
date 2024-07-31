@@ -49,6 +49,12 @@ LVM
 pvdisplay
 vgdisplay
 
+물리적 볼륨생성
+pvcreate /dev/nvme0n1p1
+
+볼륨 그룹 확장
+vgextend rl /dev/nvme0n1p1
+
 논리적 볼륨확장
 lvextend -l +100%FREE /dev/rl/root
 
