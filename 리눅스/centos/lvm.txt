@@ -44,7 +44,23 @@ LVM
    vgreduce TestVG /dev/sde1
 
 8. pvremove /dev/sdb1
-   
+
+-------------------------------------------------
+pvdisplay
+vgdisplay
+
+논리적 볼륨확장
+lvextend -l +100%FREE /dev/rl/root
+
+파일 시스템 크기 조정
+ext4
+resize2fs /dev/rl/root
+
+xfs
+xfs_growfs /
+-------------------------------------------------
+
+
 참조:
 https://www.centos.org/docs/5/html/Cluster_Logical_Volume_Manager/LV_create.html
 
